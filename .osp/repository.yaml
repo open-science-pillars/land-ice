@@ -1,0 +1,13 @@
+# Canonical classification of this repository (ADR A, docs/decisions in the
+# marketplace repository). GitHub topics, the sphere view and every runtime
+# manifest are rendered from this file, never the other way round.
+schema_version: 1
+repository:
+  name: land-ice
+  kind: capability
+  status: planned
+classification:
+  spheres:
+  - cryosphere
+  primary_sphere: cryosphere
+  discipline: Land Ice
