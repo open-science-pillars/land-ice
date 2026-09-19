@@ -152,7 +152,9 @@ the ocean-science capability's `sea-level-budget` skill.
    and the ice density; and whether the run is a rehearsal on the
    synthetic fixture or a run on the committed data root, which
    refuses. Consult the concept and the gotchas it rests on, and cite
-   each by bundle path:
+   each by bundle path, the concept first, because it is the one that
+   owns every number this run can report:
+   `knowledge/nsidc/computations/ice-sheet-input-output.md`, then
    `knowledge/nsidc/gotchas/bedmachine-thickness-is-interpolated.md`
    (the thickness between flight lines is mass conservation or an
    interpolation, and the product's own fields say which, which is why

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "package": "land-ice",
+  "version": "0.1.0",
+  "package_type": "capability",
+  "agent_plugins_spec": "1.0.0",
+  "repository_classification_digest": "sha256:c940fb4042bb5801e2f2e1c688513364865584275d28aad9e77434f597847d45",
+  "dependencies": {
+    "capabilities": {
+      "core": null
+    },
+    "knowledge": {
+      "nasa-daac-knowledge": ">=2026.9.4"
+    }
+  },
+  "knowledge_digest": "sha256:91aa20b072d3ecbd9fda08a2b4ac738fd9a271565af554f6de5e2f2d8f405367",
+  "skills_digest": "sha256:a7492d57e2fd93a38c545704539cb2b37993cd01547d70d39ec55d84280810ec",
+  "verification_digest": "sha256:a8ea722a5bc1ee5b09b523304604e0a21a40c46a20281ded9199c11b1acc6fac",
+  "adapters": {
+    "claude": "sha256:5785efcd471f4eedc20c190349fb1c7923b1c2020aadd11f4e01b96f4946506f",
+    "agent-plugins": "sha256:1e723dcf10c4d90e8651ce7402837e7ea74f0754d943be377142db66900fc918"
+  }
+}
