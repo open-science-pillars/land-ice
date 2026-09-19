@@ -185,14 +185,17 @@ def check_receipt(chain: dict, receipt: dict) -> None:
         f"declared {chain['bound_parameters']}")
     assert receipt["refused"] is False, f"{skill}: the reference run refused"
     assert receipt["runtime"]["name"], f"{skill}: the receipt names no runtime"
-    # The run identifier under a fixed runtime name pins the executor's own
-    # code: an edit to it that changes no number still moves the identifier,
-    # which a golden that only re-ran the chain would never see. The name is
-    # always "goldens" here, so the value is stable and worth asserting.
-    assert receipt["run_id"] == chain["goldens_run_id"], (
-        f"{skill}: run identifier {receipt['run_id']} is not the "
-        f"{chain['goldens_run_id']} this fixture records; the executor or its "
-        "inputs moved")
+    assert receipt["run_id"].startswith("sha256:"), f"{skill}: no run identifier"
+    # The executor's own digest, which the numbers cannot cover: an edit to a
+    # provider executor that changes no number, a comment or a rename, still
+    # moves it, and a golden that only re-ran the chain and compared numbers
+    # would never see it. The run identifier is not what to assert here: it
+    # takes the capability root's path, so it differs between a checkout and
+    # a runner. The digest does not.
+    assert receipt["code_sha256"] == chain["executor_sha256"], (
+        f"{skill}: the executor digest {receipt['code_sha256']} is not the "
+        f"{chain['executor_sha256']} this fixture records; the provider "
+        "executor moved")
     assert receipt["capability"]["name"] == PACKAGE, (
         f"{skill}: the capability block names {receipt['capability']['name']!r}, "
         "not this package")

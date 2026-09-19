@@ -22,14 +22,15 @@ regenerate deterministically from a hash-based Gaussian stream with no
 numeric library in the path, so the values do not drift with a release
 of anything. Recorded 2026-09-19.
 
-**The run identifier.** Each chain also records `goldens_run_id`, the
-identifier the executor stamps on a run under the runtime name
-`goldens`, which the golden always passes, so the value is fixed. It
-is asserted for a reason the numbers cannot cover: an edit to a
-provider executor that changes no number, a comment or a rename, still
-moves the identifier, and a golden that only re-ran the chain and
-compared the numbers would never see it. It is not a claim about any
-other runtime's identifier, which differs by construction.
+**The executor's digest.** Each chain also records `executor_sha256`,
+the digest of the provider executor the chain runs, which the receipt
+carries as `code_sha256`. It is asserted for a reason the numbers
+cannot cover: an edit to a provider executor that changes no number, a
+comment or a rename, still moves the digest, and a golden that only
+re-ran the chain and compared the numbers would never see it. The run
+identifier is not what to assert for this, although it moves too: it
+takes the capability root's path, so it differs between a checkout and
+a runner.
 
 **The two record runs.** Each chain also names a run on a data root
 the provider bundle commits, and both of those runs refuse, so the
