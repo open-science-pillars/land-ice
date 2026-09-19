@@ -1,0 +1,52 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "land-ice",
+  "version": "0.1.0",
+  "description": "Land ice: run instructions for the attested ice sheet mass balance computations signed in the NSIDC bundle, the gravimetry against altimetry closure and the input-output balance through a flux gate set.",
+  "author": {
+    "name": "Open Science Pillars Community"
+  },
+  "homepage": "https://github.com/open-science-pillars/land-ice",
+  "repository": "https://github.com/open-science-pillars/land-ice",
+  "license": "Apache-2.0",
+  "keywords": [
+    "land-ice",
+    "cryosphere",
+    "ice-sheet",
+    "mass-balance",
+    "greenland",
+    "antarctica",
+    "grace-fo",
+    "mascons",
+    "altimetry",
+    "firn",
+    "input-output",
+    "flux-gate",
+    "attested-computation"
+  ],
+  "extensions": {
+    "io.github.open-science-pillars": {
+      "kind": "capability",
+      "status": "developing",
+      "spheres": [
+        "cryosphere"
+      ],
+      "primary_sphere": "cryosphere",
+      "discipline": "Land Ice",
+      "package_type": "capability",
+      "dependencies": {
+        "capabilities": [
+          {
+            "name": "core"
+          }
+        ],
+        "knowledge": [
+          {
+            "name": "nasa-daac-knowledge",
+            "version": ">=2026.9.4"
+          }
+        ]
+      }
+    }
+  }
+}

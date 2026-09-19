@@ -1,0 +1,43 @@
+# Package identity, content, dependencies, presentation metadata and REACH
+# (ADR B). The Claude package files and the Agent Plugins package are
+# rendered from this file by build-kit's osp.py render; the gate fails on
+# a hand edit to any of them.
+#
+# A wrap-only release (ADR D): the content is the wrapping skills, this
+# capability's own bundle and the golden that proves the chains. The
+# scientific concepts arrive with the nasa-daac-knowledge dependency and
+# are never copied here, so the floor below is the release that carries
+# the executor.skill keys of the computations these skills wrap.
+schema_version: 1
+package:
+  name: land-ice
+  version: 0.1.0
+  type: capability
+content:
+  skills: ./skills
+  knowledge: ./knowledge
+  verification: ./verification
+dependencies:
+  capabilities:
+  - name: core
+  knowledge:
+  - name: nasa-daac-knowledge
+    version: '>=2026.9.4'
+metadata:
+  description: 'Land ice: run instructions for the attested ice sheet mass balance computations signed in
+    the NSIDC bundle, the gravimetry against altimetry closure and the input-output balance through a flux
+    gate set.'
+  keywords:
+  - land-ice
+  - cryosphere
+  - ice-sheet
+  - mass-balance
+  - greenland
+  - antarctica
+  - grace-fo
+  - mascons
+  - altimetry
+  - firn
+  - input-output
+  - flux-gate
+  - attested-computation

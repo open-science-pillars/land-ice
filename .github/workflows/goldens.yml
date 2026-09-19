@@ -1,0 +1,49 @@
+name: goldens
+# The goldens under verification/, each named here with the command that
+# runs it (the placement rule, P5: a golden the workflow does not list is
+# a golden nothing runs).
+#
+# verification/wrapped_computations.py exercises both wrapping skills'
+# chains: for each, the provider bundle's sanctioned executor on its
+# synthetic fixture, the attester on the receipt, the receipt against the
+# values the signed concept records, the chain's fixture refusal, and the
+# run on the bundle's committed data root, which refuses in both chains
+# and is asserted as a refusal rather than as a number. The fixture it
+# reads is the committed expectations file under verification/fixtures/
+# (provenance in the README there). The job reads no live service, needs
+# no credential and carries no secret.
+#
+# The executors and attesters live in the provider bundle and are never
+# copied here, so the job checks that repository out beside the plugin
+# and names it the way a skill's override does: NASA_DAAC_KNOWLEDGE. On
+# an installed plugin the same golden resolves the bundle through the
+# installer's record instead.
+#
+# verification/wrapped_computations.py is also the release qualification
+# surface (.osp/surfaces.yaml) and runs there with the qualification
+# prompts.
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  goldens:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plugin
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          path: plugin
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          repository: open-science-pillars/nasa-daac-knowledge
+          path: nasa-daac-knowledge
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+      - name: Both wrapping chains pass offline on the committed fixture
+        env:
+          NASA_DAAC_KNOWLEDGE: ${{ github.workspace }}/nasa-daac-knowledge
+        run: uv run verification/wrapped_computations.py
