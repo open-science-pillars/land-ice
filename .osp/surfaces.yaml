@@ -1,0 +1,69 @@
+# Runtime support policy (ADR B). `required` is what a release must qualify
+# on before it advertises the surface; `status` is the evidence today.
+#
+# This is a first release and no qualification record exists for it, so no
+# surface says supported: a runtime is advertised as supported only on a
+# qualified record for the exact version and release lock.
+schema_version: 1
+surfaces:
+  claude-code:
+    role:
+    - development
+    - runtime
+    required: true
+    status: tested
+    evidence: The wrapping chains are exercised on Claude Code and by the goldens workflow, which runs
+      verification/wrapped_computations.py offline against the provider bundle's executors and attesters;
+      no qualification record has been produced for 0.1.0
+  claude-cowork:
+    role: runtime
+    required: true
+    status: planned
+    evidence: The Claude projection (.claude-plugin/plugin.json) is rendered from package.yaml and passes
+      osp.py validate in the gate; no install of this capability from the marketplace has been verified,
+      because the catalog entry is cut with the release
+  openai-codex:
+    role: runtime
+    required: true
+    status: planned
+    evidence: The Agent Plugins projection (plugin.json) is rendered from package.yaml and passes osp.py
+      plugin-check in the gate; Codex qualification of a release has not run
+  claude-science:
+    role: future-runtime
+    required: false
+    status: limited-release
+qualification:
+  require:
+  - install
+  - skill-discovery
+  - skill-invocation
+  - knowledge-resolution
+  - dependency-resolution
+  - golden-computation
+  - prove
+  - receipt
+  - release-lock
+probes:
+  skill-invocation:
+    skill: ice-mass-change
+    prompt: Close the Greenland ice sheet's mass balance over 2003 through 2016 from the GRACE and GRACE-FO
+      mascon sum against the altimetric volume change with its firn correction, and show me the plan before
+      anything is run.
+    expect:
+    - land-ice
+  prove:
+    prompt: 'Run this capability''s wrapping golden on the provider bundle''s synthetic fixture and report
+      the verdict and the residual it prints. The command is: uv run ${PLUGIN_ROOT}/verification/wrapped_computations.py
+      --runtime ${RUNTIME} --out ${WORK}/receipt.json'
+    receipt: ${WORK}/receipt.json
+    command:
+    - uv
+    - run
+    - ${PLUGIN_ROOT}/verification/wrapped_computations.py
+    - --attest
+    - ${WORK}/receipt.json
+    - --out
+    - ${WORK}/attestation.json
+    attestation: ${WORK}/attestation.json
+  golden-computation:
+  - verification/wrapped_computations.py

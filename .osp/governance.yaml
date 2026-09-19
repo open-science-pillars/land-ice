@@ -6,6 +6,25 @@ maintainers:
   teams:
   - cryosphere-maintainers
   status: interim
+runtime_maintainers:
+  claude-cowork:
+    users:
+    - PaulMRamirez
+    teams:
+    - runtime-cowork-maintainers
+    status: interim
+  openai-codex:
+    users:
+    - PaulMRamirez
+    teams:
+    - runtime-codex-maintainers
+    status: interim
+  agent-plugins:
+    users:
+    - PaulMRamirez
+    teams:
+    - runtime-agent-plugins-maintainers
+    status: interim
 roadmap:
   proposals: enabled
   authority: repository-maintainers
@@ -13,3 +32,4 @@ reviews:
   ordinary: 1
   cross_repository: org-policy
   knowledge: org-knowledge-policy
+  runtime_adapter: org-runtime-policy
