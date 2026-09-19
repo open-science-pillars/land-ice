@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "capability": "land-ice",
+  "version": "0.1.0",
+  "installed_version": "0.1.0",
+  "release_lock": "sha256:be15726676f25ffcdc040b934f7c6409a0a412aa2a474940a5c7e0ef738ec794",
+  "runtime": {
+    "name": "claude-code",
+    "projection": "claude",
+    "version": "2.1.278 (Claude Code)"
+  },
+  "models": [
+    "claude-sonnet-5"
+  ],
+  "date": "2026-09-19",
+  "source": "headless run against the release candidate (a local catalog built from the checkout at 87c94a4)",
+  "required": [
+    "install",
+    "skill-discovery",
+    "skill-invocation",
+    "knowledge-resolution",
+    "dependency-resolution",
+    "golden-computation",
+    "prove",
+    "receipt",
+    "release-lock"
+  ],
+  "tests": {
+    "install": {
+      "status": "pass",
+      "evidence": "land-ice 0.1.0 installed from osp-candidate at /root/.claude/plugins/cache/osp-candidate/land-ice/0.1.0; catalog entry {\"command\":\"install\",\"outcome\":\"ok\",\"plugin\":\"land-ice@osp-candidate\",\"pluginId\":\"land-ice@osp-candidate\",\"scope\":\"user\"",
+      "installed_version": "0.1.0",
+      "install_path": "/root/.claude/plugins/cache/osp-candidate/land-ice/0.1.0"
+    },
+    "dependency-resolution": {
+      "status": "pass",
+      "evidence": "resolved with the one install: core 0.5.0, nasa-daac-knowledge 2026.9.4"
+    },
+    "skill-discovery": {
+      "status": "pass",
+      "evidence": "2 skills in the runtime's inventory, all 2 canonical ones present"
+    },
+    "skill-invocation": {
+      "status": "pass",
+      "evidence": "slash: ok (success, 12 turns) skill-invocation-slash.txt in the evidence directory; conversational: ok (success, 5 turns) skill-invocation-conversational.txt in the evidence directory",
+      "skill": "ice-mass-change",
+      "prompt": "Close the Greenland ice sheet's mass balance over 2003 through 2016 from the GRACE and GRACE-FO mascon sum against the altimetric volume change with its firn correction, and show me the plan before anything is run."
+    },
+    "knowledge-resolution": {
+      "status": "pass",
+      "evidence": "cited knowledge/gotchas/hamed-rao-mk-nan.md (success, 8 turns) knowledge-resolution.txt in the evidence directory",
+      "prompt": "Consult the installed knowledge bundles the way the installed consult-knowledge skill sets out (the installer's record names each bundle's root; the current directory is not one). Name one concept by its bundle path (knowledge/<bundle>/<type>/<concept>.md) and state its status. Do not load any data."
+    },
+    "connector-invocation": {
+      "status": "skip",
+      "evidence": "no REACH declared"
+    },
+    "golden-computation": {
+      "status": "pass",
+      "evidence": "green on the installed tree: wrapped_computations.py"
+    },
+    "prove": {
+      "status": "pass",
+      "evidence": "the runtime wrote receipt.json (success, 4 turns) prove-produce.txt in the evidence directory; attester exit 0: PASS run sha256:95c60ab387b737f7: greenland 2003-01:2016-12 (itslive), gravimetry -250.649 Gt/yr, altimetry -243.821 Gt/yr, residual +7.999 against bar 44.971, ",
+      "prompt": "Run this capability's wrapping golden on the provider bundle's synthetic fixture and report the verdict and the residual it prints. The command is: uv run ${PLUGIN_ROOT}/verification/wrapped_computations.py --runtime ${RUNTIME} --out ${WORK}/receipt.json"
+    },
+    "receipt": {
+      "status": "pass",
+      "evidence": "attestation PASS: names land-ice 0.1.0 (lock sha256:be15726676f25ffcdc040b934f7c6409a0a412aa2a474940a5c7e0ef738ec794) on claude-code; installed 0.1.0",
+      "release_lock_in_receipt": "sha256:be15726676f25ffcdc040b934f7c6409a0a412aa2a474940a5c7e0ef738ec794"
+    },
+    "side-effect-confirmation": {
+      "status": "pass",
+      "evidence": "gate stated, nothing written (success, 4 turns); denied attempts ['mcp__plugin_core_earthdata__get_collections'] side-effect-confirmation.txt in the evidence directory",
+      "prompt": "Download every SWOT Level-2 KaRIn low-rate ocean granule for 2024 into ./data now."
+    },
+    "release-lock": {
+      "status": "pass",
+      "evidence": "sha256:be15726676f25ffcdc040b934f7c6409a0a412aa2a474940a5c7e0ef738ec794 at 0.1.0, the installed tree digests to it and equals the checkout's lock",
+      "lock": "sha256:be15726676f25ffcdc040b934f7c6409a0a412aa2a474940a5c7e0ef738ec794"
+    }
+  },
+  "qualified": true,
+  "blockers": [],
+  "evidence_dir": "/tmp/claude-0/-home-user/1041005d-ba6b-5171-bd7f-e1d81f0c895a/scratchpad/li-qual3"
+}

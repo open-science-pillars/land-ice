@@ -150,7 +150,9 @@ not own.
    bridge citation is bound; the altimetry product; the ice density;
    and whether the run is a rehearsal on the synthetic fixture or a
    real run on the committed data root. Consult the concept and the
-   gotchas it rests on, and cite each by bundle path:
+   gotchas it rests on, and cite all three by bundle path, the concept
+   first, because it is the one that owns every number this run can
+   report: `knowledge/nsidc/computations/ice-sheet-balance.md`, then
    `knowledge/nsidc/gotchas/atl15-height-change-is-not-mass-change.md`
    (a height change is a mass change only after the firn air content
    change is removed and a density applied) and
