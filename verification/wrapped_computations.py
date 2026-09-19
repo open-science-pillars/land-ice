@@ -104,6 +104,30 @@ def bundle_root() -> Path:
     return provider_root() / "knowledge" / BUNDLE
 
 
+def concept_status(chain: dict) -> str:
+    """The status the provider concept itself carries.
+
+    The fixture records the word the golden prints beside each chain.
+    A concept is promoted in the provider bundle, not here, so that
+    word goes stale the moment a draft is signed, and a golden that
+    only printed it would keep saying draft forever. Reading the
+    concept's own frontmatter and failing on a disagreement is what
+    stops the fixture from lying about a status the way it cannot lie
+    about a number."""
+    path = bundle_root() / chain["concept"].split(f"knowledge/{BUNDLE}/", 1)[1]
+    if not path.is_file():
+        sys.exit(f"the provider bundle carries no concept at {path}")
+    lines = path.read_text(encoding="utf-8").splitlines()
+    if not lines or lines[0].strip() != "---":
+        sys.exit(f"{path} opens with no frontmatter")
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        if line.startswith("status:"):
+            return line.split(":", 1)[1].strip()
+    sys.exit(f"{path} carries no status key in its frontmatter")
+
+
 def chain_paths(chain: dict) -> tuple[Path, Path]:
     root = bundle_root()
     computation = root / chain["executor"]
@@ -161,7 +185,14 @@ def check_receipt(chain: dict, receipt: dict) -> None:
         f"declared {chain['bound_parameters']}")
     assert receipt["refused"] is False, f"{skill}: the reference run refused"
     assert receipt["runtime"]["name"], f"{skill}: the receipt names no runtime"
-    assert receipt["run_id"].startswith("sha256:"), f"{skill}: no run identifier"
+    # The run identifier under a fixed runtime name pins the executor's own
+    # code: an edit to it that changes no number still moves the identifier,
+    # which a golden that only re-ran the chain would never see. The name is
+    # always "goldens" here, so the value is stable and worth asserting.
+    assert receipt["run_id"] == chain["goldens_run_id"], (
+        f"{skill}: run identifier {receipt['run_id']} is not the "
+        f"{chain['goldens_run_id']} this fixture records; the executor or its "
+        "inputs moved")
     assert receipt["capability"]["name"] == PACKAGE, (
         f"{skill}: the capability block names {receipt['capability']['name']!r}, "
         "not this package")
@@ -242,6 +273,12 @@ def golden() -> int:
     for chain in chains():
         skill = chain["skill"]
         computation, attester = chain_paths(chain)
+        live = concept_status(chain)
+        if live != chain["concept_status"]:
+            failures.append(f"{skill}: the fixture says the concept is "
+                            f"{chain['concept_status']} and "
+                            f"{chain['concept']} says {live}")
+            continue
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             receipt_path = tmp / "receipt.json"

@@ -90,11 +90,10 @@ A runtime is advertised as supported only on a qualified record for this exact r
     `knowledge/nsidc/computations/ice-sheet-input-output.md`: the
     surface mass balance over the grounded domain less the discharge
     through a named flux gate set, formed node by node from a velocity
-    and a thickness. The concept is a draft at the provider release
-    this capability declares a floor on, and the skill voices it as a
-    draft. Its record run refuses, so no real-data estimate by this
-    method exists yet; the skill says so plainly and says what would
-    produce one.
+    and a thickness. The concept is signed stable, for the method and
+    its refusals rather than for a measurement: its record run
+    refuses, so no real-data estimate by this method exists yet, and
+    the skill says so plainly and says what would produce one.
 
 - **Knowledge** (`knowledge/`): this capability's own bundle. It holds
   no concepts, and `knowledge/index.md` says so and says why: the

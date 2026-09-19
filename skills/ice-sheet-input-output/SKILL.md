@@ -26,14 +26,14 @@ The name is the workflow, not the product: this is the input-output
 method, the third of the three satellite methods, not a velocity
 reader and not a thickness reader.
 
-**This concept is a draft.** At the provider release this capability
-declares a floor on, `knowledge/nsidc/computations/ice-sheet-input-output.md`
-carries `status: draft` and no maintainer signature. Say so on every
-run, before the numbers: a draft is voiced as a draft, and a stable
-concept outranks it wherever the two meet. The companion closure
-concept `knowledge/nsidc/computations/ice-sheet-balance.md`, which
-this skill's sibling wraps, is signed stable, and where the two
-disagree the stable one wins.
+**The concept is stable and signed**, as is its recipe, at the provider
+release this capability declares a floor on. It was promoted on the
+same day this capability was, after the coordinator reproduced the
+whole chain, so a run of this skill carries the same standing as a run
+of its sibling. What the concept is signed for is the method and its
+refusals, not a measurement: the record run refuses, for the two
+reasons the next section separates, so no real-data estimate exists to
+quote.
 
 ## Where the executor is
 
@@ -146,7 +146,8 @@ the ocean-science capability's `sea-level-budget` skill.
 
 ## Behavior, in order
 
-1. **Parse and show back:** that the concept is a draft; the ice
+1. **Parse and show back:** that no real-data estimate exists in this
+   bundle, so a run on the committed root refuses; the ice
    sheet, the window, the gate set by name, the velocity epoch family
    and the ice density; and whether the run is a rehearsal on the
    synthetic fixture or a run on the committed data root, which
@@ -242,7 +243,8 @@ the ocean-science capability's `sea-level-budget` skill.
    the forged cases. Report the attester's verdict, not your own
    reading of the numbers.
 6. **Report**, with each of these beside the number it qualifies: that
-   the concept is a draft; the gate set by name with its node and gate
+   every number of a fixture run is a planted synthetic value and none
+   of them is an ice sheet's; the gate set by name with its node and gate
    counts, whether it spans the grounded margin and what settled each
    node's grounding; the two terms with their intervals and which
    error each interval rests on; the mass rate against the bar, with
@@ -296,8 +298,8 @@ the ocean-science capability's `sea-level-budget` skill.
   supplying a surface mass balance from outside the root.
 - Never quote a discharge from a gate set that does not span the
   grounded margin as an ice sheet's discharge.
-- Never report the concept's statements as settled: it is a draft
-  until the maintainer signs it, and the report says so.
+- Never report a fixture number as an ice sheet's: the fixture is
+  planted, the record run refuses, and the report says both.
 - Never restate the published assessment's rates or its technique
   spread as numbers of this run; cite the assessment dataset concept
   by bundle path.

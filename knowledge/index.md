@@ -48,10 +48,11 @@ What the skills of this release wrap:
 - `knowledge/nsidc/computations/ice-sheet-balance.md`, wrapped by the
   `ice-mass-change` skill. Signed stable in the provider bundle.
 - `knowledge/nsidc/computations/ice-sheet-input-output.md`, wrapped by
-  the `ice-sheet-input-output` skill. It is `status: draft` in the
-  provider bundle at the release this capability declares a floor on,
-  and the skill voices it as a draft on every run, as the conflict
-  rule above requires.
+  the `ice-sheet-input-output` skill. Signed stable in the provider
+  bundle, promoted on the day this capability was. What it is signed
+  for is the method and its refusals: its record run refuses, so the
+  skill voices that on every run and no real-data estimate exists to
+  quote.
 
 The concepts those two rest on, and which the skills cite rather than
 restate, are the bundle's `datasets/icesat2-atl15.md`,

@@ -13,13 +13,23 @@ The expected values of this capability's two wrapping chains, read by
 section of the concept it names, in the nasa-daac-knowledge `nsidc`
 bundle: `knowledge/nsidc/computations/ice-sheet-balance.md` (signed
 stable, verified 2026-09-16) and
-`knowledge/nsidc/computations/ice-sheet-input-output.md` (`status:
-draft` at the release this capability declares a floor on, and the
-`concept_status` field in each chain carries that word so a reader of
-the golden's output sees it). Both are fixture runs at seed 7, which
-the executors regenerate deterministically from a hash-based Gaussian
-stream with no numeric library in the path, so the values do not drift
-with a release of anything. Recorded 2026-09-19.
+`knowledge/nsidc/computations/ice-sheet-input-output.md` (signed
+stable, verified 2026-09-19). The `concept_status` field in each chain
+carries that word, and the golden reads the concept's own frontmatter
+and fails when the two disagree, so the field cannot go stale in
+silence. Both are fixture runs at seed 7, which the executors
+regenerate deterministically from a hash-based Gaussian stream with no
+numeric library in the path, so the values do not drift with a release
+of anything. Recorded 2026-09-19.
+
+**The run identifier.** Each chain also records `goldens_run_id`, the
+identifier the executor stamps on a run under the runtime name
+`goldens`, which the golden always passes, so the value is fixed. It
+is asserted for a reason the numbers cannot cover: an edit to a
+provider executor that changes no number, a comment or a rename, still
+moves the identifier, and a golden that only re-ran the chain and
+compared the numbers would never see it. It is not a claim about any
+other runtime's identifier, which differs by construction.
 
 **The two record runs.** Each chain also names a run on a data root
 the provider bundle commits, and both of those runs refuse, so the

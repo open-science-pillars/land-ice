@@ -18,6 +18,7 @@
       "skill": "ice-mass-change",
       "concept": "knowledge/nsidc/computations/ice-sheet-balance.md",
       "concept_status": "stable",
+      "goldens_run_id": "sha256:f27ee9533edfa10a",
       "executor": "references/computations/ice_sheet_balance.py",
       "attester": "references/attesters/ice_sheet_balance_check.py",
       "quoted_from": "the concept's Reference run section, the second fixture run at seed 7, Greenland over 2003-01 through 2016-12 on the itslive altimetry term",
@@ -28,16 +29,35 @@
         "ice_density": 917.0,
         "bridge": null
       },
-      "args": ["--ice-sheet", "greenland", "--window", "2003-01:2016-12",
-               "--altimetry", "itslive", "--ice-density", "917"],
+      "args": [
+        "--ice-sheet",
+        "greenland",
+        "--window",
+        "2003-01:2016-12",
+        "--altimetry",
+        "itslive",
+        "--ice-density",
+        "917"
+      ],
       "seed": 7,
       "expect": {
         "months_in_window": 168,
-        "term_epochs": {"gravimetry": 152, "altimetry": 168},
+        "term_epochs": {
+          "gravimetry": 152,
+          "altimetry": 168
+        },
         "n_common_differences": 128,
         "rates": {
-          "gravimetry": {"rate": -250.649, "ci_low": -261.184, "ci_high": -240.113},
-          "altimetry": {"rate": -243.821, "ci_low": -285.038, "ci_high": -202.603}
+          "gravimetry": {
+            "rate": -250.649,
+            "ci_low": -261.184,
+            "ci_high": -240.113
+          },
+          "altimetry": {
+            "rate": -243.821,
+            "ci_low": -285.038,
+            "ci_high": -202.603
+          }
         },
         "residual": 7.999,
         "bar": 44.971,
@@ -46,15 +66,31 @@
         "tolerance": 0.001
       },
       "refusal": {
-        "args": ["--ice-sheet", "greenland", "--window", "2019-01:2025-12",
-                 "--altimetry", "atl15", "--ice-density", "917"],
+        "args": [
+          "--ice-sheet",
+          "greenland",
+          "--window",
+          "2019-01:2025-12",
+          "--altimetry",
+          "atl15",
+          "--ice-density",
+          "917"
+        ],
         "reason_code": "window-outside-overlap",
         "quoted_from": "the concept's Reference run section, the refusal case the chain exercises on the fixture"
       },
       "record": {
         "data_root": "references/retrieval/ice-sheet-balance-root",
-        "args": ["--ice-sheet", "antarctica", "--window", "2003-01:2016-12",
-                 "--altimetry", "itslive", "--ice-density", "917"],
+        "args": [
+          "--ice-sheet",
+          "antarctica",
+          "--window",
+          "2003-01:2016-12",
+          "--altimetry",
+          "itslive",
+          "--ice-density",
+          "917"
+        ],
         "reason_code": "firn-term-missing",
         "quoted_from": "the concept's Reference run section and its Boundaries section: the Antarctic refusal is exercised on the committed root, for want of a grounded firn air content term",
         "about": "a finding about the data, not an error: the firn distribution carries model output over the floating shelves only, so no grounded firn air content term covers the Antarctic altimetry domain"
@@ -63,7 +99,8 @@
     {
       "skill": "ice-sheet-input-output",
       "concept": "knowledge/nsidc/computations/ice-sheet-input-output.md",
-      "concept_status": "draft",
+      "concept_status": "stable",
+      "goldens_run_id": "sha256:5e053e79cafb79ce",
       "executor": "references/computations/ice_sheet_input_output.py",
       "attester": "references/attesters/ice_sheet_input_output_check.py",
       "quoted_from": "the concept's Reference run section, the first fixture run at seed 7, Greenland over 2005-01 through 2014-12 on the gate set synthetic-outlets",
@@ -74,17 +111,41 @@
         "velocity_epoch": "annual",
         "ice_density": 917.0
       },
-      "args": ["--ice-sheet", "greenland", "--window", "2005-01:2014-12",
-               "--gates", "synthetic-outlets", "--velocity-epoch", "annual",
-               "--ice-density", "917"],
+      "args": [
+        "--ice-sheet",
+        "greenland",
+        "--window",
+        "2005-01:2014-12",
+        "--gates",
+        "synthetic-outlets",
+        "--velocity-epoch",
+        "annual",
+        "--ice-density",
+        "917"
+      ],
       "seed": 7,
       "expect": {
         "months_in_window": 120,
-        "term_epochs": {"smb": 10, "discharge": 10},
-        "gates": {"n_gates": 8, "n_nodes": 248, "spans_margin": true},
+        "term_epochs": {
+          "smb": 10,
+          "discharge": 10
+        },
+        "gates": {
+          "n_gates": 8,
+          "n_nodes": 248,
+          "spans_margin": true
+        },
         "rates": {
-          "smb": {"rate": 400.086, "ci_low": 343.532, "ci_high": 456.640},
-          "discharge": {"rate": 490.809, "ci_low": 437.847, "ci_high": 543.771}
+          "smb": {
+            "rate": 400.086,
+            "ci_low": 343.532,
+            "ci_high": 456.64
+          },
+          "discharge": {
+            "rate": 490.809,
+            "ci_low": 437.847,
+            "ci_high": 543.771
+          }
         },
         "residual": -90.723,
         "bar": 67.518,
@@ -94,17 +155,35 @@
         "tolerance": 0.001
       },
       "refusal": {
-        "args": ["--ice-sheet", "greenland", "--window", "2021-01:2023-12",
-                 "--gates", "synthetic-outlets", "--velocity-epoch", "annual",
-                 "--ice-density", "917"],
+        "args": [
+          "--ice-sheet",
+          "greenland",
+          "--window",
+          "2021-01:2023-12",
+          "--gates",
+          "synthetic-outlets",
+          "--velocity-epoch",
+          "annual",
+          "--ice-density",
+          "917"
+        ],
         "reason_code": "window-outside-epochs",
         "quoted_from": "the concept's Reference run section, the refusal the check chain exercises on the fixture"
       },
       "record": {
         "data_root": "references/retrieval/ice-sheet-input-output-root",
-        "args": ["--ice-sheet", "greenland", "--window", "2014-01:2023-12",
-                 "--gates", "greenland-outlets-v1", "--velocity-epoch", "annual",
-                 "--ice-density", "917"],
+        "args": [
+          "--ice-sheet",
+          "greenland",
+          "--window",
+          "2014-01:2023-12",
+          "--gates",
+          "greenland-outlets-v1",
+          "--velocity-epoch",
+          "annual",
+          "--ice-density",
+          "917"
+        ],
         "reason_code": "term-not-in-root",
         "quoted_from": "the concept's Reference run section: the real-data run is a refusal, not a number",
         "about": "no real-data input-output estimate exists: the thickness term sits behind a host the drafting environment's egress policy refuses, and no NASA archive distributes a gridded surface mass balance over grounded ice"
