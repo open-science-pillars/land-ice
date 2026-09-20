@@ -1,12 +1,12 @@
 ---
 name: sweep
-description: "Sweep one parameter an attested nsidc computation declares and table the receipts: the sanctioned executor once per value, the attester on every receipt before any field is read, and a CSV, a markdown table and a JSON manifest of the executor's own headline fields, with a refused run as a row carrying its refusal code. Keywords: parameter sweep, window dependence, sensitivity, every window, table of runs, ice sheet mass balance over many windows, altimetry product, ITS_LIVE against ATL15, ice density, gate set, closure verdict."
+description: "Sweep one parameter an attested computation this package carries declares and table the receipts: the sanctioned executor once per value, the attester on every receipt before any field is read, and a CSV, a markdown table and a JSON manifest of the executor's own headline fields, with a refused run as a row carrying its refusal code. Keywords: parameter sweep, window dependence, sensitivity, every window, table of runs, ice sheet mass balance over many windows, altimetry product, ITS_LIVE against ATL15, ice density, gate set, closure verdict."
 ---
 
 # sweep
 
 This skill computes nothing. Every number it puts in a table is a field
-of one receipt that the provider bundle's attester passed, copied by
+of one receipt that this package's own attester passed, copied by
 the receipt field path the script records beside each column, and the
 computation that owns those numbers is the concept the sweep names
 (`knowledge/computations/ice-sheet-balance.md` for the closure,
@@ -30,16 +30,16 @@ Use it when the question is how an answer moves with a parameter the
 concept declares: every window of a stated length stepping through the
 record, the same window on each of the two altimetry records the root
 now carries, the same window at two ice densities, the same window
-through two gate sets. Use the wrapping skill (`ice-mass-change` for
-the closure, `ice-sheet-input-output` for the input-output balance)
-when the question is about one run, which is also the only thing a
-reader may quote as a number.
+through two gate sets. Use the skill that runs the computation
+(`ice-mass-change` for the closure, `ice-sheet-input-output` for the
+input-output balance) when the question is about one run, which is
+also the only thing a reader may quote as a number.
 
-The runs it drives are the wrapping skills' runs, so read the wrapping
-skill first: it states the parameters, the refusal codes, the receipt
-fields and the caveats that travel with every number. The sweep changes
-none of that. It runs the same executor with the same flags, one value
-at a time.
+The runs it drives are those two skills' runs, so read the skill that
+runs the computation first: it states the parameters, the refusal
+codes, the receipt fields and the caveats that travel with every
+number. The sweep changes none of that. It runs the same executor with
+the same flags, one value at a time.
 
 This is the ocean-science `sweep` skill's command line and output shape
 over this package's two computations. A reader who knows one knows
@@ -126,8 +126,8 @@ uv run skills/sweep/scripts/sweep.py \
    for the closure), the parameter to be swept as that concept declares
    it, the values, the fixed value of every other declared parameter,
    and the input (the fixture as a rehearsal, or the stamped data root
-   for a real run). Consult the wrapping skill and the concepts and
-   gotchas it names before running.
+   for a real run). Consult the skill that runs the computation and the
+   concepts and gotchas it names before running.
 2. **Run the sweep.** One executor run per value, each writing its own
    receipt. A run the executor refuses (exit 3) is a row carrying its
    reason code, never a skipped row and never retried with a different

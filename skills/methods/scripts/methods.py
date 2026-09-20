@@ -25,9 +25,9 @@ from the file that attested.
 
 What it refuses, each with exit 4 and a reason code:
 
-  attester-did-not-pass   the bundle's attester did not PASS this exact
-                          receipt. A methods paragraph exists only for a
-                          receipt that attests.
+  attester-did-not-pass   this package's attester did not PASS this
+                          exact receipt. A methods paragraph exists only
+                          for a receipt that attests.
   fact-not-in-receipt     a fact to state that is neither a receipt
                           field nor an entry of the concept's sources
                           (asked for with --add TEXT). Every sentence
@@ -464,7 +464,7 @@ def render(receipt: dict, sources, said, verdict_line: str,
               f"`{receipt['code_sha256']}`",
               f"- attester: `{ATTESTER}`, verdict "
               f"`{verdict_line}`",
-              f"- wrapping skill: `land-ice/ice-mass-change`",
+              f"- skill that ran the computation: `land-ice/ice-mass-change`",
               f"- run identifier: `{receipt['run_id']}`, runtime "
               f"`{receipt['runtime']['name']}`, generated "
               f"`{receipt['generated_utc']}`",

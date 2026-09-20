@@ -55,5 +55,5 @@ jobs:
         run: uv run verification/ice_sheet_balance.py
       - name: The input-output chain passes offline on the committed fixture and root
         run: uv run verification/ice_sheet_input_output.py
-      - name: The three receipt skills pass offline on the committed fixture
+      - name: sweep, receipt-figures and methods pass offline on the committed fixture
         run: uv run verification/receipt_skills.py

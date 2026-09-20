@@ -7,7 +7,7 @@ description: "Write the methods paragraph and the reference list of an attested 
 
 This skill computes nothing. Every number, product name, model version,
 mask rule and parameter in the paragraph it writes is a field of one
-receipt that the provider bundle's attester passed, and every entry of
+receipt that this package's own attester passed, and every entry of
 the reference list is an entry of the concept's own `sources`
 frontmatter, copied verbatim. The computation that owns those facts is
 `knowledge/computations/ice-sheet-balance.md`, and the procedure
@@ -47,9 +47,10 @@ renderer do, and reaches nothing in another repository:
 
 ## Behavior, in order
 
-1. **Get the receipt from a run of the wrapping skill.** The paragraph
-   describes one run: one ice sheet, one window, one altimetry product,
-   one density, one input. The writer does not run the executor.
+1. **Get the receipt from a run of the `ice-mass-change` skill.** The
+   paragraph describes one run: one ice sheet, one window, one altimetry
+   product, one density, one input. The writer does not run the
+   executor.
 2. **The attester runs before a single field is read.** The script
    hashes the receipt's bytes before and after, so the paragraph is
    written from the file that attested. Pass `--data-root DIR` for a
@@ -69,8 +70,8 @@ renderer do, and reaches nothing in another repository:
    by the footnote ids the paragraph uses; **Field map**, every sentence
    beside the receipt field paths it was built from; and
    **Provenance**, the concept, the executor and its digest, the
-   attester and its verdict line, the wrapping skill, the run
-   identifier, the runtime and the receipt's own digest.
+   attester and its verdict line, the skill that ran the computation,
+   the run identifier, the runtime and the receipt's own digest.
 4. **Use the paragraph verbatim.** Append it to the manuscript, report
    or notebook under a Methods heading, and the reference list under
    References. Do not rewrite a sentence to read better: each one is a

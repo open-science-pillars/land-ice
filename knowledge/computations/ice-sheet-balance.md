@@ -24,6 +24,7 @@ verified:
   - { by: human:PaulMRamirez, at: 2026-09-19T08:36:53Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/201 }
   - { by: human:PaulMRamirez, at: 2026-09-19T20:09:02Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/204 }
   - { by: human:PaulMRamirez, at: 2026-09-20T19:04:15Z, role: maintainer, source: https://github.com/open-science-pillars/land-ice/pull/9 }
+  - { by: human:PaulMRamirez, at: 2026-09-20T20:24:49Z, role: maintainer, source: https://github.com/open-science-pillars/land-ice/pull/12 }
 status: stable
 stale_after: 2027-03-15
 sources:
@@ -67,8 +68,8 @@ sources:
     resource: knowledge/podaac/gotchas/grace-low-degree-replacements.md
     title: "Podaac bundle gotcha: the degree-1 and C20/C30 series substituted in the mascon product"
   - id: slb
-    resource: knowledge/podaac/computations/sea-level-budget.md
-    title: "Podaac bundle attested computation: the sea level budget closure whose shape (terms, bookkeeping as receipt facts, fixture, refusal, attester) this computation keeps"
+    resource: ocean-science/knowledge/computations/sea-level-budget.md
+    title: "The ocean-science capability's attested computation: the sea level budget closure whose shape (terms, bookkeeping as receipt facts, fixture, refusal, attester) this computation keeps"
   - id: data-root
     resource: ../references/retrieval/ice-sheet-balance-root/RECORD.json
     title: "The stamped data root committed in this package: the loaders' stamps, the bookkeeping and closure tables, the manifest of the term files, and SOURCES.json for the downloads, including the two ATL15 attempts an egress policy refused before the third succeeded"
@@ -93,7 +94,7 @@ ice sheet's mass balance closes, or does not, between gravimetry and
 altimetry over a window: the JPL mascon sum over the ice sheet's
 mascons against the altimetric volume change converted to mass with
 the GEMB firn air content change and a stated density, in the shape
-of the podaac bundle's sea level budget closure.[^slb][^gotcha-firn]
+of the ocean-science capability's sea level budget closure.[^slb][^gotcha-firn]
 It exists so that the conversion the ATL15 gotcha demands (a firn
 model, a density, the GIA and elastic bookkeeping) is a set of receipt
 facts an attester checks rather than a paragraph a reader trusts, and
@@ -613,7 +614,7 @@ the two altimetry records over the window they share.
 [^gotcha-leakage]: knowledge/podaac/gotchas/grace-coastal-leakage.md
 [^gotcha-gap]: knowledge/podaac/gotchas/grace-intermission-gap.md
 [^gotcha-low-degree]: knowledge/podaac/gotchas/grace-low-degree-replacements.md
-[^slb]: knowledge/podaac/computations/sea-level-budget.md, the pattern this computation keeps
+[^slb]: ocean-science/knowledge/computations/sea-level-budget.md, the pattern this computation keeps
 [^data-root]: knowledge/references/retrieval/ice-sheet-balance-root/RECORD.json and SOURCES.json, the stamped data root
 [^loaders]: skills/ice-mass-change/scripts, the term loaders and the stamp assembler
 [^provider-series]: JPL GRACE and GRACE-FO Greenland mass time series, RL06.3Mv04 CRI, PO.DAAC

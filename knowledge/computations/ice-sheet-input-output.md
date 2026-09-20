@@ -22,6 +22,7 @@ verified:
   - { by: human:PaulMRamirez, at: 2026-09-19T08:08:31Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/198 }
   - { by: human:PaulMRamirez, at: 2026-09-19T08:36:53Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/201 }
   - { by: human:PaulMRamirez, at: 2026-09-20T19:04:15Z, role: maintainer, source: https://github.com/open-science-pillars/land-ice/pull/9 }
+  - { by: human:PaulMRamirez, at: 2026-09-20T20:24:49Z, role: maintainer, source: https://github.com/open-science-pillars/land-ice/pull/12 }
 status: stable
 stale_after: 2027-03-19
 sources:
@@ -29,8 +30,8 @@ sources:
     resource: ice-sheet-balance.md
     title: "This package's attested computation: the ice sheet mass balance closure, whose gravimetric and altimetric estimates this method is the third of, and whose shape (terms, bookkeeping as receipt facts, fixture, refusal, attester) this computation keeps"
   - id: slb
-    resource: knowledge/podaac/computations/sea-level-budget.md
-    title: "Podaac bundle attested computation: the sea level budget closure the whole pattern descends from"
+    resource: ocean-science/knowledge/computations/sea-level-budget.md
+    title: "The ocean-science capability's attested computation: the sea level budget closure the whole pattern descends from"
   - id: its-live
     resource: knowledge/nsidc/datasets/its-live-ice-velocity.md
     title: "Bundle dataset concept: the MEaSUREs ITS_LIVE regional velocity mosaics (NSIDC-0776), their variables, their error fields and the map-unit convention"
@@ -596,7 +597,7 @@ refusal, the loaders' selftests, the data root check and the record
 run attested against the tree as a refusal.
 
 [^closure]: knowledge/computations/ice-sheet-balance.md, the gravimetric and altimetric estimates and the shape this computation keeps
-[^slb]: knowledge/podaac/computations/sea-level-budget.md, the pattern both closures descend from
+[^slb]: ocean-science/knowledge/computations/sea-level-budget.md, the pattern both closures descend from
 [^its-live]: knowledge/nsidc/datasets/its-live-ice-velocity.md, the velocity mosaics
 [^gotcha-mosaic]: knowledge/nsidc/gotchas/velocity-mosaic-epochs-and-gaps.md
 [^bedmachine]: knowledge/nsidc/datasets/bedmachine-greenland-antarctica.md, the thickness product

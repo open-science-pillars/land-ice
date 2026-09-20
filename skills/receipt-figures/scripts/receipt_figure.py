@@ -43,10 +43,10 @@ carries:
 
 What it refuses, each with exit 4 and a reason code:
 
-  attester-did-not-pass  the bundle's attester did not PASS this exact
-                         receipt. A figure exists only for a receipt
-                         that attests; a FAIL is reported, never drawn
-                         around.
+  attester-did-not-pass  this package's attester did not PASS this
+                         exact receipt. A figure exists only for a
+                         receipt that attests; a FAIL is reported, never
+                         drawn around.
   array-hash-mismatch    an array the figure would draw does not match
                          what the receipt records. See the note below
                          for what "the hashes the receipt records" is
@@ -509,8 +509,8 @@ def draw(args) -> int:
                "the receipt licenses. Draw the terms or the annual-lag "
                f"differences instead, and read {CONCEPT} for what the domains "
                "of the two terms are; a map of where the ice sheet is losing "
-               "mass is a different computation that this bundle does not "
-               "carry.")
+               "mass is a different computation that this capability does "
+               "not carry.")
     receipt_path = Path(args.receipt).expanduser().resolve()
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     attester = resolve_attester(args.attester)

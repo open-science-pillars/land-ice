@@ -1,6 +1,6 @@
 ---
 name: receipt-figures
-description: "Draw the term series or the annual-lag differences of an attested ice sheet balance receipt, and from nothing else: the renderer runs the bundle's attester, verifies every array it draws against what the receipt records, and writes the run identifier, the code digest and the verdict into the caption. Keywords: plot, figure, chart, time series, mass anomaly series, volume anomaly, firn air content, annual-lag differences, residual series, 2010 spike, 2013 spike, closure figure, show me the series."
+description: "Draw the term series or the annual-lag differences of an attested ice sheet balance receipt, and from nothing else: the renderer runs this package's attester, verifies every array it draws against what the receipt records, and writes the run identifier, the code digest and the verdict into the caption. Keywords: plot, figure, chart, time series, mass anomaly series, volume anomaly, firn air content, annual-lag differences, residual series, 2010 spike, 2013 spike, closure figure, show me the series."
 ---
 
 # receipt-figures
@@ -45,11 +45,10 @@ in another repository.
 
 ## Behavior, in order
 
-1. **Get the receipt from a run of the wrapping skill.** A figure is
-   drawn from a receipt the `ice-mass-change` skill produced, on the
-   fixture as a rehearsal or on the committed data root. The
-   renderer does not run the executor; it draws what a run already
-   wrote.
+1. **Get the receipt from a run of the `ice-mass-change` skill.** A
+   figure is drawn from a receipt that skill produced, on the fixture as
+   a rehearsal or on the committed data root. The renderer does not run
+   the executor; it draws what a run already wrote.
 2. **The attester runs first, and the renderer stops on anything but
    PASS.** It hashes the receipt's bytes before the attester reads them
    and again after, so the arrays drawn are the arrays that attested.
@@ -141,8 +140,8 @@ step that binds them to the data.
 - **The lower panel is where a height change becomes a mass change.**
   The volume anomaly is metres of surface height summed to cubic
   kilometres; the firn air anomaly is what must come off it before a
-  density may be applied. The two bundle gotchas the wrapping skill
-  cites are what that panel is a picture of.
+  density may be applied. The two bundle gotchas the `ice-mass-change`
+  skill cites are what that panel is a picture of.
 - **A spike in the residual belongs to a term, and the upper panel of
   `differences` says which.** Read the two curves at the spike, not the
   residual alone. The concept reads 2010 and 2013 that way on the
