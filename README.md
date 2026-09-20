@@ -110,8 +110,9 @@ A runtime is advertised as supported only on a qualified record for this exact r
 
   Both computation concepts came in from the provider bundle on
   2026-09-20 with every reference run reproduced at the new paths, and
-  both are `draft` until the maintainer re-signs them, because a
-  signature covers the digests a concept names.
+  both were re-signed the same day once the coordinator had reproduced
+  those runs, because a signature covers the digests a concept names.
+  Both are `stable`.
 
 - **Knowledge** (`knowledge/`): this capability's own bundle, holding
   the two computation concepts and, under

@@ -16,8 +16,9 @@ under `verification/` proves each of those scripts, and the stamped
 data root the executor reads is committed here as data. Both concepts
 below came in from the `nsidc` bundle of nasa-daac-knowledge on
 2026-09-20 with every reference run reproduced at the new paths, and
-both are draft until the maintainer re-signs them, because a signature
-covers the digests a concept names.
+both were re-signed the same day once the coordinator had reproduced
+those runs, because a signature covers the digests a concept names.
+Both are stable.
 
 - [computations/ice-sheet-balance.md](computations/ice-sheet-balance.md),
   the mass balance closure from GRACE and GRACE-FO mascons against the

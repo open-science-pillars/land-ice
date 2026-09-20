@@ -2,6 +2,16 @@
 
 Newest first. One line per change: date, concept path, what changed, who.
 
+- 2026-09-20 · STEWARD RE-SIGNING of
+  knowledge/computations/ice-sheet-balance.md,
+  knowledge/computations/ice-sheet-input-output.md: The one citation
+  that pointed into the provider bundle now names the ocean-science
+  capability, where that computation lives, in the form the bundle
+  itself uses for a capability's computation. Nothing else under the
+  signature changed and no number moved. The new verified event is
+  appended on the steward's word, the earlier events kept as history.
+  (steward)
+
 - 2026-09-20 · README.md, knowledge/index.md, knowledge/computations/ice-sheet-balance.md, knowledge/computations/ice-sheet-input-output.md, skills/ice-mass-change/SKILL.md, skills/sweep, skills/methods, skills/receipt-figures, verification/ice_sheet_balance.py, verification/receipt_skills.py, verification/fixtures/receipt_skills.json, .github/workflows/goldens.yml, .osp/package.yaml · the prose repointed and reworded to the arrangement ADR E left, no number touched. The one computation this package cites in another package is the sea level budget closure, and it is cited as ocean-science/knowledge/computations/sea-level-budget.md rather than at the podaac bundle path it has left, in both concepts (a sources entry and a footnote each), in the README, in knowledge/index.md and in the ice-mass-change skill, each keeping what its clause already said about why it is cited; a bare path would be ambiguous now that the file sits in a capability with a knowledge/computations/ tree of its own. The sentences that placed the attester in the provider bundle now say where it ships, in the scripts of the skill that runs the computation in this package: the sweep and methods skills, the receipt-figures description, and the description of the attester-did-not-pass refusal code in methods.py and receipt_figure.py, whose code name is an interface and is unchanged. The retired categories are gone from every sentence that states a current truth: a wrapping skill is the skill that runs the computation, the three receipt skills are sweep, receipt-figures and methods named one by one, an attested nsidc computation in the sweep description is a computation this package carries, and the plane names PROVE and REACH are the qualification prove step and connectors. Nothing changed for the dataset, gotcha and recipe concepts that stay in nasa-daac-knowledge: every knowledge/nsidc/ and knowledge/podaac/ path left in the repository was checked against the bundle and exists there. One generated line moved with the words, the methods paragraph's provenance line, which now names the skill that ran the computation; no committed expectation quotes that line, so none needed regenerating, and the three goldens pass unchanged. Both concepts are signed and their bytes moved, so both owe a re-sign: ice-sheet-balance.md sha256:d10b2c74610ba0353796382922f4d92c0a053ea3a3481f2ab9f7a4087ca5495d before, sha256:775f31f6e31e1bb2ee430b110155fabd4f8fab684aa321610f7d3416bbf0855f after; ice-sheet-input-output.md sha256:eebd5ff36794ebd324f6d37f40aec579e454f4df900779fe6b480200e631f002 before, sha256:e0633b37874dd4cb4459d30b166e889f2c9d261c1486c6e37aa2ac544edf0580 after · claude
 
 - 2026-09-20 · STEWARD RE-SIGNING of
