@@ -1,7 +1,7 @@
-# Package identity, content, dependencies, presentation metadata and REACH
-# (ADR B). The Claude package files and the Agent Plugins package are
-# rendered from this file by build-kit's osp.py render; the gate fails on
-# a hand edit to any of them.
+# Package identity, content, dependencies, presentation metadata and
+# connectors (ADR B). The Claude package files and the Agent Plugins
+# package are rendered from this file by build-kit's osp.py render; the
+# gate fails on a hand edit to any of them.
 #
 # A computation is a skill (ADR E): the content is the skills, the two
 # attested computation concepts this capability owns with their stamped

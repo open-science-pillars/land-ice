@@ -142,8 +142,9 @@ constant it rests on and the uncertainty terms that travel with it, is
 owned by the podaac bundle's recipe
 `knowledge/podaac/recipes/grace-mass-to-sea-level.md`, and the
 receipted global budget that carries the ocean mass term is the
-attested computation `knowledge/podaac/computations/sea-level-budget.md`,
-wrapped by the ocean-science capability's `sea-level-budget` skill.
+attested computation
+`ocean-science/knowledge/computations/sea-level-budget.md`,
+run by the ocean-science capability's `sea-level-budget` skill.
 Send a reader who wants the sea level equivalent there: run that
 skill, or read that recipe. Two capabilities never quote the same
 number, and a conversion done here would be a number this release does

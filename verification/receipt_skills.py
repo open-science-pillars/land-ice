@@ -3,10 +3,10 @@
 # requires-python = ">=3.10"
 # dependencies = []
 # ///
-"""Golden for this capability's three receipt skills: `sweep`,
-`receipt-figures` and `methods`, each run offline on the closure
-executor's synthetic fixture and checked against the expectations
-committed beside this file.
+"""Golden for the three skills this capability carries over the
+closure's receipts: `sweep`, `receipt-figures` and `methods`, each run
+offline on the closure executor's synthetic fixture and checked against
+the expectations committed beside this file.
 
 These three skills compute nothing of their own: every number each one
 emits is a field of a receipt the attester passed, or a table, figure

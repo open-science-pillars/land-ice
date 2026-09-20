@@ -89,10 +89,11 @@ whose concept and gotchas live there
 (`datasets/grace-fo-mascons.md`, `gotchas/grace-gia-correction.md`,
 `gotchas/grace-coastal-leakage.md`,
 `gotchas/grace-intermission-gap.md`,
-`gotchas/grace-low-degree-replacements.md`). The sea level equivalent
-of an ice sheet mass rate is owned there too, by
-`recipes/grace-mass-to-sea-level.md` and the attested computation
-`computations/sea-level-budget.md`, which the ocean-science
-capability's `sea-level-budget` skill runs. This capability cites that
-route in words and runs neither, so two capabilities never quote the
-same number.
+`gotchas/grace-low-degree-replacements.md`). The recipe that turns an
+ice sheet mass rate into a sea level equivalent is owned there too, by
+`recipes/grace-mass-to-sea-level.md`. The receipted budget that carries
+the ocean mass term is not in the bundle: it is the attested
+computation `ocean-science/knowledge/computations/sea-level-budget.md`,
+which the ocean-science capability's `sea-level-budget` skill runs.
+This capability cites that route in words and runs neither, so two
+capabilities never quote the same number.

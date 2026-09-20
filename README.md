@@ -125,8 +125,9 @@ A runtime is advertised as supported only on a qualified record for this exact r
   the committed root against its manifest, each reference run attested
   and compared with what the concept records, and each refusal attested
   as a refusal rather than as a number), `receipt_skills.py` for the
-  three receipt skills, and the committed expectations they read under
-  `fixtures/`.
+  three skills that work over those receipts (`sweep`,
+  `receipt-figures` and `methods`), and the committed expectations they
+  read under `fixtures/`.
 
 ## The sea level equivalent is another capability's number
 
@@ -136,7 +137,8 @@ constant it rests on and the uncertainty terms that travel with it, is
 owned by the PO.DAAC bundle's recipe
 `knowledge/podaac/recipes/grace-mass-to-sea-level.md`, and the
 receipted budget that carries the ocean mass term is the attested
-computation `knowledge/podaac/computations/sea-level-budget.md`,
+computation
+`ocean-science/knowledge/computations/sea-level-budget.md`,
 run by the
 [ocean-science](https://github.com/open-science-pillars/ocean-science)
 capability's `sea-level-budget` skill. A reader who wants the sea level

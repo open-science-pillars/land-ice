@@ -3,9 +3,9 @@
 # requires-python = ">=3.10"
 # dependencies = []
 # ///
-"""Golden and PROVE wrapper for the attested ice sheet mass balance
-closure this package runs: the executor, the attester and the six
-loaders in the scripts of the `ice-mass-change` skill, run on their
+"""Golden and qualification prove step for the attested ice sheet mass
+balance closure this package runs: the executor, the attester and the
+six loaders in the scripts of the `ice-mass-change` skill, run on their
 synthetic fixture and on the stamped data root committed under
 knowledge/references/retrieval/, so every chain the concept records is
 proven headless with no data download and no NASA host reachable.
@@ -51,8 +51,9 @@ Three modes:
   (no flags)                 the golden: the selftests, the root check,
                              ten runs and two refusals. Exit 0 only
                              when all of it holds.
-  --runtime NAME --out R     the PROVE step: run the closure on its
-                             fixture and write the receipt at R, the
+  --runtime NAME --out R     the qualification prove step
+                             (.osp/surfaces.yaml): run the closure on
+                             its fixture and write the receipt at R, the
                              capability and bundle blocks naming this
                              package.
   --attest R --out A         run the attester on receipt R and write
@@ -322,7 +323,7 @@ def attest(receipt_path: Path, out: Path) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--runtime", help="the runtime that ran this (PROVE)")
+    ap.add_argument("--runtime", help="the runtime that ran this (the prove step)")
     ap.add_argument("--runtime-version")
     ap.add_argument("--attest", metavar="RECEIPT", help="attest this receipt")
     ap.add_argument("--out", metavar="PATH", help="where the receipt or attestation is written")
