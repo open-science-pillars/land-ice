@@ -14,7 +14,7 @@
   "recorded": "2026-09-20",
   "skill": "ice-sheet-input-output",
   "concept": "knowledge/computations/ice-sheet-input-output.md",
-  "concept_status": "draft",
+  "concept_status": "stable",
   "executor": "skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py",
   "attester": "skills/ice-sheet-input-output/scripts/ice_sheet_input_output_check.py",
   "executor_sha256": "sha256:4e9205dd8febfa2a883b8f32a6558537c2cb1380e185ee99d8e98f99d44ae2d4",

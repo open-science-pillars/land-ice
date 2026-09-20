@@ -14,7 +14,7 @@
   "recorded": "2026-09-20",
   "skill": "ice-mass-change",
   "concept": "knowledge/computations/ice-sheet-balance.md",
-  "concept_status": "draft",
+  "concept_status": "stable",
   "executor": "skills/ice-mass-change/scripts/ice_sheet_balance.py",
   "attester": "skills/ice-mass-change/scripts/ice_sheet_balance_check.py",
   "executor_sha256": "sha256:b174014efe2165d188650cb3d5d05fc4483a211df68589423af8cad90d574d14",
