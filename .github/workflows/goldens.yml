@@ -1,37 +1,42 @@
 name: goldens
 # The goldens under verification/, each named here with the command that
-# runs it (the placement rule, P5: a golden the workflow does not list is
-# a golden nothing runs).
+# runs it: a golden the workflow does not list is a golden nothing runs.
 #
-# verification/wrapped_computations.py exercises both wrapping skills'
-# chains: for each, the provider bundle's sanctioned executor on its
-# synthetic fixture, the attester on the receipt, the receipt against the
-# values the signed concept records, the chain's fixture refusal, and the
-# run on the bundle's committed data root, which refuses in both chains
-# and is asserted as a refusal rather than as a number. The fixture it
-# reads is the committed expectations file under verification/fixtures/
-# (provenance in the README there). The job reads no live service, needs
-# no credential and carries no secret.
+# verification/ice_sheet_balance.py proves the attested ice sheet mass
+# balance closure this package runs: the attester's selftest and the six
+# loaders' selftests, the committed data root against its RECORD.json
+# manifest, ten runs (two on the synthetic fixture and eight on the
+# stamped root, the anchor, the two altimetry records over the window
+# they share and the five further windows the concept's boundaries
+# section quotes), each attested before a number is read and compared
+# with what the concept records, and two refusals (the fixture window
+# outside the terms' overlap, and Antarctica on the committed root for
+# want of a grounded firn air content term), each attested as a refusal
+# rather than as a number.
 #
-# The executors and attesters live in the provider bundle and are never
-# copied here, so the job checks that repository out beside the plugin
-# and names it the way a skill's override does: NASA_DAAC_KNOWLEDGE. On
-# an installed plugin the same golden resolves the bundle through the
-# installer's record instead.
+# verification/ice_sheet_input_output.py proves the attested input-output
+# balance the same way: the attester's selftest and the four loaders'
+# selftests, the committed root's manifest, both fixture runs attested
+# and compared with the concept, the fixture window refusal, and the
+# record run, which refuses because the root carries no thickness term
+# and attests as a refusal.
 #
-# verification/receipt_skills.py exercises the three receipt skills this
-# capability carries (sweep, receipt-figures, methods) on the nsidc
-# closure executor's synthetic fixture: each script's own selftest, the
-# sweep over two parameters the concept declares checked cell by cell
-# against the committed expectations under verification/fixtures/, the
-# Antarctic refusal kept as a row carrying its reason code and no
-# number, both figure modes drawn from an attested receipt, the methods
-# paragraph and its reference list, and the refusals each script
-# enforces: the aggregate across rows, the map mode, a fact from outside
-# the receipt and a receipt the attester did not pass. It reads no live
-# service, needs no credential and carries no secret.
+# verification/receipt_skills.py exercises the three skills this
+# capability carries over the closure's receipts (sweep, receipt-figures,
+# methods) on the closure executor's synthetic fixture: each script's own
+# selftest, the sweep over two parameters the concept declares checked
+# cell by cell against the committed expectations under
+# verification/fixtures/, the Antarctic refusal kept as a row carrying its
+# reason code and no number, both figure modes drawn from an attested
+# receipt, the methods paragraph and its reference list, and the refusals
+# each script enforces: the aggregate across rows, the map mode, a fact
+# from outside the receipt and a receipt the attester did not pass.
 #
-# verification/wrapped_computations.py is also the release qualification
+# The executors, the attesters, the loaders and the stamped data roots
+# ship in this package, so no other repository is checked out here. Every
+# job reads no live service, needs no credential and carries no secret.
+#
+# verification/ice_sheet_balance.py is also the release qualification
 # surface (.osp/surfaces.yaml) and runs there with the qualification
 # prompts.
 on:
@@ -43,23 +48,12 @@ permissions:
 jobs:
   goldens:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: plugin
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-        with:
-          path: plugin
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-        with:
-          repository: open-science-pillars/nasa-daac-knowledge
-          path: nasa-daac-knowledge
       - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
-      - name: Both wrapping chains pass offline on the committed fixture
-        env:
-          NASA_DAAC_KNOWLEDGE: ${{ github.workspace }}/nasa-daac-knowledge
-        run: uv run verification/wrapped_computations.py
+      - name: The closure chain passes offline on the committed fixture and root
+        run: uv run verification/ice_sheet_balance.py
+      - name: The input-output chain passes offline on the committed fixture and root
+        run: uv run verification/ice_sheet_input_output.py
       - name: The three receipt skills pass offline on the committed fixture
-        env:
-          NASA_DAAC_KNOWLEDGE: ${{ github.workspace }}/nasa-daac-knowledge
         run: uv run verification/receipt_skills.py

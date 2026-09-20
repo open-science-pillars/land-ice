@@ -7,7 +7,7 @@
 nothing else.
 
 This is the ocean-science receipt-figures renderer with its discipline
-intact, over the nsidc closure receipts: the attester runs first and
+intact, over this package's closure receipts: the attester runs first and
 the renderer stops on anything but PASS, every array drawn is verified
 against what the receipt records before a line is plotted, and the
 caption carries the run identifier, the code digest and the verdict so
@@ -85,9 +85,9 @@ The renderer also prints and captions a sha256 of each array as it drew
 it, so a reader can recompute the same digest from the receipt.
 
 The attester is named by --attester: a path, or a bare name resolved
-under the installed provider plugin's references/attesters (the
-installer's record via `claude plugin list --json`, or a checkout named
-by NASA_DAAC_KNOWLEDGE).
+in the scripts of the skill that runs the computation, under this
+package's root (`CLAUDE_PLUGIN_ROOT` where the runtime sets it for the
+installed plugin, else the package tree this script sits in).
 
 Usage:
   uv run skills/receipt-figures/scripts/receipt_figure.py terms RECEIPT.json \
@@ -104,16 +104,14 @@ import datetime as dt
 import hashlib
 import json
 import os
-import shutil
 import subprocess
 import sys
 import tempfile
 import textwrap
 from pathlib import Path
 
-PROVIDER_PLUGIN = "nasa-daac-knowledge"
-BUNDLE = "nsidc"
-CONCEPT = f"knowledge/{BUNDLE}/computations/ice-sheet-balance.md"
+CONCEPT = "knowledge/computations/ice-sheet-balance.md"
+SCRIPTS = "skills/ice-mass-change/scripts"
 DEFAULT_ATTESTER = "ice_sheet_balance_check"
 REFUSALS = ("attester-did-not-pass", "array-hash-mismatch",
             "map-mode-unavailable")
@@ -130,41 +128,29 @@ def refuse(code: str, message: str):
     raise Refusal(code, message)
 
 
-# ---- the installed bundle
+# ---- this package
 
-def provider_root() -> Path:
-    """The installed provider plugin's root, from the installer's record."""
-    override = os.environ.get("NASA_DAAC_KNOWLEDGE")
-    if override:
-        return Path(override).expanduser().resolve()
-    claude = shutil.which("claude")
-    if claude is None:
-        sys.exit("no `claude` on PATH to read the installed-plugin record; "
-                 "set NASA_DAAC_KNOWLEDGE to a checkout of the provider "
-                 "repository instead")
-    rec = subprocess.run([claude, "plugin", "list", "--json"],
-                         capture_output=True, text=True)
-    if rec.returncode != 0:
-        sys.exit(f"`claude plugin list --json` failed: {rec.stderr.strip()}")
-    for entry in json.loads(rec.stdout):
-        if entry.get("id", "").split("@")[0] != PROVIDER_PLUGIN:
-            continue
-        if not entry.get("enabled", True) or entry.get("errors"):
-            sys.exit(f"{entry['id']} is installed but not usable: "
-                     f"{entry.get('errors') or 'disabled'}")
-        return Path(entry["installPath"])
-    sys.exit(f"{PROVIDER_PLUGIN} is not installed; it arrives with this "
-             "plugin's dependencies (`claude plugin install "
-             "land-ice@open-science-pillars`), or set NASA_DAAC_KNOWLEDGE "
-             "to a checkout of the provider repository")
+def package_root() -> Path:
+    """This package's root: `CLAUDE_PLUGIN_ROOT` where the runtime sets it
+    for the installed plugin, else the package tree this script sits in.
+    The computation's scripts are beside this one now, so nothing is
+    resolved through another repository."""
+    override = os.environ.get("CLAUDE_PLUGIN_ROOT")
+    start = Path(override).expanduser().resolve() if override \
+        else Path(__file__).resolve()
+    for p in (start, *start.parents):
+        if (p / ".osp" / "package.yaml").is_file():
+            return p
+    sys.exit(f"no package root above {start} (no .osp/package.yaml); set "
+             "CLAUDE_PLUGIN_ROOT to this plugin's installed root")
 
 
 def resolve_attester(name: str) -> Path:
     p = Path(name).expanduser()
     if p.is_file():
         return p.resolve()
-    candidate = (provider_root() / "knowledge" / BUNDLE / "references"
-                 / "attesters" / (name if name.endswith(".py") else name + ".py"))
+    candidate = (package_root() / SCRIPTS
+                 / (name if name.endswith(".py") else name + ".py"))
     if not candidate.is_file():
         sys.exit(f"attester {name} not found at {candidate}")
     return candidate
@@ -541,12 +527,12 @@ def draw(args) -> int:
 
 def selftest() -> int:
     """Every refusal, on the executor's synthetic fixture."""
-    bundle = provider_root() / "knowledge" / BUNDLE
-    executor = bundle / "references" / "computations" / "ice_sheet_balance.py"
-    attester = bundle / "references" / "attesters" / "ice_sheet_balance_check.py"
+    scripts = package_root() / SCRIPTS
+    executor = scripts / "ice_sheet_balance.py"
+    attester = scripts / "ice_sheet_balance_check.py"
     for p in (executor, attester):
         if not p.is_file():
-            sys.exit(f"the provider bundle carries no {p.name} at {p.parent}")
+            sys.exit(f"this package carries no {p.name} at {p.parent}")
 
     def render(argv):
         return subprocess.run(
@@ -691,8 +677,8 @@ def main() -> int:
                          "refused, these receipts carry no per-cell fields")
     ap.add_argument("receipt", nargs="?", help="the receipt to draw from")
     ap.add_argument("--attester", default=DEFAULT_ATTESTER,
-                    help="attester path, or a bare name under the provider's "
-                         f"references/attesters (default {DEFAULT_ATTESTER})")
+                    help=f"attester path, or a bare name under this package's "
+                         f"{SCRIPTS} (default {DEFAULT_ATTESTER})")
     ap.add_argument("--data-root", default=None,
                     help="the stamped tree, so a data-root receipt is attested "
                          "against it rather than on the executor's word")

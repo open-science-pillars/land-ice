@@ -1,0 +1,2870 @@
+{
+  "record": "ice-sheet-balance-root-2026-09-19",
+  "manifest": {
+    "firn.csv": "sha256:52aa23709513c5e7c438e44259bb4fd1bccad4d61d65fbf7b82ec3f170604309",
+    "smb.csv": "sha256:22014e8522894f1e257f7e5b6d57c15905dc7fcb58a0a7fea71f7099d4bf2fcc",
+    "mass.csv": "sha256:6f9f42a02064f1008a8e45d00cc6c28953fa238323d6eab984954e331b4a50c5",
+    "volume-itslive.csv": "sha256:ec6d8cac57be594da12719f7879e13a40d9b7bba14551ae2f12c64c138b43a9b",
+    "volume-atl15.csv": "sha256:447296b48232e10a3f990039088dca3fb99425788b1a4c32babfd076826fc0d4"
+  },
+  "manifest_sha256": "sha256:e67cae9d01beb5445ef4f74f1d9383e6864906e13bc8988c19e4c6143192a56b",
+  "verified_utc": "2026-09-19T19:54:59Z",
+  "terms_present": [
+    "firn",
+    "smb",
+    "mass",
+    "volume-itslive",
+    "volume-atl15"
+  ],
+  "terms_absent": {},
+  "terms": {
+    "firn": {
+      "term": "firn",
+      "quantity": "firn air content anomaly from GEMB, per ice sheet domain and time step",
+      "units": "value_m and uncertainty_m in metres of air (area-weighted mean over the domain); volume_km3 in km3 of air; area_km2 in km2",
+      "sign_convention": "positive is more air in the firn column (a thicker column at unchanged mass)",
+      "months": [
+        "1992-01",
+        "2023-12"
+      ],
+      "n_rows": 871,
+      "domains": [
+        [
+          "antarctica",
+          "ice_shelves"
+        ],
+        [
+          "greenland",
+          "ice_sheet"
+        ],
+        [
+          "greenland",
+          "peripheral_glaciers"
+        ]
+      ],
+      "not_in_the_distribution": [
+        "Antarctica, grounded ice sheet: no GEMB firn air content field is distributed with ITS_LIVE on AWS (the bucket was listed under height_change, mass_change, ice_masks and documentation); the Antarctic rows cover the floating ice shelves"
+      ],
+      "alternates_not_read": [
+        "RACMO2 (IMAU regional climate model firn and surface mass balance output): not read",
+        "MAR (regional climate model surface mass balance output): not read",
+        "the IMBIE basin definitions: not read; the products' own masks partition the grids"
+      ],
+      "series": {
+        "greenland": {
+          "product": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+          "doi": "10.5067/ICFVI7DKHZJV",
+          "product_version": "1.1",
+          "granule": "Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+          "granule_sha256": "sha256:04c8259891a0a94dfa5f9e4996dfaad57ca13763a988dbbee5cda795a9f4a4b2",
+          "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Greenland/Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+          "read_utc": "2026-09-15T17:56:18Z",
+          "variable": "dfac_gemb",
+          "variable_comment": "Resampled firn air content anomaly (dfac_gemb) w.r.t. to 2014-01-01: GEMB Version 1.3.0",
+          "gemb_version": "1.3.0 (the variable's comment)",
+          "forcing": "not stated in the file's attributes; no product documentation for this file was found on nsidc.org or in the ITS_LIVE bucket, so the forcing of the GEMB 1.3.0 run is left unstated here rather than assumed",
+          "grid": "1920 m polar stereographic, EPSG:3413, 1421 by 783 cells; cell areas from the projection's areal scale",
+          "mask": "the file's mask variable: 1 ice sheet, 2 peripheral glacier, 0 non-ice; the ice sheet domain is the grounded ice sheet, the product being a grounded ice elevation change product",
+          "aggregation": "area-weighted mean over the fixed set of cells inside the mask that are finite in dfac_gemb and dfac_gsfc at every time step; the same anomaly integrated to km3 of air",
+          "reference": "anomaly against 2014-01-01, the product's own reference",
+          "sampling": "monthly",
+          "time_coverage": [
+            "1992-01-15",
+            "2023-12-14"
+          ],
+          "months": [
+            "1992-01",
+            "2023-12"
+          ],
+          "n_steps": 384,
+          "empty_steps_skipped": [],
+          "cells": {
+            "ice_sheet": 464999,
+            "peripheral_glaciers": 23827
+          },
+          "area_km2": {
+            "ice_sheet": 1732985.13,
+            "peripheral_glaciers": 89376.73
+          },
+          "uncertainty_basis": "model spread: the absolute difference between the GEMB 1.3.0 and the GSFC-FDM 1.2.1 aggregates the file carries (dfac_gemb, dfac_gsfc); the product ships no firn error field",
+          "global_attributes": {
+            "date_created": "2026-02-10",
+            "title": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+            "author": "Johan Nilsson and Alex Gardner",
+            "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+            "institution": "Uppsala University and NASA Jet Propulsion Laboratory",
+            "doi": "doi.org/10.5067/ICFVI7DKHZJV",
+            "version": "1.1",
+            "epsg_number": "3413",
+            "Conventions": "CF-1.10"
+          }
+        },
+        "antarctica": {
+          "product": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1",
+          "doi": "10.5067/SE3XH9RXQWAM",
+          "product_version": "1.0",
+          "granule": "ANT_G1920V01_IceShelfMelt.nc",
+          "granule_sha256": "sha256:1b1050c51dec4d1785a5a8a55a40a1d80ba16aa0cc39e46d68c33dcacd0b0b96",
+          "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Antarctica/Floating/ANT_G1920V01_IceShelfMelt.nc",
+          "read_utc": "2026-09-15T17:58:21Z",
+          "variable": "fac (with fac_err and fac_mean)",
+          "variable_source": "GEMB r24739 & BedMachineAntarctica_2020-07-15_v02",
+          "gemb_version": "GEMB r24739 (the variable's source attribute)",
+          "forcing": "3-hourly ERA5 reanalysis, 1979 to 2017, after a relaxation simulation (the NSIDC-0792 user guide, section 2.3.1.3)",
+          "grid": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale; the user guide says the GEMB fields were interpolated from a 5 km grid",
+          "mask": "the file's ID variable: ice shelf identifiers 1 to 182 (an edited MEaSUREs Antarctic Boundaries version 2), land 255; the domain is the floating ice shelves only, since no GEMB field over grounded Antarctica is in the ITS_LIVE distribution",
+          "aggregation": "area-weighted mean over the fixed set of ice shelf cells finite in fac at every time step and in fac_mean; the anomaly integrated to km3 of air; fac_err is read only for the statistics in the stamp, where it is finite and below its sentinel",
+          "reference": "anomaly against the product's fac_mean (its 1992 to 2017 record mean), whose area-weighted mean over the cell set is 14.901947 m",
+          "sampling": "quarterly: one row per product time step, labelled by the calendar month of the time value (the user guide calls it the quarter start date)",
+          "time_coverage": [
+            "1992-03-17",
+            "2017-09-16"
+          ],
+          "months": [
+            "1992-03",
+            "2017-09"
+          ],
+          "n_steps": 103,
+          "empty_steps_skipped": [
+            "2017-12-16"
+          ],
+          "cells": {
+            "ice_shelves": 410013
+          },
+          "area_km2": {
+            "ice_shelves": 1546886.79
+          },
+          "uncertainty_m": 0.018485826255386778,
+          "uncertainty_basis": "stated noise floor: standard deviation of adjacent-step differences of the finished anomaly series divided by sqrt(2), written on every row; the product's fac_err is not used because its values (tens of metres at the median, 9999 where it has none) and its units attribute (m of ice per year, where the user guide gives m) do not read as a firn air content error",
+          "fac_err_not_used": {
+            "per_step": "[label, cells at or above the 9999 sentinel or not finite, percentiles 1, 50 and 99 of the rest over the fixed cell set]",
+            "first_middle_last": [
+              [
+                "1992-03",
+                4109,
+                [
+                  29.046,
+                  42.513,
+                  400.0
+                ]
+              ],
+              [
+                "2004-12",
+                4109,
+                [
+                  29.046,
+                  42.513,
+                  400.0
+                ]
+              ],
+              [
+                "2017-09",
+                4109,
+                [
+                  29.046,
+                  42.513,
+                  400.0
+                ]
+              ]
+            ]
+          },
+          "global_attributes": {
+            "GDAL_AREA_OR_POINT": "Area",
+            "Conventions": "CF-1.6",
+            "date_created": "11-May-2022 14:24:44",
+            "title": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1",
+            "author": "Fernando Paolo, Alex S. Gardner, Chad Greene, Nicole-Jeanne Schlegel - JPL/NASA",
+            "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+            "institution": "NASA Jet Propulsion Laboratory (JPL), California Institute of Technology",
+            "version": "1.0"
+          }
+        }
+      }
+    },
+    "smb": {
+      "term": "smb",
+      "quantity": "surface mass balance rate from GEMB, per ice sheet domain and time step",
+      "units": "value_gt_per_yr and uncertainty_gt_per_yr in gigatonnes per year over the domain; mean_m_ice_per_yr in metres of ice per year (area-weighted mean); period_years in years; area_km2 in km2",
+      "sign_convention": "positive is mass gained at the surface (accumulation exceeding ablation), the product's own",
+      "months": [
+        "1992-03",
+        "2017-09"
+      ],
+      "n_rows": 103,
+      "domains": [
+        [
+          "antarctica",
+          "ice_shelves"
+        ]
+      ],
+      "not_in_the_distribution": [
+        "Greenland: the ITS_LIVE Greenland elevation change product carries firn air content anomalies and no surface mass balance field; no other GEMB output for Greenland is distributed with ITS_LIVE on AWS",
+        "Antarctica, grounded ice sheet: no GEMB surface mass balance field is distributed with ITS_LIVE on AWS; the rows cover the floating ice shelves"
+      ],
+      "alternates_not_read": [
+        "RACMO2 (IMAU regional climate model surface mass balance output): not read",
+        "MAR (regional climate model surface mass balance output): not read",
+        "the IMBIE basin definitions: not read; the product's own ice shelf identifiers partition the grid"
+      ],
+      "series": {
+        "antarctica": {
+          "product": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1",
+          "doi": "10.5067/SE3XH9RXQWAM",
+          "product_version": "1.0",
+          "granule": "ANT_G1920V01_IceShelfMelt.nc",
+          "granule_sha256": "sha256:1b1050c51dec4d1785a5a8a55a40a1d80ba16aa0cc39e46d68c33dcacd0b0b96",
+          "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Antarctica/Floating/ANT_G1920V01_IceShelfMelt.nc",
+          "read_utc": "2026-09-15T17:57:21Z",
+          "variable": "smb (with smb_err and smb_mean)",
+          "variable_source": "GEMB r24739",
+          "gemb_version": "GEMB r24739 (the variable's source attribute)",
+          "forcing": "3-hourly ERA5 reanalysis, 1979 to 2017, after a relaxation simulation (the NSIDC-0792 user guide, section 2.3.1.3)",
+          "grid": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale; the user guide says the GEMB fields were interpolated from a 5 km grid",
+          "mask": "the file's ID variable: ice shelf identifiers 1 to 182 (an edited MEaSUREs Antarctic Boundaries version 2), land 255; the domain is the floating ice shelves only",
+          "aggregation": "sum of smb times cell area times the product's ice density (917.0 kg per m3) over the fixed set of ice shelf cells finite in smb at every time step and in smb_mean; the error sum runs over the subset of those cells finite in smb_err and below its sentinel at each step, and the stamp counts the rest",
+          "sampling": "quarterly: one row per product time step, labelled by the calendar month of the time value (the user guide calls it the quarter start date); period_years is the interval to the next time value",
+          "time_coverage": [
+            "1992-03-17",
+            "2017-09-16"
+          ],
+          "months": [
+            "1992-03",
+            "2017-09"
+          ],
+          "n_steps": 103,
+          "empty_steps_skipped": [
+            "2017-12-16"
+          ],
+          "cells": {
+            "ice_shelves": 410013
+          },
+          "area_km2": {
+            "ice_shelves": 1546886.79
+          },
+          "cells_without_error_max": 0,
+          "uncertainty_basis": "the sum of the product's smb_err times cell area times the density over the cells whose error is finite and below the 9999 sentinel, the cell errors treated as fully correlated (an upper bound)",
+          "global_attributes": {
+            "GDAL_AREA_OR_POINT": "Area",
+            "Conventions": "CF-1.6",
+            "date_created": "11-May-2022 14:24:44",
+            "title": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1",
+            "author": "Fernando Paolo, Alex S. Gardner, Chad Greene, Nicole-Jeanne Schlegel - JPL/NASA",
+            "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+            "institution": "NASA Jet Propulsion Laboratory (JPL), California Institute of Technology",
+            "version": "1.0"
+          }
+        }
+      }
+    },
+    "mass": {
+      "term": "mass",
+      "quantity": "surface mass anomaly from the JPL mascon solution summed over one ice sheet's land mascons, per solution month",
+      "product": "JPL GRACE and GRACE-FO MASCON RL06.3Mv04 CRI",
+      "doi": "10.5067/TEMSC-3JC634",
+      "product_version": "RL06.3Mv04 CRI",
+      "granule": "GRCTellus.JPL.200204_202607.GLO.RL06.3M.MSCNv04CRI.nc",
+      "granule_sha256": "sha256:32b4ee91215a2e1c1bb6196f661ec55972b81e4da4a934b5a5c9ebe17f285a88",
+      "source_url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4/GRCTellus.JPL.200204_202607.GLO.RL06.3M.MSCNv04CRI.nc",
+      "read_utc": "2026-09-15T18:03:56Z",
+      "variable": "lwe_thickness (with uncertainty, land_mask, mascon_ID, lat_bounds, lon_bounds, time_bounds)",
+      "grid": "0.5 degree grid representing 3 degree spherical-cap mascons; cell areas from the latitude and longitude bounds on a sphere of radius 6371 km",
+      "mask": "the granule's land_mask (1 is land, the CRI partition); the ice sheet's mascon set by the rule each series states",
+      "aggregation": "sum over the land cells of the selected mascons of lwe_thickness (cm) times the cell area (km2) times 1e-5 Gt; one sigma per mascon times its land area, in quadrature over the selected mascons",
+      "reference": "anomaly against the product's own baseline (the 2004 to 2009 mean)",
+      "sampling": "monthly: one row per solution, labelled by the calendar month of the midpoint of its time_bounds; missing months absent",
+      "units": "value_gt and uncertainty_gt in gigatonnes; land_area_km2 in km2",
+      "sign_convention": "positive is mass gained (more equivalent water thickness), the product's own",
+      "time_coverage": [
+        "2002-04-04",
+        "2026-07-31"
+      ],
+      "months": [
+        "2002-04",
+        "2026-07"
+      ],
+      "n_solutions": 259,
+      "month_assignments": [
+        {
+          "epoch": 144,
+          "midpoint_month": "2015-04",
+          "assigned": "2015-05",
+          "span": [
+            "2015-04-12",
+            "2015-05-11"
+          ],
+          "reason": "midpoint month already taken by the previous solution; the span reaches into the following month, which the product's month list labels it"
+        }
+      ],
+      "uncertainty_basis": "formal: the granule's one sigma per mascon over the mascon's land area, in quadrature, mascons treated as independent; a floor where mascon errors correlate; leakage is not in it",
+      "bookkeeping": {
+        "gia": "ICE-6G_D (Peltier and others 2018) subtracted by the product before the CRI filter and from the released fields (the release note; the podaac bundle's GIA gotcha); nothing re-applied. Over Antarctica the GIA model is the largest systematic of a gravimetric mass balance and is not in the formal error below",
+        "low_degree": "C20 and C30 from TN-14 version 3 across the whole series, degree 1 from JPL's mascon-consistent geocenter; nothing re-applied (the release note; the podaac bundle's low-degree gotcha)",
+        "reference_frame": "centre of figure restored through JPL's mascon-consistent geocenter (degree 1 computed with the mascon field as background, the release note)",
+        "effective_smoothing": "3 degree spherical-cap mascons on a 0.5 degree grid; the sum runs over whole mascons, so signal from the ice-free land and the ocean inside a selected mascon, and ice signal in an excluded neighbour, is leakage the product's CRI filter reduces and does not remove (the podaac bundle's coastal-leakage gotcha)",
+        "gad": "the GAD de-aliasing signal is restored over the ocean part of the mascons only (the release note); the land cells summed here carry none",
+        "elastic_and_hydrology": "no elastic rebound or terrestrial hydrology correction is applied to the mascons: the product's land mascon value is the full surface mass anomaly"
+      },
+      "series": {
+        "greenland": {
+          "domain": "land_mascons",
+          "rule": "the product's land mascons whose land area is covered by Greenland ice (the ITS_LIVE mask, ice sheet and peripheral glaciers) for at least 0.25 of it",
+          "n_mascons": 27,
+          "land_area_km2": 2122549.4,
+          "mascons": {
+            "17": {
+              "cells": 360,
+              "land_cells": 53,
+              "land_area_km2": 20139.3,
+              "centroid_lat": 84.0,
+              "centroid_lon": 315.0,
+              "ice_area_km2": 7957.3,
+              "ice_fraction_of_land": 0.3951
+            },
+            "34": {
+              "cells": 240,
+              "land_cells": 220,
+              "land_area_km2": 107648.9,
+              "centroid_lat": 81.0,
+              "centroid_lon": 310.0,
+              "ice_area_km2": 88400.4,
+              "ice_fraction_of_land": 0.8212
+            },
+            "35": {
+              "cells": 240,
+              "land_cells": 233,
+              "land_area_km2": 113014.4,
+              "centroid_lat": 81.0,
+              "centroid_lon": 330.0,
+              "ice_area_km2": 68436.3,
+              "ice_fraction_of_land": 0.6056
+            },
+            "36": {
+              "cells": 240,
+              "land_cells": 39,
+              "land_area_km2": 19297.1,
+              "centroid_lat": 81.0,
+              "centroid_lon": 350.0,
+              "ice_area_km2": 12225.6,
+              "ice_fraction_of_land": 0.6335
+            },
+            "56": {
+              "cells": 180,
+              "land_cells": 117,
+              "land_area_km2": 75725.9,
+              "centroid_lat": 78.0,
+              "centroid_lon": 292.5,
+              "ice_area_km2": 61849.2,
+              "ice_fraction_of_land": 0.8168
+            },
+            "57": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": 78.0,
+              "centroid_lon": 307.5,
+              "ice_area_km2": 116633.9,
+              "ice_fraction_of_land": 1.0084
+            },
+            "58": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": 78.0,
+              "centroid_lon": 322.5,
+              "ice_area_km2": 116637.7,
+              "ice_fraction_of_land": 1.0084
+            },
+            "59": {
+              "cells": 180,
+              "land_cells": 117,
+              "land_area_km2": 75091.6,
+              "centroid_lat": 78.0,
+              "centroid_lon": 337.5,
+              "ice_area_km2": 62933.3,
+              "ice_fraction_of_land": 0.8381
+            },
+            "86": {
+              "cells": 138,
+              "land_cells": 20,
+              "land_area_km2": 14746.4,
+              "centroid_lat": 75.0,
+              "centroid_lon": 296.25,
+              "ice_area_km2": 12191.4,
+              "ice_fraction_of_land": 0.8267
+            },
+            "87": {
+              "cells": 138,
+              "land_cells": 129,
+              "land_area_km2": 102788.4,
+              "centroid_lat": 75.0,
+              "centroid_lon": 307.75,
+              "ice_area_km2": 101424.7,
+              "ice_fraction_of_land": 0.9867
+            },
+            "88": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": 75.0,
+              "centroid_lon": 319.25,
+              "ice_area_km2": 111249.4,
+              "ice_fraction_of_land": 1.0078
+            },
+            "89": {
+              "cells": 144,
+              "land_cells": 144,
+              "land_area_km2": 115191.1,
+              "centroid_lat": 75.0,
+              "centroid_lon": 331.0,
+              "ice_area_km2": 106956.9,
+              "ice_fraction_of_land": 0.9285
+            },
+            "90": {
+              "cells": 138,
+              "land_cells": 36,
+              "land_area_km2": 28693.7,
+              "centroid_lat": 75.0,
+              "centroid_lon": 342.75,
+              "ice_area_km2": 7263.4,
+              "ice_fraction_of_land": 0.2531
+            },
+            "123": {
+              "cells": 120,
+              "land_cells": 73,
+              "land_area_km2": 69144.7,
+              "centroid_lat": 72.0,
+              "centroid_lon": 306.5,
+              "ice_area_km2": 50663.2,
+              "ice_fraction_of_land": 0.7327
+            },
+            "124": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": 72.0,
+              "centroid_lon": 316.25,
+              "ice_area_km2": 109689.2,
+              "ice_fraction_of_land": 1.0074
+            },
+            "125": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": 72.0,
+              "centroid_lon": 326.0,
+              "ice_area_km2": 114820.9,
+              "ice_fraction_of_land": 1.0018
+            },
+            "126": {
+              "cells": 114,
+              "land_cells": 76,
+              "land_area_km2": 72509.9,
+              "centroid_lat": 72.0,
+              "centroid_lon": 335.75,
+              "ice_area_km2": 25366.5,
+              "ice_fraction_of_land": 0.3498
+            },
+            "165": {
+              "cells": 102,
+              "land_cells": 100,
+              "land_area_km2": 110761.4,
+              "centroid_lat": 69.0,
+              "centroid_lon": 312.75,
+              "ice_area_km2": 97280.2,
+              "ice_fraction_of_land": 0.8783
+            },
+            "166": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": 69.0,
+              "centroid_lon": 321.25,
+              "ice_area_km2": 113783.5,
+              "ice_fraction_of_land": 1.0071
+            },
+            "167": {
+              "cells": 108,
+              "land_cells": 83,
+              "land_area_km2": 90637.1,
+              "centroid_lat": 69.0,
+              "centroid_lon": 330.0,
+              "ice_area_km2": 80110.4,
+              "ice_fraction_of_land": 0.8839
+            },
+            "168": {
+              "cells": 102,
+              "land_cells": 7,
+              "land_area_km2": 7463.7,
+              "centroid_lat": 69.0,
+              "centroid_lon": 338.75,
+              "ice_area_km2": 5797.8,
+              "ice_fraction_of_land": 0.7768
+            },
+            "212": {
+              "cells": 90,
+              "land_cells": 89,
+              "land_area_km2": 111821.4,
+              "centroid_lat": 66.0,
+              "centroid_lon": 311.25,
+              "ice_area_km2": 79952.7,
+              "ice_fraction_of_land": 0.715
+            },
+            "213": {
+              "cells": 90,
+              "land_cells": 79,
+              "land_area_km2": 98758.1,
+              "centroid_lat": 66.0,
+              "centroid_lon": 318.75,
+              "ice_area_km2": 93740.5,
+              "ice_fraction_of_land": 0.9492
+            },
+            "214": {
+              "cells": 90,
+              "land_cells": 20,
+              "land_area_km2": 24353.3,
+              "centroid_lat": 66.0,
+              "centroid_lon": 326.25,
+              "ice_area_km2": 20041.2,
+              "ice_fraction_of_land": 0.8229
+            },
+            "265": {
+              "cells": 84,
+              "land_cells": 51,
+              "land_area_km2": 71140.6,
+              "centroid_lat": 63.0,
+              "centroid_lon": 310.0,
+              "ice_area_km2": 48221.6,
+              "ice_fraction_of_land": 0.6778
+            },
+            "266": {
+              "cells": 78,
+              "land_cells": 59,
+              "land_area_km2": 82389.7,
+              "centroid_lat": 63.0,
+              "centroid_lon": 316.75,
+              "ice_area_km2": 77650.8,
+              "ice_fraction_of_land": 0.9425
+            },
+            "324": {
+              "cells": 78,
+              "land_cells": 22,
+              "land_area_km2": 33038.8,
+              "centroid_lat": 60.0,
+              "centroid_lon": 314.25,
+              "ice_area_km2": 17113.6,
+              "ice_fraction_of_land": 0.518
+            }
+          },
+          "trend_gt_per_yr_full_series": -251.955,
+          "ice_mask": {
+            "file": "Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+            "file_sha256": "sha256:04c8259891a0a94dfa5f9e4996dfaad57ca13763a988dbbee5cda795a9f4a4b2",
+            "epsg": 3413,
+            "ice_cells": 488826,
+            "ice_area_km2": 1822361.86,
+            "title": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+            "doi": "10.5067/ICFVI7DKHZJV",
+            "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Greenland/Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+            "ice_area_in_selected_mascons_km2": 1808391.6
+          },
+          "excluded_land_mascons_with_greenland_ice": {
+            "18": {
+              "cells": 360,
+              "land_cells": 28,
+              "land_area_km2": 10681.5,
+              "centroid_lat": 84.0,
+              "centroid_lon": 345.0,
+              "ice_area_km2": 1155.5,
+              "ice_fraction_of_land": 0.1082
+            },
+            "33": {
+              "cells": 240,
+              "land_cells": 197,
+              "land_area_km2": 94489.6,
+              "centroid_lat": 81.0,
+              "centroid_lon": 290.0,
+              "ice_area_km2": 9448.0,
+              "ice_fraction_of_land": 0.1
+            },
+            "164": {
+              "cells": 102,
+              "land_cells": 19,
+              "land_area_km2": 20804.3,
+              "centroid_lat": 69.0,
+              "centroid_lon": 304.25,
+              "ice_area_km2": 2464.8,
+              "ice_fraction_of_land": 0.1185
+            },
+            "211": {
+              "cells": 90,
+              "land_cells": 8,
+              "land_area_km2": 9785.8,
+              "centroid_lat": 66.0,
+              "centroid_lon": 303.75,
+              "ice_area_km2": 901.8,
+              "ice_fraction_of_land": 0.0922
+            }
+          },
+          "selection_sensitivity": {
+            "0.05": {
+              "n_mascons": 31,
+              "mascons": [
+                17,
+                18,
+                33,
+                34,
+                35,
+                36,
+                56,
+                57,
+                58,
+                59,
+                86,
+                87,
+                88,
+                89,
+                90,
+                123,
+                124,
+                125,
+                126,
+                164,
+                165,
+                166,
+                167,
+                168,
+                211,
+                212,
+                213,
+                214,
+                265,
+                266,
+                324
+              ],
+              "trend_gt_per_yr_full_series": -268.124
+            },
+            "0.5": {
+              "n_mascons": 24,
+              "mascons": [
+                34,
+                35,
+                36,
+                56,
+                57,
+                58,
+                59,
+                86,
+                87,
+                88,
+                89,
+                123,
+                124,
+                125,
+                165,
+                166,
+                167,
+                168,
+                212,
+                213,
+                214,
+                265,
+                266,
+                324
+              ],
+              "trend_gt_per_yr_full_series": -244.256
+            }
+          }
+        },
+        "antarctica": {
+          "domain": "land_mascons",
+          "rule": "every land mascon whose centroid lies south of 60 S; the CRI land mask marks the floating ice shelves as land, so the sum spans the grounded sheet and the shelves together",
+          "n_mascons": 148,
+          "land_area_km2": 12397400.5,
+          "mascons": {
+            "4324": {
+              "cells": 78,
+              "land_cells": 3,
+              "land_area_km2": 4028.7,
+              "centroid_lat": -63.0,
+              "centroid_lon": 296.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4325": {
+              "cells": 78,
+              "land_cells": 10,
+              "land_area_km2": 13574.4,
+              "centroid_lat": -63.0,
+              "centroid_lon": 303.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4340": {
+              "cells": 90,
+              "land_cells": 15,
+              "land_area_km2": 18178.3,
+              "centroid_lat": -66.0,
+              "centroid_lon": 48.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4341": {
+              "cells": 90,
+              "land_cells": 28,
+              "land_area_km2": 34015.4,
+              "centroid_lat": -66.0,
+              "centroid_lon": 56.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4344": {
+              "cells": 90,
+              "land_cells": 3,
+              "land_area_km2": 3710.0,
+              "centroid_lat": -66.0,
+              "centroid_lon": 78.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4345": {
+              "cells": 90,
+              "land_cells": 26,
+              "land_area_km2": 31475.9,
+              "centroid_lat": -66.0,
+              "centroid_lon": 86.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4346": {
+              "cells": 90,
+              "land_cells": 29,
+              "land_area_km2": 35012.8,
+              "centroid_lat": -66.0,
+              "centroid_lon": 93.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4347": {
+              "cells": 90,
+              "land_cells": 41,
+              "land_area_km2": 50025.7,
+              "centroid_lat": -66.0,
+              "centroid_lon": 101.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4348": {
+              "cells": 90,
+              "land_cells": 32,
+              "land_area_km2": 38797.0,
+              "centroid_lat": -66.0,
+              "centroid_lon": 108.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4349": {
+              "cells": 90,
+              "land_cells": 23,
+              "land_area_km2": 27865.1,
+              "centroid_lat": -66.0,
+              "centroid_lon": 116.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4350": {
+              "cells": 90,
+              "land_cells": 33,
+              "land_area_km2": 40116.0,
+              "centroid_lat": -66.0,
+              "centroid_lon": 123.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4351": {
+              "cells": 90,
+              "land_cells": 35,
+              "land_area_km2": 42581.1,
+              "centroid_lat": -66.0,
+              "centroid_lon": 131.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4352": {
+              "cells": 90,
+              "land_cells": 30,
+              "land_area_km2": 36331.8,
+              "centroid_lat": -66.0,
+              "centroid_lon": 138.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4353": {
+              "cells": 90,
+              "land_cells": 4,
+              "land_area_km2": 4781.4,
+              "centroid_lat": -66.0,
+              "centroid_lon": 146.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4372": {
+              "cells": 90,
+              "land_cells": 3,
+              "land_area_km2": 3586.0,
+              "centroid_lat": -66.0,
+              "centroid_lon": 288.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4373": {
+              "cells": 90,
+              "land_cells": 38,
+              "land_area_km2": 48016.8,
+              "centroid_lat": -66.0,
+              "centroid_lon": 296.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4374": {
+              "cells": 90,
+              "land_cells": 3,
+              "land_area_km2": 3931.2,
+              "centroid_lat": -66.0,
+              "centroid_lon": 303.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4382": {
+              "cells": 102,
+              "land_cells": 2,
+              "land_area_km2": 2089.0,
+              "centroid_lat": -69.0,
+              "centroid_lon": 4.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4383": {
+              "cells": 102,
+              "land_cells": 5,
+              "land_area_km2": 5222.6,
+              "centroid_lat": -69.0,
+              "centroid_lon": 12.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4385": {
+              "cells": 108,
+              "land_cells": 16,
+              "land_area_km2": 17091.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 30.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4386": {
+              "cells": 102,
+              "land_cells": 46,
+              "land_area_km2": 49313.1,
+              "centroid_lat": -69.0,
+              "centroid_lon": 38.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4387": {
+              "cells": 102,
+              "land_cells": 97,
+              "land_area_km2": 107124.8,
+              "centroid_lat": -69.0,
+              "centroid_lon": 47.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4388": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 55.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4389": {
+              "cells": 102,
+              "land_cells": 98,
+              "land_area_km2": 108295.2,
+              "centroid_lat": -69.0,
+              "centroid_lon": 64.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4390": {
+              "cells": 102,
+              "land_cells": 23,
+              "land_area_km2": 24731.6,
+              "centroid_lat": -69.0,
+              "centroid_lon": 72.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4391": {
+              "cells": 102,
+              "land_cells": 87,
+              "land_area_km2": 95620.7,
+              "centroid_lat": -69.0,
+              "centroid_lon": 81.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4392": {
+              "cells": 108,
+              "land_cells": 108,
+              "land_area_km2": 119622.6,
+              "centroid_lat": -69.0,
+              "centroid_lon": 90.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4393": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 98.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4394": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 107.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4395": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 115.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4396": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 124.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4397": {
+              "cells": 102,
+              "land_cells": 102,
+              "land_area_km2": 112976.9,
+              "centroid_lat": -69.0,
+              "centroid_lon": 132.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4398": {
+              "cells": 102,
+              "land_cells": 101,
+              "land_area_km2": 111806.5,
+              "centroid_lat": -69.0,
+              "centroid_lon": 141.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4399": {
+              "cells": 108,
+              "land_cells": 78,
+              "land_area_km2": 84910.1,
+              "centroid_lat": -69.0,
+              "centroid_lon": 150.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4400": {
+              "cells": 102,
+              "land_cells": 31,
+              "land_area_km2": 33038.5,
+              "centroid_lat": -69.0,
+              "centroid_lon": 158.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4415": {
+              "cells": 102,
+              "land_cells": 21,
+              "land_area_km2": 22441.6,
+              "centroid_lat": -69.0,
+              "centroid_lon": 287.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4416": {
+              "cells": 102,
+              "land_cells": 56,
+              "land_area_km2": 61246.2,
+              "centroid_lat": -69.0,
+              "centroid_lon": 295.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4417": {
+              "cells": 102,
+              "land_cells": 4,
+              "land_area_km2": 4531.5,
+              "centroid_lat": -69.0,
+              "centroid_lon": 304.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4424": {
+              "cells": 114,
+              "land_cells": 104,
+              "land_area_km2": 98714.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 4.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4425": {
+              "cells": 120,
+              "land_cells": 119,
+              "land_area_km2": 113591.3,
+              "centroid_lat": -72.0,
+              "centroid_lon": 14.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4426": {
+              "cells": 114,
+              "land_cells": 102,
+              "land_area_km2": 96650.7,
+              "centroid_lat": -72.0,
+              "centroid_lon": 24.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4427": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 34.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4428": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 43.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4429": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 53.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4430": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 63.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4431": {
+              "cells": 120,
+              "land_cells": 103,
+              "land_area_km2": 97745.3,
+              "centroid_lat": -72.0,
+              "centroid_lon": 73.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4432": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 82.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4433": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 92.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4434": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 102.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4435": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 112.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4436": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 121.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4437": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 131.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4438": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 141.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4439": {
+              "cells": 114,
+              "land_cells": 114,
+              "land_area_km2": 108879.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 150.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4440": {
+              "cells": 120,
+              "land_cells": 120,
+              "land_area_km2": 114610.4,
+              "centroid_lat": -72.0,
+              "centroid_lon": 160.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4441": {
+              "cells": 114,
+              "land_cells": 42,
+              "land_area_km2": 40038.1,
+              "centroid_lat": -72.0,
+              "centroid_lon": 170.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4448": {
+              "cells": 114,
+              "land_cells": 2,
+              "land_area_km2": 1781.7,
+              "centroid_lat": -72.0,
+              "centroid_lon": 238.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4450": {
+              "cells": 114,
+              "land_cells": 19,
+              "land_area_km2": 17260.8,
+              "centroid_lat": -72.0,
+              "centroid_lon": 257.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4451": {
+              "cells": 120,
+              "land_cells": 24,
+              "land_area_km2": 21663.6,
+              "centroid_lat": -72.0,
+              "centroid_lon": 267.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4452": {
+              "cells": 114,
+              "land_cells": 20,
+              "land_area_km2": 17868.3,
+              "centroid_lat": -72.0,
+              "centroid_lon": 277.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4453": {
+              "cells": 120,
+              "land_cells": 52,
+              "land_area_km2": 50331.7,
+              "centroid_lat": -72.0,
+              "centroid_lon": 287.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4454": {
+              "cells": 114,
+              "land_cells": 78,
+              "land_area_km2": 74239.5,
+              "centroid_lat": -72.0,
+              "centroid_lon": 296.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4459": {
+              "cells": 120,
+              "land_cells": 28,
+              "land_area_km2": 25715.5,
+              "centroid_lat": -72.0,
+              "centroid_lon": 345.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4460": {
+              "cells": 114,
+              "land_cells": 82,
+              "land_area_km2": 76625.9,
+              "centroid_lat": -72.0,
+              "centroid_lon": 355.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4461": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 5.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4462": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 17.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4463": {
+              "cells": 144,
+              "land_cells": 144,
+              "land_area_km2": 115191.1,
+              "centroid_lat": -75.0,
+              "centroid_lon": 29.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4464": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 40.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4465": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 52.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4466": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 63.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4467": {
+              "cells": 144,
+              "land_cells": 144,
+              "land_area_km2": 115191.1,
+              "centroid_lat": -75.0,
+              "centroid_lon": 75.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4468": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 87.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4469": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 98.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4470": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 110.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4471": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 121.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4472": {
+              "cells": 144,
+              "land_cells": 144,
+              "land_area_km2": 115191.1,
+              "centroid_lat": -75.0,
+              "centroid_lon": 133.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4473": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 145.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4474": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 156.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4475": {
+              "cells": 138,
+              "land_cells": 13,
+              "land_area_km2": 11063.0,
+              "centroid_lat": -75.0,
+              "centroid_lon": 168.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4479": {
+              "cells": 138,
+              "land_cells": 24,
+              "land_area_km2": 17946.9,
+              "centroid_lat": -75.0,
+              "centroid_lon": 214.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4480": {
+              "cells": 138,
+              "land_cells": 77,
+              "land_area_km2": 59081.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 226.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4481": {
+              "cells": 144,
+              "land_cells": 113,
+              "land_area_km2": 88947.7,
+              "centroid_lat": -75.0,
+              "centroid_lon": 238.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4482": {
+              "cells": 138,
+              "land_cells": 93,
+              "land_area_km2": 72584.2,
+              "centroid_lat": -75.0,
+              "centroid_lon": 249.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4483": {
+              "cells": 138,
+              "land_cells": 114,
+              "land_area_km2": 90567.0,
+              "centroid_lat": -75.0,
+              "centroid_lon": 261.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4484": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 272.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4485": {
+              "cells": 144,
+              "land_cells": 143,
+              "land_area_km2": 114326.2,
+              "centroid_lat": -75.0,
+              "centroid_lon": 284.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4486": {
+              "cells": 138,
+              "land_cells": 71,
+              "land_area_km2": 58112.1,
+              "centroid_lat": -75.0,
+              "centroid_lon": 296.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4489": {
+              "cells": 144,
+              "land_cells": 11,
+              "land_area_km2": 8107.9,
+              "centroid_lat": -75.0,
+              "centroid_lon": 331.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4490": {
+              "cells": 138,
+              "land_cells": 91,
+              "land_area_km2": 71347.9,
+              "centroid_lat": -75.0,
+              "centroid_lon": 342.75,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4491": {
+              "cells": 138,
+              "land_cells": 138,
+              "land_area_km2": 110391.5,
+              "centroid_lat": -75.0,
+              "centroid_lon": 354.25,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4492": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 7.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4493": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 22.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4494": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 37.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4495": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 52.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4496": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 67.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4497": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 82.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4498": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 97.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4499": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 112.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4500": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 127.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4501": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 142.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4502": {
+              "cells": 180,
+              "land_cells": 158,
+              "land_area_km2": 101795.2,
+              "centroid_lat": -78.0,
+              "centroid_lon": 157.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4505": {
+              "cells": 180,
+              "land_cells": 57,
+              "land_area_km2": 35982.8,
+              "centroid_lat": -78.0,
+              "centroid_lon": 202.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4506": {
+              "cells": 180,
+              "land_cells": 164,
+              "land_area_km2": 104568.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 217.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4507": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 232.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4508": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 247.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4509": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 262.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4510": {
+              "cells": 180,
+              "land_cells": 144,
+              "land_area_km2": 93431.8,
+              "centroid_lat": -78.0,
+              "centroid_lon": 277.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4511": {
+              "cells": 180,
+              "land_cells": 13,
+              "land_area_km2": 8050.3,
+              "centroid_lat": -78.0,
+              "centroid_lon": 292.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4512": {
+              "cells": 180,
+              "land_cells": 33,
+              "land_area_km2": 19952.5,
+              "centroid_lat": -78.0,
+              "centroid_lon": 307.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4513": {
+              "cells": 180,
+              "land_cells": 59,
+              "land_area_km2": 36925.0,
+              "centroid_lat": -78.0,
+              "centroid_lon": 322.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4514": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 337.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4515": {
+              "cells": 180,
+              "land_cells": 180,
+              "land_area_km2": 115667.6,
+              "centroid_lat": -78.0,
+              "centroid_lon": 352.5,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4516": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 10.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4517": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 30.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4518": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 50.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4519": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 70.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4520": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 90.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4521": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 110.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4522": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 130.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4523": {
+              "cells": 240,
+              "land_cells": 239,
+              "land_area_km2": 115515.5,
+              "centroid_lat": -81.0,
+              "centroid_lon": 150.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4524": {
+              "cells": 240,
+              "land_cells": 17,
+              "land_area_km2": 7619.8,
+              "centroid_lat": -81.0,
+              "centroid_lon": 170.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4525": {
+              "cells": 240,
+              "land_cells": 4,
+              "land_area_km2": 2200.1,
+              "centroid_lat": -81.0,
+              "centroid_lon": 190.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4526": {
+              "cells": 240,
+              "land_cells": 150,
+              "land_area_km2": 71778.6,
+              "centroid_lat": -81.0,
+              "centroid_lon": 210.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4527": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 230.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4528": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 250.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4529": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 270.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4530": {
+              "cells": 240,
+              "land_cells": 118,
+              "land_area_km2": 54894.8,
+              "centroid_lat": -81.0,
+              "centroid_lon": 290.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4531": {
+              "cells": 240,
+              "land_cells": 76,
+              "land_area_km2": 36904.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 310.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4532": {
+              "cells": 240,
+              "land_cells": 190,
+              "land_area_km2": 89547.1,
+              "centroid_lat": -81.0,
+              "centroid_lon": 330.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4533": {
+              "cells": 240,
+              "land_cells": 240,
+              "land_area_km2": 116039.0,
+              "centroid_lat": -81.0,
+              "centroid_lon": 350.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4534": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 15.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4535": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 45.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4536": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 75.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4537": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 105.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4538": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 135.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4539": {
+              "cells": 360,
+              "land_cells": 295,
+              "land_area_km2": 92395.2,
+              "centroid_lat": -84.0,
+              "centroid_lon": 165.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4540": {
+              "cells": 360,
+              "land_cells": 170,
+              "land_area_km2": 52775.9,
+              "centroid_lat": -84.0,
+              "centroid_lon": 195.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4541": {
+              "cells": 360,
+              "land_cells": 359,
+              "land_area_km2": 116048.8,
+              "centroid_lat": -84.0,
+              "centroid_lon": 225.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4542": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 255.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4543": {
+              "cells": 360,
+              "land_cells": 358,
+              "land_area_km2": 115524.6,
+              "centroid_lat": -84.0,
+              "centroid_lon": 285.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4544": {
+              "cells": 360,
+              "land_cells": 354,
+              "land_area_km2": 113964.2,
+              "centroid_lat": -84.0,
+              "centroid_lon": 315.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4545": {
+              "cells": 360,
+              "land_cells": 360,
+              "land_area_km2": 116304.7,
+              "centroid_lat": -84.0,
+              "centroid_lon": 345.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4546": {
+              "cells": 864,
+              "land_cells": 864,
+              "land_area_km2": 139757.2,
+              "centroid_lat": -87.0,
+              "centroid_lon": 36.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4547": {
+              "cells": 864,
+              "land_cells": 864,
+              "land_area_km2": 139757.2,
+              "centroid_lat": -87.0,
+              "centroid_lon": 108.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4548": {
+              "cells": 864,
+              "land_cells": 864,
+              "land_area_km2": 139757.2,
+              "centroid_lat": -87.0,
+              "centroid_lon": 180.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4549": {
+              "cells": 864,
+              "land_cells": 864,
+              "land_area_km2": 139757.2,
+              "centroid_lat": -87.0,
+              "centroid_lon": 252.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4550": {
+              "cells": 864,
+              "land_cells": 864,
+              "land_area_km2": 139757.2,
+              "centroid_lat": -87.0,
+              "centroid_lon": 324.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            },
+            "4551": {
+              "cells": 2160,
+              "land_cells": 2160,
+              "land_area_km2": 87393.2,
+              "centroid_lat": -89.25,
+              "centroid_lon": 180.0,
+              "ice_area_km2": 0.0,
+              "ice_fraction_of_land": 0.0
+            }
+          },
+          "trend_gt_per_yr_full_series": -128.208
+        }
+      },
+      "provider_cross_check": {
+        "greenland": {
+          "file": "greenland_mass_200204_202607.txt",
+          "file_sha256": "sha256:73744993ffb271770bc9178085d96a612c6626bdd40dc237e09a440323027ea4",
+          "provider_header_trend": "Greenland Mass Trend (04/2002 - 07/2026): -259.82 +/-21.00 Gt/yr",
+          "common_months": 257,
+          "first": "2002-04",
+          "last": "2026-07",
+          "trend_gt_per_yr": {
+            "this_loader": -251.96,
+            "provider": -255.766
+          },
+          "difference_after_mean_offset_gt": {
+            "std": 29.003,
+            "max_abs": 53.697
+          },
+          "provider_one_sigma_gt": {
+            "median": 22.98
+          },
+          "rule": "the provider's series is read for this comparison only; the sum above is never adjusted to it. Its monthly uncertainty includes leakage (its header), the formal error here does not"
+        },
+        "antarctica": {
+          "file": "antarctica_mass_200204_202607.txt",
+          "file_sha256": "sha256:b624697cf54cc3c3a66c2303adb9f7bfa2eb12e49b16b6d076e9057ab4691279",
+          "provider_header_trend": "Antarctic Mass Trend (04/2002 - 07/2026): -129.60 +/-39.00 Gt/yr",
+          "common_months": 257,
+          "first": "2002-04",
+          "last": "2026-07",
+          "trend_gt_per_yr": {
+            "this_loader": -128.169,
+            "provider": -127.674
+          },
+          "difference_after_mean_offset_gt": {
+            "std": 11.426,
+            "max_abs": 119.884
+          },
+          "provider_one_sigma_gt": {
+            "median": 35.41
+          },
+          "rule": "the provider's series is read for this comparison only; the sum above is never adjusted to it. Its monthly uncertainty includes leakage (its header), the formal error here does not"
+        }
+      },
+      "global_attributes": {
+        "title": "JPL GRACE and GRACE-FO MASCON RL06.3Mv04 CRI",
+        "id": "10.5067/TEMSC-3JC634",
+        "time_coverage_start": "2002-04-16T00:00:00Z",
+        "time_coverage_end": "2026-07-16T23:59:59Z",
+        "date_created": "2026-09-08T08:09:18Z",
+        "processing_level": "2 and 3",
+        "source": "GRACE and GRACE-FO JPL RL06.3Mv04-CRI"
+      }
+    },
+    "volume-itslive": {
+      "term": "volume-itslive",
+      "quantity": "surface elevation change from the ITS_LIVE elevation change products summed to a volume anomaly per ice sheet domain and time step",
+      "units": "value_km3, uncertainty_km3 and uncertainty_correlated_km3 in km3 of surface height change (not ice); area_km2 in km2",
+      "sign_convention": "positive is a higher surface (more volume), the product's own",
+      "months": [
+        "1992-01",
+        "2023-12"
+      ],
+      "n_rows": 984,
+      "domains": [
+        [
+          "antarctica",
+          "grounded"
+        ],
+        [
+          "greenland",
+          "ice_sheet"
+        ],
+        [
+          "greenland",
+          "peripheral_glaciers"
+        ]
+      ],
+      "not_mass": "a volume of surface height change: the firn air content change is removed and a density applied by the computation, never here (the bundle's gotcha atl15-height-change-is-not-mass-change states the trap for ATL15; it holds for every altimetric height change)",
+      "series": {
+        "greenland": {
+          "product": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+          "doi": "10.5067/ICFVI7DKHZJV",
+          "product_version": "1.1",
+          "granule": "Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+          "granule_sha256": "sha256:04c8259891a0a94dfa5f9e4996dfaad57ca13763a988dbbee5cda795a9f4a4b2",
+          "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Greenland/Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+          "read_utc": "2026-09-15T18:17:13Z",
+          "variable": "dh (with rms)",
+          "variable_comment": "Surface elevation change (dh) relative to DEM, w.r.t. 2014-01-01",
+          "error_comment": "RMS error is the root-square-sum of the systematic and random error",
+          "grid": "1920 m polar stereographic, EPSG:3413, 1421 by 783 cells; cell areas from the projection's areal scale",
+          "mask": "the file's mask variable: 1 ice sheet, 2 peripheral glacier, 0 non-ice; the ice sheet domain is the grounded ice sheet, the product being a grounded ice elevation change product",
+          "aggregation": "sum of dh times cell area over the fixed set of cells inside the mask that are finite in dh at every time step; 1e-3 km3 per m km2; the rms error times area in quadrature and linearly over the cells of that set where rms is finite at the step",
+          "reference": "anomaly against 2014-01-01, the product's own reference",
+          "sampling": "monthly",
+          "time_coverage": [
+            "1992-01-15",
+            "2023-12-14"
+          ],
+          "months": [
+            "1992-01",
+            "2023-12"
+          ],
+          "n_steps": 384,
+          "empty_steps_skipped": [],
+          "cells": {
+            "ice_sheet": 464999,
+            "peripheral_glaciers": 23827
+          },
+          "area_km2": {
+            "ice_sheet": 1732985.13,
+            "peripheral_glaciers": 89376.73
+          },
+          "cells_without_error_max": {
+            "ice_sheet": 269,
+            "peripheral_glaciers": 674
+          },
+          "uncertainty_basis": "the product's rms (the root-square-sum of the systematic and random error, its comment) times cell area, in quadrature over the cells (a floor where errors correlate across cells) and summed linearly (the bound where they correlate fully), both carried",
+          "global_attributes": {
+            "date_created": "2026-02-10",
+            "title": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+            "author": "Johan Nilsson and Alex Gardner",
+            "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+            "institution": "Uppsala University and NASA Jet Propulsion Laboratory",
+            "doi": "doi.org/10.5067/ICFVI7DKHZJV",
+            "version": "1.1",
+            "epsg_number": "3413",
+            "Conventions": "CF-1.10"
+          }
+        },
+        "antarctica": {
+          "product": "ITS_LIVE Antarctic Ice Sheet grounded ice elevation change",
+          "doi": "10.5067/L3LSVDZS15ZV",
+          "product_version": "1.0",
+          "granule": "ANT_G1920V01_GroundedIceHeight.nc",
+          "granule_sha256": "sha256:cfa23b4204a05e3137373ee4f2ee997c160be62c32e0deeba13c052bd0c14302",
+          "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Antarctica/Grounded/ANT_G1920V01_GroundedIceHeight.nc",
+          "read_utc": "2026-09-15T18:22:31Z",
+          "variable": "dh (with rmse and quality_flag)",
+          "variable_comment": "height anomaly w.r.t. 2013-12-16",
+          "error_comment": "rmse is equivalent to sigma_m in Nilsson et al. (2022)",
+          "grid": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale",
+          "mask": "every cell finite in dh and with a quality flag other than no-data at every time step: the grounded ice sheet, the product being a grounded ice elevation change product; the pole hole cells (flag 3) are in the set and counted",
+          "aggregation": "sum of dh times cell area over the fixed set of cells finite in dh and flagged at every time step; 1e-3 km3 per m km2; the rmse times area in quadrature and linearly over the cells of that set where rmse is finite at the step",
+          "reference": "anomaly against 2013-12-16, the product's own reference (the dh standard name)",
+          "sampling": "monthly",
+          "time_coverage": [
+            "2003-01-16",
+            "2020-12-16"
+          ],
+          "months": [
+            "2003-01",
+            "2020-12"
+          ],
+          "n_steps": 216,
+          "empty_steps_skipped": [],
+          "start_month": "2003-01",
+          "steps_before_start_month": 213,
+          "cell_set_rule": "cells finite in dh and flagged at every step from 2003-01 on; the earlier steps are not read",
+          "cells": {
+            "grounded": 3270748
+          },
+          "area_km2": {
+            "grounded": 12334777.08
+          },
+          "pole_hole_cells": 0,
+          "basins_present": 199,
+          "cells_without_error_max": {
+            "grounded": 0
+          },
+          "uncertainty_basis": "the product's rmse (sigma_m of Nilsson and others 2022, its description) times cell area, in quadrature over the cells (a floor where errors correlate across cells) and summed linearly (the bound where they correlate fully), both carried",
+          "global_attributes": {
+            "GDAL_AREA_OR_POINT": "Area",
+            "Conventions": "CF-1.6",
+            "date_created": "25-Aug-2022 15:57:08",
+            "title": "ITS_LIVE Antarctic Ice Sheet grounded ice elevation change",
+            "author": "Johan Nilsson, Alex Gardner, Fernando Paolo - JPL/NASA",
+            "doi": "doi.org/10.5067/L3LSVDZS15ZV",
+            "citation": "Nilsson, J., Gardner, A., & Paolo, F. (2021). Elevation Change of the Antarctic Ice Sheet: 1985 to 2020. Earth System Science Data Discussions, 2021, 1\u201339. https://doi.org/10.5194/essd-2021-287",
+            "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+            "institution": "NASA Jet Propulsion Laboratory (JPL), California Institute of Technology",
+            "version": "1.0"
+          }
+        }
+      }
+    },
+    "volume-atl15": {
+      "term": "volume-atl15",
+      "quantity": "land ice surface height change from ICESat-2 ATL15 summed to a volume anomaly per ice sheet and quarterly epoch",
+      "units": "value_km3, uncertainty_km3 and uncertainty_correlated_km3 in km3 of surface height change (not ice); area_km2 in km2",
+      "sign_convention": "positive is a higher surface (more volume), the product's own",
+      "months": [
+        "2019-01",
+        "2026-01"
+      ],
+      "n_rows": 58,
+      "domains": [
+        [
+          "antarctica",
+          "a1_a4"
+        ],
+        [
+          "greenland",
+          "gl"
+        ]
+      ],
+      "not_mass": "a volume of surface height change: the firn air content change is removed and a density applied by the computation, never here (the bundle's gotcha atl15-height-change-is-not-mass-change)",
+      "series": {
+        "greenland": {
+          "product": "ICESat-2 ATL15 Gridded Antarctic and Arctic Land Ice Height Change, Version 5",
+          "doi": "10.5067/ATLAS/ATL15.005",
+          "granules": [
+            {
+              "granule": "ATL15_GL_0329_10km_005_02.nc",
+              "granule_sha256": "sha256:89350d1d2a265a0be9e082526bb79f33a350764c4e616436f0db027f5cc17ece",
+              "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_GL_0329_10km_005_02.nc",
+              "read_utc": "2026-09-19T19:54:25Z",
+              "grid": "10 km polar stereographic, 274 by 154 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+              "cells": 20016,
+              "area_km2": 1748582.03,
+              "epochs": 29,
+              "months": [
+                "2019-01",
+                "2026-01"
+              ],
+              "time_coverage": [
+                "2019-01-01",
+                "2026-01-01"
+              ],
+              "global_attributes": {
+                "Conventions": "CF-1.7",
+                "date_created": "2026-03-13T12:24:24.556874Z",
+                "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+                "short_name": "ATL15",
+                "time_coverage_end": "2025-11-19T15:18:04.881311Z",
+                "time_coverage_start": "2019-01-01T00:06:05.000000Z",
+                "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+              }
+            }
+          ],
+          "variable": "delta_h/delta_h (with delta_h_sigma, ice_area, time)",
+          "mask": "the product's ice_area above zero at every epoch: the Greenland ice sheet and the peripheral ice caps the GL region covers, undivided; no grounding mask (Greenland's floating tongues are in the sum)",
+          "aggregation": "sum of delta_h times the cell's minimum ice_area over the epochs, over the fixed set of cells finite in delta_h and delta_h_sigma and ice-covered at every epoch; 1e-3 km3 per m km2",
+          "reference": "anomaly against the ATL14 reference surface at 2020-01-01, the product's own",
+          "sampling": "quarterly: one row per product epoch, labelled by the calendar month of its time value",
+          "uncertainty_basis": "delta_h_sigma times area in quadrature over the cells (a floor where errors correlate across cells) and the same summed linearly (the bound where they correlate fully), both carried",
+          "cells": {
+            "gl": 20016
+          },
+          "area_km2": {
+            "gl": 1748582.03
+          },
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "n_steps": 29,
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ]
+        },
+        "antarctica": {
+          "product": "ICESat-2 ATL15 Gridded Antarctic and Arctic Land Ice Height Change, Version 5",
+          "doi": "10.5067/ATLAS/ATL15.005",
+          "granules": [
+            {
+              "granule": "ATL15_A1_0329_10km_005_02.nc",
+              "granule_sha256": "sha256:fe386be4750217e3259a7937cf62e2354e17026714c71a1df3fd18e000488b60",
+              "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A1_0329_10km_005_02.nc",
+              "read_utc": "2026-09-19T19:54:25Z",
+              "grid": "10 km polar stereographic, 227 by 263 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+              "cells": 43880,
+              "area_km2": 4408493.39,
+              "epochs": 29,
+              "months": [
+                "2019-01",
+                "2026-01"
+              ],
+              "time_coverage": [
+                "2019-01-01",
+                "2026-01-01"
+              ],
+              "global_attributes": {
+                "Conventions": "CF-1.7",
+                "date_created": "2026-03-13T18:13:03.211348Z",
+                "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+                "short_name": "ATL15",
+                "time_coverage_end": "2025-11-19T22:26:30.140982Z",
+                "time_coverage_start": "2019-01-01T00:04:53.000000Z",
+                "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+              }
+            },
+            {
+              "granule": "ATL15_A2_0329_10km_005_02.nc",
+              "granule_sha256": "sha256:b525884dd2f0970bdf377179e73fd4773c47b356d3dbe072fbc63c2e422d3350",
+              "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A2_0329_10km_005_02.nc",
+              "read_utc": "2026-09-19T19:54:25Z",
+              "grid": "10 km polar stereographic, 227 by 267 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+              "cells": 27196,
+              "area_km2": 2679891.79,
+              "epochs": 29,
+              "months": [
+                "2019-01",
+                "2026-01"
+              ],
+              "time_coverage": [
+                "2019-01-01",
+                "2026-01-01"
+              ],
+              "global_attributes": {
+                "Conventions": "CF-1.7",
+                "date_created": "2026-03-13T19:44:13.575162Z",
+                "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+                "short_name": "ATL15",
+                "time_coverage_end": "2025-11-20T00:01:18.513708Z",
+                "time_coverage_start": "2019-01-01T00:04:55.000000Z",
+                "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+              }
+            },
+            {
+              "granule": "ATL15_A3_0329_10km_005_02.nc",
+              "granule_sha256": "sha256:9986ec77a3443cb0ffe58cb3da502b9d2d8bd144589c9b8565afb837d1855998",
+              "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A3_0329_10km_005_02.nc",
+              "read_utc": "2026-09-19T19:54:25Z",
+              "grid": "10 km polar stereographic, 139 by 200 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+              "cells": 20092,
+              "area_km2": 2035336.43,
+              "epochs": 29,
+              "months": [
+                "2019-01",
+                "2026-01"
+              ],
+              "time_coverage": [
+                "2019-01-01",
+                "2026-01-01"
+              ],
+              "global_attributes": {
+                "Conventions": "CF-1.7",
+                "date_created": "2026-03-13T20:41:47.717627Z",
+                "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+                "short_name": "ATL15",
+                "time_coverage_end": "2025-11-20T00:01:18.513708Z",
+                "time_coverage_start": "2019-01-01T00:04:57.000000Z",
+                "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+              }
+            },
+            {
+              "granule": "ATL15_A4_0329_10km_005_02.nc",
+              "granule_sha256": "sha256:3d6a244dd7f0f4a8eab223ed7b081cb252a04491fde8292d5a7b60db8fde71ae",
+              "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A4_0329_10km_005_02.nc",
+              "read_utc": "2026-09-19T19:54:26Z",
+              "grid": "10 km polar stereographic, 219 by 279 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+              "cells": 44058,
+              "area_km2": 4359278.62,
+              "epochs": 29,
+              "months": [
+                "2019-01",
+                "2026-01"
+              ],
+              "time_coverage": [
+                "2019-01-01",
+                "2026-01-01"
+              ],
+              "global_attributes": {
+                "Conventions": "CF-1.7",
+                "date_created": "2026-03-13T22:04:57.721884Z",
+                "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+                "short_name": "ATL15",
+                "time_coverage_end": "2025-11-19T16:09:51.126621Z",
+                "time_coverage_start": "2019-01-01T00:04:59.000000Z",
+                "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+              }
+            }
+          ],
+          "variable": "delta_h/delta_h (with delta_h_sigma, ice_area, time)",
+          "mask": "the product's ice_area above zero at every epoch in each quadrant granule, the four quadrants summed per epoch; grounded and floating ice together, since the product carries no grounding mask",
+          "aggregation": "per quadrant, sum of delta_h times the cell's minimum ice_area over the epochs, over the fixed set of cells finite in delta_h and delta_h_sigma and ice-covered at every epoch; the quadrants summed, their quadrature errors in quadrature and their linear bounds added",
+          "reference": "anomaly against the ATL14 reference surface at 2020-01-01, the product's own",
+          "sampling": "quarterly: one row per product epoch, labelled by the calendar month of its time value",
+          "uncertainty_basis": "delta_h_sigma times area in quadrature over the cells (a floor where errors correlate across cells) and the same summed linearly (the bound where they correlate fully), both carried",
+          "cells": {
+            "a1_a4": 135226
+          },
+          "area_km2": {
+            "a1_a4": 13483000.23
+          },
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "n_steps": 29,
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ]
+        }
+      }
+    }
+  },
+  "bookkeeping": {
+    "firn": {
+      "product_and_version": {
+        "greenland": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change (product version 1.1, doi 10.5067/ICFVI7DKHZJV)",
+        "antarctica": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1 (product version 1.0, doi 10.5067/SE3XH9RXQWAM)"
+      },
+      "gemb_version": {
+        "greenland": "1.3.0 (the variable's comment)",
+        "antarctica": "GEMB r24739 (the variable's source attribute)"
+      },
+      "forcing": {
+        "greenland": "not stated in the file's attributes; no product documentation for this file was found on nsidc.org or in the ITS_LIVE bucket, so the forcing of the GEMB 1.3.0 run is left unstated here rather than assumed",
+        "antarctica": "3-hourly ERA5 reanalysis, 1979 to 2017, after a relaxation simulation (the NSIDC-0792 user guide, section 2.3.1.3)"
+      },
+      "grid": {
+        "greenland": "1920 m polar stereographic, EPSG:3413, 1421 by 783 cells; cell areas from the projection's areal scale",
+        "antarctica": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale; the user guide says the GEMB fields were interpolated from a 5 km grid"
+      },
+      "mask": {
+        "greenland": "the file's mask variable: 1 ice sheet, 2 peripheral glacier, 0 non-ice; the ice sheet domain is the grounded ice sheet, the product being a grounded ice elevation change product",
+        "antarctica": "the file's ID variable: ice shelf identifiers 1 to 182 (an edited MEaSUREs Antarctic Boundaries version 2), land 255; the domain is the floating ice shelves only, since no GEMB field over grounded Antarctica is in the ITS_LIVE distribution"
+      },
+      "aggregation": {
+        "greenland": "area-weighted mean over the fixed set of cells inside the mask that are finite in dfac_gemb and dfac_gsfc at every time step; the same anomaly integrated to km3 of air",
+        "antarctica": "area-weighted mean over the fixed set of ice shelf cells finite in fac at every time step and in fac_mean; the anomaly integrated to km3 of air; fac_err is read only for the statistics in the stamp, where it is finite and below its sentinel"
+      },
+      "reference": {
+        "greenland": "anomaly against 2014-01-01, the product's own reference",
+        "antarctica": "anomaly against the product's fac_mean (its 1992 to 2017 record mean), whose area-weighted mean over the cell set is 14.901947 m"
+      },
+      "sampling": {
+        "greenland": "monthly",
+        "antarctica": "quarterly: one row per product time step, labelled by the calendar month of the time value (the user guide calls it the quarter start date)"
+      },
+      "coverage": {
+        "greenland": {
+          "months": [
+            "1992-01",
+            "2023-12"
+          ],
+          "n_steps": 384,
+          "cells": {
+            "ice_sheet": 464999,
+            "peripheral_glaciers": 23827
+          },
+          "area_km2": {
+            "ice_sheet": 1732985.13,
+            "peripheral_glaciers": 89376.73
+          }
+        },
+        "antarctica": {
+          "months": [
+            "1992-03",
+            "2017-09"
+          ],
+          "n_steps": 103,
+          "cells": {
+            "ice_shelves": 410013
+          },
+          "area_km2": {
+            "ice_shelves": 1546886.79
+          }
+        }
+      },
+      "units": "value_m and uncertainty_m in metres of air (area-weighted mean over the domain); volume_km3 in km3 of air; area_km2 in km2",
+      "sign_convention": "positive is more air in the firn column (a thicker column at unchanged mass)",
+      "uncertainty_basis": {
+        "greenland": "model spread: the absolute difference between the GEMB 1.3.0 and the GSFC-FDM 1.2.1 aggregates the file carries (dfac_gemb, dfac_gsfc); the product ships no firn error field",
+        "antarctica": "stated noise floor: standard deviation of adjacent-step differences of the finished anomaly series divided by sqrt(2), written on every row; the product's fac_err is not used because its values (tens of metres at the median, 9999 where it has none) and its units attribute (m of ice per year, where the user guide gives m) do not read as a firn air content error"
+      },
+      "not_in_the_distribution": [
+        "Antarctica, grounded ice sheet: no GEMB firn air content field is distributed with ITS_LIVE on AWS (the bucket was listed under height_change, mass_change, ice_masks and documentation); the Antarctic rows cover the floating ice shelves"
+      ],
+      "alternates_not_read": [
+        "RACMO2 (IMAU regional climate model firn and surface mass balance output): not read",
+        "MAR (regional climate model surface mass balance output): not read",
+        "the IMBIE basin definitions: not read; the products' own masks partition the grids"
+      ]
+    },
+    "smb": {
+      "product_and_version": {
+        "antarctica": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1 (product version 1.0, doi 10.5067/SE3XH9RXQWAM)"
+      },
+      "gemb_version": {
+        "antarctica": "GEMB r24739 (the variable's source attribute)"
+      },
+      "forcing": {
+        "antarctica": "3-hourly ERA5 reanalysis, 1979 to 2017, after a relaxation simulation (the NSIDC-0792 user guide, section 2.3.1.3)"
+      },
+      "grid": {
+        "antarctica": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale; the user guide says the GEMB fields were interpolated from a 5 km grid"
+      },
+      "mask": {
+        "antarctica": "the file's ID variable: ice shelf identifiers 1 to 182 (an edited MEaSUREs Antarctic Boundaries version 2), land 255; the domain is the floating ice shelves only"
+      },
+      "aggregation": {
+        "antarctica": "sum of smb times cell area times the product's ice density (917.0 kg per m3) over the fixed set of ice shelf cells finite in smb at every time step and in smb_mean; the error sum runs over the subset of those cells finite in smb_err and below its sentinel at each step, and the stamp counts the rest"
+      },
+      "reference": {
+        "antarctica": ""
+      },
+      "sampling": {
+        "antarctica": "quarterly: one row per product time step, labelled by the calendar month of the time value (the user guide calls it the quarter start date); period_years is the interval to the next time value"
+      },
+      "coverage": {
+        "antarctica": {
+          "months": [
+            "1992-03",
+            "2017-09"
+          ],
+          "n_steps": 103,
+          "cells": {
+            "ice_shelves": 410013
+          },
+          "area_km2": {
+            "ice_shelves": 1546886.79
+          }
+        }
+      },
+      "units": "value_gt_per_yr and uncertainty_gt_per_yr in gigatonnes per year over the domain; mean_m_ice_per_yr in metres of ice per year (area-weighted mean); period_years in years; area_km2 in km2",
+      "sign_convention": "positive is mass gained at the surface (accumulation exceeding ablation), the product's own",
+      "uncertainty_basis": {
+        "antarctica": "the sum of the product's smb_err times cell area times the density over the cells whose error is finite and below the 9999 sentinel, the cell errors treated as fully correlated (an upper bound)"
+      },
+      "not_in_the_distribution": [
+        "Greenland: the ITS_LIVE Greenland elevation change product carries firn air content anomalies and no surface mass balance field; no other GEMB output for Greenland is distributed with ITS_LIVE on AWS",
+        "Antarctica, grounded ice sheet: no GEMB surface mass balance field is distributed with ITS_LIVE on AWS; the rows cover the floating ice shelves"
+      ],
+      "alternates_not_read": [
+        "RACMO2 (IMAU regional climate model surface mass balance output): not read",
+        "MAR (regional climate model surface mass balance output): not read",
+        "the IMBIE basin definitions: not read; the product's own ice shelf identifiers partition the grid"
+      ]
+    },
+    "mass": {
+      "product_and_version": {
+        "greenland": "JPL GRACE and GRACE-FO MASCON RL06.3Mv04 CRI (product version RL06.3Mv04 CRI, doi 10.5067/TEMSC-3JC634)",
+        "antarctica": "JPL GRACE and GRACE-FO MASCON RL06.3Mv04 CRI (product version RL06.3Mv04 CRI, doi 10.5067/TEMSC-3JC634)"
+      },
+      "grid": "0.5 degree grid representing 3 degree spherical-cap mascons; cell areas from the latitude and longitude bounds on a sphere of radius 6371 km",
+      "mask": "the granule's land_mask (1 is land, the CRI partition); the ice sheet's mascon set by the rule each series states",
+      "selection": {
+        "greenland": {
+          "rule": "the product's land mascons whose land area is covered by Greenland ice (the ITS_LIVE mask, ice sheet and peripheral glaciers) for at least 0.25 of it",
+          "n_mascons": 27,
+          "land_area_km2": 2122549.4,
+          "ice_mask": {
+            "file": "Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+            "file_sha256": "sha256:04c8259891a0a94dfa5f9e4996dfaad57ca13763a988dbbee5cda795a9f4a4b2",
+            "ice_area_km2": 1822361.86,
+            "ice_area_in_selected_mascons_km2": 1808391.6
+          },
+          "selection_sensitivity": {
+            "0.05": {
+              "n_mascons": 31,
+              "mascons": [
+                17,
+                18,
+                33,
+                34,
+                35,
+                36,
+                56,
+                57,
+                58,
+                59,
+                86,
+                87,
+                88,
+                89,
+                90,
+                123,
+                124,
+                125,
+                126,
+                164,
+                165,
+                166,
+                167,
+                168,
+                211,
+                212,
+                213,
+                214,
+                265,
+                266,
+                324
+              ],
+              "trend_gt_per_yr_full_series": -268.124
+            },
+            "0.5": {
+              "n_mascons": 24,
+              "mascons": [
+                34,
+                35,
+                36,
+                56,
+                57,
+                58,
+                59,
+                86,
+                87,
+                88,
+                89,
+                123,
+                124,
+                125,
+                165,
+                166,
+                167,
+                168,
+                212,
+                213,
+                214,
+                265,
+                266,
+                324
+              ],
+              "trend_gt_per_yr_full_series": -244.256
+            }
+          }
+        },
+        "antarctica": {
+          "rule": "every land mascon whose centroid lies south of 60 S; the CRI land mask marks the floating ice shelves as land, so the sum spans the grounded sheet and the shelves together",
+          "n_mascons": 148,
+          "land_area_km2": 12397400.5,
+          "ice_mask": null,
+          "selection_sensitivity": null
+        }
+      },
+      "aggregation": "sum over the land cells of the selected mascons of lwe_thickness (cm) times the cell area (km2) times 1e-5 Gt; one sigma per mascon times its land area, in quadrature over the selected mascons",
+      "reference": "anomaly against the product's own baseline (the 2004 to 2009 mean)",
+      "sampling": "monthly: one row per solution, labelled by the calendar month of the midpoint of its time_bounds; missing months absent",
+      "coverage": {
+        "greenland": {
+          "months": [
+            "2002-04",
+            "2026-07"
+          ],
+          "n_steps": 259,
+          "n_mascons": 27,
+          "land_area_km2": 2122549.4
+        },
+        "antarctica": {
+          "months": [
+            "2002-04",
+            "2026-07"
+          ],
+          "n_steps": 259,
+          "n_mascons": 148,
+          "land_area_km2": 12397400.5
+        }
+      },
+      "units": "value_gt and uncertainty_gt in gigatonnes; land_area_km2 in km2",
+      "sign_convention": "positive is mass gained (more equivalent water thickness), the product's own",
+      "uncertainty_basis": "formal: the granule's one sigma per mascon over the mascon's land area, in quadrature, mascons treated as independent; a floor where mascon errors correlate; leakage is not in it",
+      "gia": "ICE-6G_D (Peltier and others 2018) subtracted by the product before the CRI filter and from the released fields (the release note; the podaac bundle's GIA gotcha); nothing re-applied. Over Antarctica the GIA model is the largest systematic of a gravimetric mass balance and is not in the formal error below",
+      "low_degree": "C20 and C30 from TN-14 version 3 across the whole series, degree 1 from JPL's mascon-consistent geocenter; nothing re-applied (the release note; the podaac bundle's low-degree gotcha)",
+      "reference_frame": "centre of figure restored through JPL's mascon-consistent geocenter (degree 1 computed with the mascon field as background, the release note)",
+      "effective_smoothing": "3 degree spherical-cap mascons on a 0.5 degree grid; the sum runs over whole mascons, so signal from the ice-free land and the ocean inside a selected mascon, and ice signal in an excluded neighbour, is leakage the product's CRI filter reduces and does not remove (the podaac bundle's coastal-leakage gotcha)",
+      "gad": "the GAD de-aliasing signal is restored over the ocean part of the mascons only (the release note); the land cells summed here carry none",
+      "elastic_and_hydrology": "no elastic rebound or terrestrial hydrology correction is applied to the mascons: the product's land mascon value is the full surface mass anomaly",
+      "provider_cross_check": {
+        "greenland": {
+          "file": "greenland_mass_200204_202607.txt",
+          "file_sha256": "sha256:73744993ffb271770bc9178085d96a612c6626bdd40dc237e09a440323027ea4",
+          "provider_header_trend": "Greenland Mass Trend (04/2002 - 07/2026): -259.82 +/-21.00 Gt/yr",
+          "common_months": 257,
+          "first": "2002-04",
+          "last": "2026-07",
+          "trend_gt_per_yr": {
+            "this_loader": -251.96,
+            "provider": -255.766
+          },
+          "difference_after_mean_offset_gt": {
+            "std": 29.003,
+            "max_abs": 53.697
+          },
+          "provider_one_sigma_gt": {
+            "median": 22.98
+          }
+        },
+        "antarctica": {
+          "file": "antarctica_mass_200204_202607.txt",
+          "file_sha256": "sha256:b624697cf54cc3c3a66c2303adb9f7bfa2eb12e49b16b6d076e9057ab4691279",
+          "provider_header_trend": "Antarctic Mass Trend (04/2002 - 07/2026): -129.60 +/-39.00 Gt/yr",
+          "common_months": 257,
+          "first": "2002-04",
+          "last": "2026-07",
+          "trend_gt_per_yr": {
+            "this_loader": -128.169,
+            "provider": -127.674
+          },
+          "difference_after_mean_offset_gt": {
+            "std": 11.426,
+            "max_abs": 119.884
+          },
+          "provider_one_sigma_gt": {
+            "median": 35.41
+          }
+        }
+      }
+    },
+    "volume-itslive": {
+      "product_and_version": {
+        "greenland": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change (product version 1.1, doi 10.5067/ICFVI7DKHZJV)",
+        "antarctica": "ITS_LIVE Antarctic Ice Sheet grounded ice elevation change (product version 1.0, doi 10.5067/L3LSVDZS15ZV)"
+      },
+      "grid": {
+        "greenland": "1920 m polar stereographic, EPSG:3413, 1421 by 783 cells; cell areas from the projection's areal scale",
+        "antarctica": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale"
+      },
+      "mask": {
+        "greenland": "the file's mask variable: 1 ice sheet, 2 peripheral glacier, 0 non-ice; the ice sheet domain is the grounded ice sheet, the product being a grounded ice elevation change product",
+        "antarctica": "every cell finite in dh and with a quality flag other than no-data at every time step: the grounded ice sheet, the product being a grounded ice elevation change product; the pole hole cells (flag 3) are in the set and counted"
+      },
+      "aggregation": {
+        "greenland": "sum of dh times cell area over the fixed set of cells inside the mask that are finite in dh at every time step; 1e-3 km3 per m km2; the rms error times area in quadrature and linearly over the cells of that set where rms is finite at the step",
+        "antarctica": "sum of dh times cell area over the fixed set of cells finite in dh and flagged at every time step; 1e-3 km3 per m km2; the rmse times area in quadrature and linearly over the cells of that set where rmse is finite at the step"
+      },
+      "reference": {
+        "greenland": "anomaly against 2014-01-01, the product's own reference",
+        "antarctica": "anomaly against 2013-12-16, the product's own reference (the dh standard name)"
+      },
+      "sampling": {
+        "greenland": "monthly",
+        "antarctica": "monthly"
+      },
+      "coverage": {
+        "greenland": {
+          "months": [
+            "1992-01",
+            "2023-12"
+          ],
+          "n_steps": 384,
+          "cells": {
+            "ice_sheet": 464999,
+            "peripheral_glaciers": 23827
+          },
+          "area_km2": {
+            "ice_sheet": 1732985.13,
+            "peripheral_glaciers": 89376.73
+          }
+        },
+        "antarctica": {
+          "months": [
+            "2003-01",
+            "2020-12"
+          ],
+          "n_steps": 216,
+          "cells": {
+            "grounded": 3270748
+          },
+          "area_km2": {
+            "grounded": 12334777.08
+          }
+        }
+      },
+      "units": "value_km3, uncertainty_km3 and uncertainty_correlated_km3 in km3 of surface height change (not ice); area_km2 in km2",
+      "sign_convention": "positive is a higher surface (more volume), the product's own",
+      "uncertainty_basis": {
+        "greenland": "the product's rms (the root-square-sum of the systematic and random error, its comment) times cell area, in quadrature over the cells (a floor where errors correlate across cells) and summed linearly (the bound where they correlate fully), both carried",
+        "antarctica": "the product's rmse (sigma_m of Nilsson and others 2022, its description) times cell area, in quadrature over the cells (a floor where errors correlate across cells) and summed linearly (the bound where they correlate fully), both carried"
+      },
+      "not_mass": "a volume of surface height change: the firn air content change is removed and a density applied by the computation, never here (the bundle's gotcha atl15-height-change-is-not-mass-change states the trap for ATL15; it holds for every altimetric height change)"
+    },
+    "volume-atl15": {
+      "product_and_version": {
+        "greenland": "ICESat-2 ATL15 Gridded Antarctic and Arctic Land Ice Height Change, Version 5 (product version , doi 10.5067/ATLAS/ATL15.005)",
+        "antarctica": "ICESat-2 ATL15 Gridded Antarctic and Arctic Land Ice Height Change, Version 5 (product version , doi 10.5067/ATLAS/ATL15.005)"
+      },
+      "grid": {
+        "greenland": "10 km polar stereographic, 274 by 154 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+        "antarctica": "10 km polar stereographic, 227 by 263 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell"
+      },
+      "mask": {
+        "greenland": "the product's ice_area above zero at every epoch: the Greenland ice sheet and the peripheral ice caps the GL region covers, undivided; no grounding mask (Greenland's floating tongues are in the sum)",
+        "antarctica": "the product's ice_area above zero at every epoch in each quadrant granule, the four quadrants summed per epoch; grounded and floating ice together, since the product carries no grounding mask"
+      },
+      "aggregation": {
+        "greenland": "sum of delta_h times the cell's minimum ice_area over the epochs, over the fixed set of cells finite in delta_h and delta_h_sigma and ice-covered at every epoch; 1e-3 km3 per m km2",
+        "antarctica": "per quadrant, sum of delta_h times the cell's minimum ice_area over the epochs, over the fixed set of cells finite in delta_h and delta_h_sigma and ice-covered at every epoch; the quadrants summed, their quadrature errors in quadrature and their linear bounds added"
+      },
+      "reference": {
+        "greenland": "anomaly against the ATL14 reference surface at 2020-01-01, the product's own",
+        "antarctica": "anomaly against the ATL14 reference surface at 2020-01-01, the product's own"
+      },
+      "sampling": {
+        "greenland": "quarterly: one row per product epoch, labelled by the calendar month of its time value",
+        "antarctica": "quarterly: one row per product epoch, labelled by the calendar month of its time value"
+      },
+      "coverage": {
+        "greenland": {
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "n_steps": 29,
+          "cells": {
+            "gl": 20016
+          },
+          "area_km2": {
+            "gl": 1748582.03
+          }
+        },
+        "antarctica": {
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "n_steps": 29,
+          "cells": {
+            "a1_a4": 135226
+          },
+          "area_km2": {
+            "a1_a4": 13483000.23
+          }
+        }
+      },
+      "units": "value_km3, uncertainty_km3 and uncertainty_correlated_km3 in km3 of surface height change (not ice); area_km2 in km2",
+      "sign_convention": "positive is a higher surface (more volume), the product's own",
+      "uncertainty_basis": {
+        "greenland": "delta_h_sigma times area in quadrature over the cells (a floor where errors correlate across cells) and the same summed linearly (the bound where they correlate fully), both carried",
+        "antarctica": "delta_h_sigma times area in quadrature over the cells (a floor where errors correlate across cells) and the same summed linearly (the bound where they correlate fully), both carried"
+      },
+      "not_mass": "a volume of surface height change: the firn air content change is removed and a density applied by the computation, never here (the bundle's gotcha atl15-height-change-is-not-mass-change)"
+    },
+    "domains": {
+      "greenland/ice_sheet": "the grounded Greenland Ice Sheet (mask 1 of the ITS_LIVE Greenland product); firn and volume-itslive",
+      "greenland/peripheral_glaciers": "the peripheral glaciers of Greenland (mask 2); firn and volume-itslive",
+      "greenland/land_mascons": "the JPL land mascons selected for Greenland by the mass stamp's rule: the ice sheet, the peripheral glaciers and the ice-free land and coastal ocean inside those mascons; mass",
+      "greenland/gl": "the ATL15 GL region (ice sheet and peripheral ice caps, undivided); volume-atl15 when present",
+      "antarctica/ice_shelves": "the floating Antarctic ice shelves (ID 1 to 182 of the ice shelf product); firn and surface mass balance; not the grounded ice sheet",
+      "antarctica/land_mascons": "every JPL land mascon south of 60 S: the grounded sheet and the floating shelves together; mass",
+      "antarctica/grounded": "the grounded Antarctic Ice Sheet of the ITS_LIVE grounded product; volume-itslive when present",
+      "antarctica/a1_a4": "the four ATL15 Antarctic quadrants summed, grounded and floating together; volume-atl15 when present"
+    },
+    "closure": {
+      "greenland": {
+        "gravimetry": "mass over greenland/land_mascons",
+        "altimetry": "volume over greenland/ice_sheet plus greenland/peripheral_glaciers (volume-itslive) or over greenland/gl (volume-atl15), less the firn air content volume over the same two firn domains, times a stated ice density",
+        "input_output": "not possible from this root: it holds no Greenland surface mass balance and no discharge; the published input-output estimates are IMBIE's input-output group (Otosaka and others 2023)"
+      },
+      "antarctica": {
+        "gravimetry": "mass over antarctica/land_mascons",
+        "altimetry": "not possible from this root: the firn term covers the floating ice shelves only (antarctica/ice_shelves) and no grounded Antarctic firn air content field is in the ITS_LIVE distribution, so the grounded volume (antarctica/grounded, present) cannot be converted to mass; the computation refuses",
+        "input_output": "not possible from this root: the surface mass balance covers the ice shelves only and there is no discharge"
+      }
+    },
+    "reading_rule": "a computation reads rows by ice_sheet and domain and by the sampling column; a quarterly row is one product time step labelled by the month of its time value, not a monthly value, and no month is ever filled"
+  }
+}

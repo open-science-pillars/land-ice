@@ -38,10 +38,11 @@ What it refuses, each with exit 4 and a reason code:
                           version, a density basis, a floor rule, a gap
                           rule). The refusal names the missing path.
 
-The concept, the executor and the attester are reached at the installed
-provider bundle's path, the way the wrapping skill reaches them: the
-installer's record (`claude plugin list --json`), or a checkout named
-by NASA_DAAC_KNOWLEDGE. Nothing is copied here.
+The concept, the executor and the attester are reached at this
+package's own path, the way the skill that runs the computation reaches
+them: `CLAUDE_PLUGIN_ROOT` where the runtime sets it for the installed
+plugin, else the package tree this script sits in. Nothing is copied
+here and nothing is resolved through another repository.
 
 Usage:
   methods.py --receipt RECEIPT.json --out methods.md
@@ -56,17 +57,14 @@ import hashlib
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
-PROVIDER_PLUGIN = "nasa-daac-knowledge"
-BUNDLE = "nsidc"
-CONCEPT = "computations/ice-sheet-balance.md"
-ATTESTER = "references/attesters/ice_sheet_balance_check.py"
-EXECUTOR = "references/computations/ice_sheet_balance.py"
+CONCEPT = "knowledge/computations/ice-sheet-balance.md"
+ATTESTER = "skills/ice-mass-change/scripts/ice_sheet_balance_check.py"
+EXECUTOR = "skills/ice-mass-change/scripts/ice_sheet_balance.py"
 REFUSALS = ("attester-did-not-pass", "fact-not-in-receipt",
             "bookkeeping-incomplete")
 
@@ -81,40 +79,28 @@ def refuse(code: str, message: str):
     raise Refusal(code, message)
 
 
-# ---- the installed bundle
+# ---- this package
 
-def provider_root() -> Path:
-    """The installed provider plugin's root, from the installer's record."""
-    override = os.environ.get("NASA_DAAC_KNOWLEDGE")
-    if override:
-        return Path(override).expanduser().resolve()
-    claude = shutil.which("claude")
-    if claude is None:
-        sys.exit("no `claude` on PATH to read the installed-plugin record; "
-                 "set NASA_DAAC_KNOWLEDGE to a checkout of the provider "
-                 "repository instead")
-    rec = subprocess.run([claude, "plugin", "list", "--json"],
-                         capture_output=True, text=True)
-    if rec.returncode != 0:
-        sys.exit(f"`claude plugin list --json` failed: {rec.stderr.strip()}")
-    for entry in json.loads(rec.stdout):
-        if entry.get("id", "").split("@")[0] != PROVIDER_PLUGIN:
-            continue
-        if not entry.get("enabled", True) or entry.get("errors"):
-            sys.exit(f"{entry['id']} is installed but not usable: "
-                     f"{entry.get('errors') or 'disabled'}")
-        return Path(entry["installPath"])
-    sys.exit(f"{PROVIDER_PLUGIN} is not installed; it arrives with this "
-             "plugin's dependencies (`claude plugin install "
-             "land-ice@open-science-pillars`), or set NASA_DAAC_KNOWLEDGE "
-             "to a checkout of the provider repository")
+def package_root() -> Path:
+    """This package's root: `CLAUDE_PLUGIN_ROOT` where the runtime sets it
+    for the installed plugin, else the package tree this script sits in.
+    The computation's scripts are beside this one now, so nothing is
+    resolved through another repository."""
+    override = os.environ.get("CLAUDE_PLUGIN_ROOT")
+    start = Path(override).expanduser().resolve() if override \
+        else Path(__file__).resolve()
+    for p in (start, *start.parents):
+        if (p / ".osp" / "package.yaml").is_file():
+            return p
+    sys.exit(f"no package root above {start} (no .osp/package.yaml); set "
+             "CLAUDE_PLUGIN_ROOT to this plugin's installed root")
 
 
-def bundle_file(relative: str) -> Path:
-    path = provider_root() / "knowledge" / BUNDLE / relative
+def package_file(relative: str) -> Path:
+    path = package_root() / relative
     if not path.is_file():
-        sys.exit(f"the provider bundle carries no {relative} at {path}; this "
-                 f"skill needs {PROVIDER_PLUGIN} at a release that ships it")
+        sys.exit(f"this package carries no {relative} at {path}; the "
+                 "computation's concept and scripts ship with this plugin")
     return path
 
 
@@ -274,8 +260,8 @@ def build(receipt: dict, sources, verdict_line: str, receipt_sha: str):
         where_paths = ["data.mode", "data.seed", "data.digest"]
     say(f"The {sheet.capitalize()} mass balance closure over {window} was "
         f"computed by the "
-        f"attested computation knowledge/{BUNDLE}/{CONCEPT}, run through the "
-        f"sanctioned executor knowledge/{BUNDLE}/{EXECUTOR} at digest "
+        f"attested computation {CONCEPT}, run through the "
+        f"sanctioned executor {EXECUTOR} at digest "
         f"{get(receipt, 'code_sha256')} under the runtime "
         f"{get(receipt, 'runtime.name')}, on {where}"
         + cite("slb") + ".",
@@ -474,9 +460,9 @@ def render(receipt: dict, sources, said, verdict_line: str,
                      + ", ".join(f"`{p}`" for p in paths) + " |")
     lines += ["", "## Provenance", "",
               f"- concept: `{concept_path}`",
-              f"- executor: `knowledge/{BUNDLE}/{EXECUTOR}` at "
+              f"- executor: `{EXECUTOR}` at "
               f"`{receipt['code_sha256']}`",
-              f"- attester: `knowledge/{BUNDLE}/{ATTESTER}`, verdict "
+              f"- attester: `{ATTESTER}`, verdict "
               f"`{verdict_line}`",
               f"- wrapping skill: `land-ice/ice-mass-change`",
               f"- run identifier: `{receipt['run_id']}`, runtime "
@@ -498,13 +484,13 @@ def write(args) -> int:
                f"published rate from outside the receipt cannot be checked by "
                f"the attester that passed it, and a reader cannot follow it "
                f"back. If the fact belongs to the computation, it belongs in "
-               f"the concept knowledge/{BUNDLE}/{CONCEPT} or in the stamped "
+               f"the concept {CONCEPT} or in the stamped "
                f"root's RECORD.json, where it becomes a receipt field and "
                f"this writer states it; if it belongs to another concept, "
                f"cite that concept by bundle path in your own text beside "
                f"this paragraph rather than inside it.")
-    concept = bundle_file(CONCEPT)
-    attester = bundle_file(ATTESTER)
+    concept = package_file(CONCEPT)
+    attester = package_file(ATTESTER)
     receipt_path = Path(args.receipt).expanduser().resolve()
     data_root = Path(args.data_root).expanduser().resolve() if args.data_root else None
     verdict_line, receipt_sha = attest(receipt_path, attester, data_root)
@@ -523,7 +509,7 @@ def write(args) -> int:
     sources = concept_sources(concept)
     said = build(receipt, sources, verdict_line, receipt_sha)
     text = render(receipt, sources, said, verdict_line, receipt_sha,
-                  f"knowledge/{BUNDLE}/{CONCEPT}")
+                  f"{CONCEPT}")
     out = Path(args.out).expanduser()
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(text, encoding="utf-8")
@@ -537,9 +523,9 @@ def write(args) -> int:
 
 def selftest() -> int:
     """Every refusal, on the executor's synthetic fixture."""
-    executor = bundle_file(EXECUTOR)
-    attester = bundle_file(ATTESTER)
-    concept = bundle_file(CONCEPT)
+    executor = package_file(EXECUTOR)
+    attester = package_file(ATTESTER)
+    concept = package_file(CONCEPT)
     here = str(Path(__file__).resolve())
 
     def run_methods(argv):

@@ -9,8 +9,8 @@ This skill computes nothing. Every number it puts in a table is a field
 of one receipt that the provider bundle's attester passed, copied by
 the receipt field path the script records beside each column, and the
 computation that owns those numbers is the concept the sweep names
-(`knowledge/nsidc/computations/ice-sheet-balance.md` for the closure,
-`knowledge/nsidc/computations/ice-sheet-input-output.md` for the
+(`knowledge/computations/ice-sheet-balance.md` for the closure,
+`knowledge/computations/ice-sheet-input-output.md` for the
 input-output balance). The script fits nothing, averages nothing and
 carries no expected value of its own. What the sweep adds is
 arrangement: a concept states its boundaries in prose from a handful of
@@ -42,28 +42,29 @@ none of that. It runs the same executor with the same flags, one value
 at a time.
 
 This is the ocean-science `sweep` skill's command line and output shape
-over the nsidc computations. A reader who knows one knows both: the
+over this package's two computations. A reader who knows one knows
+both: the
 same flags, the same three files, the same five refusals with the same
 reason codes and the same exit codes.
 
 ## Where the executor, the attester and the concept are
 
-The provider bundle is installed with the nasa-daac-knowledge
-dependency; its root is the `installPath` of that entry in
-`claude plugin list --json`, or a checkout named by
-`NASA_DAAC_KNOWLEDGE`. The script resolves it that way, exactly as the
-wrapping skills do, and copies nothing into this repository. `$NSIDC`
-below stands for `<that root>/knowledge/nsidc`:
+Both computations ship with this plugin. The script resolves this
+package's root the way the runtime does, `${CLAUDE_PLUGIN_ROOT}` where the runtime
+sets it and the package tree the script sits in otherwise, and reaches
+nothing in another repository:
 
-- the closure: concept `$NSIDC/computations/ice-sheet-balance.md`,
-  executor `$NSIDC/references/computations/ice_sheet_balance.py`,
-  attester `$NSIDC/references/attesters/ice_sheet_balance_check.py`,
-  committed root `$NSIDC/references/retrieval/ice-sheet-balance-root`
+- the closure: concept `${CLAUDE_PLUGIN_ROOT}/knowledge/computations/ice-sheet-balance.md`,
+  executor `${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance.py`,
+  attester `${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance_check.py`,
+  committed root `${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root`
 - the input-output balance: concept
-  `$NSIDC/computations/ice-sheet-input-output.md`, executor
-  `$NSIDC/references/computations/ice_sheet_input_output.py`, attester
-  `$NSIDC/references/attesters/ice_sheet_input_output_check.py`,
-  committed root `$NSIDC/references/retrieval/ice-sheet-input-output-root`
+  `${CLAUDE_PLUGIN_ROOT}/knowledge/computations/ice-sheet-input-output.md`, executor
+  `${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py`,
+  attester
+  `${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output_check.py`,
+  committed root
+  `${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-input-output-root`
 
 The script reads the declared parameter set from the concept's
 frontmatter rather than from a list of its own, so a parameter the
@@ -83,7 +84,7 @@ uv run skills/sweep/scripts/sweep.py \
   --windows 84:12 --span 2003-01:2016-12 \
   --fixed ice_sheet=greenland --fixed altimetry=itslive \
   --fixed ice_density=917 --fixed bridge=unbound \
-  --input data-root --data-root $NSIDC/references/retrieval/ice-sheet-balance-root \
+  --input data-root --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root \
   --runtime claude-code --capability-root . \
   --out-dir /tmp/sweep-ice-sheet-balance
 ```
@@ -121,7 +122,7 @@ uv run skills/sweep/scripts/sweep.py \
 ## Behavior, in order
 
 1. **Name the concept first, then show the sweep back.** State the
-   concept by bundle path (`knowledge/nsidc/computations/ice-sheet-balance.md`
+   concept by bundle path (`knowledge/computations/ice-sheet-balance.md`
    for the closure), the parameter to be swept as that concept declares
    it, the values, the fixed value of every other declared parameter,
    and the input (the fixture as a rehearsal, or the stamped data root

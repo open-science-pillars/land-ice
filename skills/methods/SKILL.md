@@ -10,7 +10,7 @@ mask rule and parameter in the paragraph it writes is a field of one
 receipt that the provider bundle's attester passed, and every entry of
 the reference list is an entry of the concept's own `sources`
 frontmatter, copied verbatim. The computation that owns those facts is
-`knowledge/nsidc/computations/ice-sheet-balance.md`, and the procedure
+`knowledge/computations/ice-sheet-balance.md`, and the procedure
 that produced the receipt is the `ice-mass-change` skill; read both
 before writing anything up.
 
@@ -33,19 +33,17 @@ same rule holds for both.
 
 ## Where the concept and the attester are
 
-The provider bundle arrives with the `nasa-daac-knowledge` dependency;
-its root is the `installPath` of that entry in
-`claude plugin list --json`, or a checkout named by
-`NASA_DAAC_KNOWLEDGE`. The script resolves it that way, exactly as the
-wrapping skill, the `sweep` script and the `receipt-figures` renderer
-do, and copies nothing into this repository. `$NSIDC` below stands for
-`<that root>/knowledge/nsidc`:
+The closure ships with this plugin. The script resolves this package's
+root the way the runtime does, `${CLAUDE_PLUGIN_ROOT}` where the runtime sets it and
+the package tree the script sits in otherwise, exactly as the
+`ice-mass-change` skill, the `sweep` script and the `receipt-figures`
+renderer do, and reaches nothing in another repository:
 
-- concept: `$NSIDC/computations/ice-sheet-balance.md` (its `sources`
-  block is the reference list, and the script reads it there rather
-  than keeping a list of its own)
-- executor: `$NSIDC/references/computations/ice_sheet_balance.py`
-- attester: `$NSIDC/references/attesters/ice_sheet_balance_check.py`
+- concept: `${CLAUDE_PLUGIN_ROOT}/knowledge/computations/ice-sheet-balance.md` (its
+  `sources` block is the reference list, and the script reads it there
+  rather than keeping a list of its own)
+- executor: `${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance.py`
+- attester: `${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance_check.py`
 
 ## Behavior, in order
 
@@ -62,7 +60,7 @@ do, and copies nothing into this repository. `$NSIDC` below stands for
    ```bash
    uv run skills/methods/scripts/methods.py \
      --receipt /tmp/ice-mass-change-record.json \
-     --data-root $NSIDC/references/retrieval/ice-sheet-balance-root \
+     --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root \
      --out /tmp/methods.md
    ```
 

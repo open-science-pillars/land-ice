@@ -1,0 +1,213 @@
+{
+  "term": "volume-atl15",
+  "quantity": "land ice surface height change from ICESat-2 ATL15 summed to a volume anomaly per ice sheet and quarterly epoch",
+  "units": "value_km3, uncertainty_km3 and uncertainty_correlated_km3 in km3 of surface height change (not ice); area_km2 in km2",
+  "sign_convention": "positive is a higher surface (more volume), the product's own",
+  "months": [
+    "2019-01",
+    "2026-01"
+  ],
+  "n_rows": 58,
+  "domains": [
+    [
+      "antarctica",
+      "a1_a4"
+    ],
+    [
+      "greenland",
+      "gl"
+    ]
+  ],
+  "not_mass": "a volume of surface height change: the firn air content change is removed and a density applied by the computation, never here (the bundle's gotcha atl15-height-change-is-not-mass-change)",
+  "series": {
+    "greenland": {
+      "product": "ICESat-2 ATL15 Gridded Antarctic and Arctic Land Ice Height Change, Version 5",
+      "doi": "10.5067/ATLAS/ATL15.005",
+      "granules": [
+        {
+          "granule": "ATL15_GL_0329_10km_005_02.nc",
+          "granule_sha256": "sha256:89350d1d2a265a0be9e082526bb79f33a350764c4e616436f0db027f5cc17ece",
+          "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_GL_0329_10km_005_02.nc",
+          "read_utc": "2026-09-19T19:54:25Z",
+          "grid": "10 km polar stereographic, 274 by 154 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+          "cells": 20016,
+          "area_km2": 1748582.03,
+          "epochs": 29,
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ],
+          "global_attributes": {
+            "Conventions": "CF-1.7",
+            "date_created": "2026-03-13T12:24:24.556874Z",
+            "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+            "short_name": "ATL15",
+            "time_coverage_end": "2025-11-19T15:18:04.881311Z",
+            "time_coverage_start": "2019-01-01T00:06:05.000000Z",
+            "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+          }
+        }
+      ],
+      "variable": "delta_h/delta_h (with delta_h_sigma, ice_area, time)",
+      "mask": "the product's ice_area above zero at every epoch: the Greenland ice sheet and the peripheral ice caps the GL region covers, undivided; no grounding mask (Greenland's floating tongues are in the sum)",
+      "aggregation": "sum of delta_h times the cell's minimum ice_area over the epochs, over the fixed set of cells finite in delta_h and delta_h_sigma and ice-covered at every epoch; 1e-3 km3 per m km2",
+      "reference": "anomaly against the ATL14 reference surface at 2020-01-01, the product's own",
+      "sampling": "quarterly: one row per product epoch, labelled by the calendar month of its time value",
+      "uncertainty_basis": "delta_h_sigma times area in quadrature over the cells (a floor where errors correlate across cells) and the same summed linearly (the bound where they correlate fully), both carried",
+      "cells": {
+        "gl": 20016
+      },
+      "area_km2": {
+        "gl": 1748582.03
+      },
+      "months": [
+        "2019-01",
+        "2026-01"
+      ],
+      "n_steps": 29,
+      "time_coverage": [
+        "2019-01-01",
+        "2026-01-01"
+      ]
+    },
+    "antarctica": {
+      "product": "ICESat-2 ATL15 Gridded Antarctic and Arctic Land Ice Height Change, Version 5",
+      "doi": "10.5067/ATLAS/ATL15.005",
+      "granules": [
+        {
+          "granule": "ATL15_A1_0329_10km_005_02.nc",
+          "granule_sha256": "sha256:fe386be4750217e3259a7937cf62e2354e17026714c71a1df3fd18e000488b60",
+          "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A1_0329_10km_005_02.nc",
+          "read_utc": "2026-09-19T19:54:25Z",
+          "grid": "10 km polar stereographic, 227 by 263 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+          "cells": 43880,
+          "area_km2": 4408493.39,
+          "epochs": 29,
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ],
+          "global_attributes": {
+            "Conventions": "CF-1.7",
+            "date_created": "2026-03-13T18:13:03.211348Z",
+            "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+            "short_name": "ATL15",
+            "time_coverage_end": "2025-11-19T22:26:30.140982Z",
+            "time_coverage_start": "2019-01-01T00:04:53.000000Z",
+            "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+          }
+        },
+        {
+          "granule": "ATL15_A2_0329_10km_005_02.nc",
+          "granule_sha256": "sha256:b525884dd2f0970bdf377179e73fd4773c47b356d3dbe072fbc63c2e422d3350",
+          "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A2_0329_10km_005_02.nc",
+          "read_utc": "2026-09-19T19:54:25Z",
+          "grid": "10 km polar stereographic, 227 by 267 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+          "cells": 27196,
+          "area_km2": 2679891.79,
+          "epochs": 29,
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ],
+          "global_attributes": {
+            "Conventions": "CF-1.7",
+            "date_created": "2026-03-13T19:44:13.575162Z",
+            "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+            "short_name": "ATL15",
+            "time_coverage_end": "2025-11-20T00:01:18.513708Z",
+            "time_coverage_start": "2019-01-01T00:04:55.000000Z",
+            "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+          }
+        },
+        {
+          "granule": "ATL15_A3_0329_10km_005_02.nc",
+          "granule_sha256": "sha256:9986ec77a3443cb0ffe58cb3da502b9d2d8bd144589c9b8565afb837d1855998",
+          "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A3_0329_10km_005_02.nc",
+          "read_utc": "2026-09-19T19:54:25Z",
+          "grid": "10 km polar stereographic, 139 by 200 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+          "cells": 20092,
+          "area_km2": 2035336.43,
+          "epochs": 29,
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ],
+          "global_attributes": {
+            "Conventions": "CF-1.7",
+            "date_created": "2026-03-13T20:41:47.717627Z",
+            "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+            "short_name": "ATL15",
+            "time_coverage_end": "2025-11-20T00:01:18.513708Z",
+            "time_coverage_start": "2019-01-01T00:04:57.000000Z",
+            "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+          }
+        },
+        {
+          "granule": "ATL15_A4_0329_10km_005_02.nc",
+          "granule_sha256": "sha256:3d6a244dd7f0f4a8eab223ed7b081cb252a04491fde8292d5a7b60db8fde71ae",
+          "source_url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ATLAS/ATL15/005/2019/01/01/ATL15_A4_0329_10km_005_02.nc",
+          "read_utc": "2026-09-19T19:54:26Z",
+          "grid": "10 km polar stereographic, 219 by 279 cells; the cell area is the product's ice_area (m2), the ice-covered area of the cell",
+          "cells": 44058,
+          "area_km2": 4359278.62,
+          "epochs": 29,
+          "months": [
+            "2019-01",
+            "2026-01"
+          ],
+          "time_coverage": [
+            "2019-01-01",
+            "2026-01-01"
+          ],
+          "global_attributes": {
+            "Conventions": "CF-1.7",
+            "date_created": "2026-03-13T22:04:57.721884Z",
+            "identifier_product_doi": "doi:10.5067/ATLAS/ATL15.005",
+            "short_name": "ATL15",
+            "time_coverage_end": "2025-11-19T16:09:51.126621Z",
+            "time_coverage_start": "2019-01-01T00:04:59.000000Z",
+            "title": "ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change"
+          }
+        }
+      ],
+      "variable": "delta_h/delta_h (with delta_h_sigma, ice_area, time)",
+      "mask": "the product's ice_area above zero at every epoch in each quadrant granule, the four quadrants summed per epoch; grounded and floating ice together, since the product carries no grounding mask",
+      "aggregation": "per quadrant, sum of delta_h times the cell's minimum ice_area over the epochs, over the fixed set of cells finite in delta_h and delta_h_sigma and ice-covered at every epoch; the quadrants summed, their quadrature errors in quadrature and their linear bounds added",
+      "reference": "anomaly against the ATL14 reference surface at 2020-01-01, the product's own",
+      "sampling": "quarterly: one row per product epoch, labelled by the calendar month of its time value",
+      "uncertainty_basis": "delta_h_sigma times area in quadrature over the cells (a floor where errors correlate across cells) and the same summed linearly (the bound where they correlate fully), both carried",
+      "cells": {
+        "a1_a4": 135226
+      },
+      "area_km2": {
+        "a1_a4": 13483000.23
+      },
+      "months": [
+        "2019-01",
+        "2026-01"
+      ],
+      "n_steps": 29,
+      "time_coverage": [
+        "2019-01-01",
+        "2026-01-01"
+      ]
+    }
+  }
+}

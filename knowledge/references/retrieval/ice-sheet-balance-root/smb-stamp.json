@@ -1,0 +1,75 @@
+{
+  "term": "smb",
+  "quantity": "surface mass balance rate from GEMB, per ice sheet domain and time step",
+  "units": "value_gt_per_yr and uncertainty_gt_per_yr in gigatonnes per year over the domain; mean_m_ice_per_yr in metres of ice per year (area-weighted mean); period_years in years; area_km2 in km2",
+  "sign_convention": "positive is mass gained at the surface (accumulation exceeding ablation), the product's own",
+  "months": [
+    "1992-03",
+    "2017-09"
+  ],
+  "n_rows": 103,
+  "domains": [
+    [
+      "antarctica",
+      "ice_shelves"
+    ]
+  ],
+  "not_in_the_distribution": [
+    "Greenland: the ITS_LIVE Greenland elevation change product carries firn air content anomalies and no surface mass balance field; no other GEMB output for Greenland is distributed with ITS_LIVE on AWS",
+    "Antarctica, grounded ice sheet: no GEMB surface mass balance field is distributed with ITS_LIVE on AWS; the rows cover the floating ice shelves"
+  ],
+  "alternates_not_read": [
+    "RACMO2 (IMAU regional climate model surface mass balance output): not read",
+    "MAR (regional climate model surface mass balance output): not read",
+    "the IMBIE basin definitions: not read; the product's own ice shelf identifiers partition the grid"
+  ],
+  "series": {
+    "antarctica": {
+      "product": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1",
+      "doi": "10.5067/SE3XH9RXQWAM",
+      "product_version": "1.0",
+      "granule": "ANT_G1920V01_IceShelfMelt.nc",
+      "granule_sha256": "sha256:1b1050c51dec4d1785a5a8a55a40a1d80ba16aa0cc39e46d68c33dcacd0b0b96",
+      "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Antarctica/Floating/ANT_G1920V01_IceShelfMelt.nc",
+      "read_utc": "2026-09-15T17:57:21Z",
+      "variable": "smb (with smb_err and smb_mean)",
+      "variable_source": "GEMB r24739",
+      "gemb_version": "GEMB r24739 (the variable's source attribute)",
+      "forcing": "3-hourly ERA5 reanalysis, 1979 to 2017, after a relaxation simulation (the NSIDC-0792 user guide, section 2.3.1.3)",
+      "grid": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale; the user guide says the GEMB fields were interpolated from a 5 km grid",
+      "mask": "the file's ID variable: ice shelf identifiers 1 to 182 (an edited MEaSUREs Antarctic Boundaries version 2), land 255; the domain is the floating ice shelves only",
+      "aggregation": "sum of smb times cell area times the product's ice density (917.0 kg per m3) over the fixed set of ice shelf cells finite in smb at every time step and in smb_mean; the error sum runs over the subset of those cells finite in smb_err and below its sentinel at each step, and the stamp counts the rest",
+      "sampling": "quarterly: one row per product time step, labelled by the calendar month of the time value (the user guide calls it the quarter start date); period_years is the interval to the next time value",
+      "time_coverage": [
+        "1992-03-17",
+        "2017-09-16"
+      ],
+      "months": [
+        "1992-03",
+        "2017-09"
+      ],
+      "n_steps": 103,
+      "empty_steps_skipped": [
+        "2017-12-16"
+      ],
+      "cells": {
+        "ice_shelves": 410013
+      },
+      "area_km2": {
+        "ice_shelves": 1546886.79
+      },
+      "cells_without_error_max": 0,
+      "uncertainty_basis": "the sum of the product's smb_err times cell area times the density over the cells whose error is finite and below the 9999 sentinel, the cell errors treated as fully correlated (an upper bound)",
+      "global_attributes": {
+        "GDAL_AREA_OR_POINT": "Area",
+        "Conventions": "CF-1.6",
+        "date_created": "11-May-2022 14:24:44",
+        "title": "MEaSUREs ITS_LIVE Antarctic Ice Shelf Height Change and Basal Melt Rates, Version 1",
+        "author": "Fernando Paolo, Alex S. Gardner, Chad Greene, Nicole-Jeanne Schlegel - JPL/NASA",
+        "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+        "institution": "NASA Jet Propulsion Laboratory (JPL), California Institute of Technology",
+        "version": "1.0"
+      }
+    }
+  }
+}
