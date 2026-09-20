@@ -19,6 +19,18 @@ name: goldens
 # an installed plugin the same golden resolves the bundle through the
 # installer's record instead.
 #
+# verification/receipt_skills.py exercises the three receipt skills this
+# capability carries (sweep, receipt-figures, methods) on the nsidc
+# closure executor's synthetic fixture: each script's own selftest, the
+# sweep over two parameters the concept declares checked cell by cell
+# against the committed expectations under verification/fixtures/, the
+# Antarctic refusal kept as a row carrying its reason code and no
+# number, both figure modes drawn from an attested receipt, the methods
+# paragraph and its reference list, and the refusals each script
+# enforces: the aggregate across rows, the map mode, a fact from outside
+# the receipt and a receipt the attester did not pass. It reads no live
+# service, needs no credential and carries no secret.
+#
 # verification/wrapped_computations.py is also the release qualification
 # surface (.osp/surfaces.yaml) and runs there with the qualification
 # prompts.
@@ -47,3 +59,7 @@ jobs:
         env:
           NASA_DAAC_KNOWLEDGE: ${{ github.workspace }}/nasa-daac-knowledge
         run: uv run verification/wrapped_computations.py
+      - name: The three receipt skills pass offline on the committed fixture
+        env:
+          NASA_DAAC_KNOWLEDGE: ${{ github.workspace }}/nasa-daac-knowledge
+        run: uv run verification/receipt_skills.py

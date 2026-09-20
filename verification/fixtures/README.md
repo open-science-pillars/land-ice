@@ -52,3 +52,45 @@ gate.
 **When it changes.** Only when the concept it quotes changes its
 reference run, and then the concept is the thing to read first. A
 value edited here to make a golden pass is the golden lying.
+
+## `receipt_skills.json`
+
+The expectations of this capability's three receipt skills, read by
+`receipt_skills.py`: the `sweep` table, the `receipt-figures` captions
+and the `methods` paragraph.
+
+**Provenance.** Every cell under `sweeps` is a field of one receipt
+that the bundle's attester passed, named in the `columns` block by its
+dotted path in the receipt, and measured on 2026-09-20 from fixture
+runs of the closure executor at seed 7 under the contract
+`knowledge/nsidc/computations/ice-sheet-balance.md`. The fixture is
+regenerated deterministically at run time, so the values do not drift
+with a release of anything, and the golden checks the recorded
+`code_sha256` and the regenerated fixture's digest before it compares a
+number. A row the executor refused carries its reason code and no
+number, which is the measurement and not a gap: the `ice_sheet` sweep
+records the Antarctic refusal `firn-term-missing`, the same refusal the
+committed root gives.
+
+**Two precisions in one row, on purpose.** The rate columns are the
+receipt's own headline fields, which the executor states rounded to
+four decimals, and the interval columns are the same rates' intervals,
+which the receipt carries at full precision. Both are recorded here as
+the receipt states them. Reconciling them, by rounding the intervals or
+by re-deriving a rate to unround it, would put a number in this file
+that no receipt carries.
+
+**The refusals.** The `refusals`, `figures` and `methods` blocks record
+what each script must refuse and what each output must carry: the
+aggregate across rows, the map mode, a fact from outside the receipt
+and the concept's sources, and a receipt the attester did not pass.
+They are reason codes and required substrings, not science values.
+
+**What it is not.** It is not a receipt, not a figure and not a
+generated table; none of those is ever committed here. The executors,
+the attesters and the committed data roots stay in the provider bundle
+and arrive with the dependency.
+
+**When it changes.** Only when the provider executor moves, and then
+the concept's reference run is the thing to read first. A value edited
+here to make a golden pass is the golden lying.

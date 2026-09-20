@@ -1,0 +1,350 @@
+{
+  "note": "Expectations for the receipt-skills golden: the three receipt skills of this capability (sweep, receipt-figures, methods) run offline on the nsidc closure executor's synthetic fixture at seed 7. Each cell below is the field of one receipt that the bundle's attester passed, named in the columns block by its path in the receipt, and measured on 2026-09-20 with the executor whose digest is recorded here. Nothing here is a science expectation: the fixture proves the chain, not the ice sheet, and the concept knowledge/nsidc/computations/ice-sheet-balance.md owns every number a reader may quote. A row the executor refused carries its reason code and no number, which is the measurement, not a gap. The rate columns are the receipt's own headline fields, which the executor states rounded to four decimals, and the interval columns are the same rates' intervals at full precision; both are recorded here as the receipt states them and neither is rounded or unrounded.",
+  "measured_utc": "2026-09-20",
+  "concept": "knowledge/nsidc/computations/ice-sheet-balance.md",
+  "code_sha256": "sha256:5f75e99650915744b6b67dd7de5877c716c2e23e19c0117730d7b1e061ecf3df",
+  "input": {
+    "mode": "fixture",
+    "seed": 7,
+    "digest": "sha256:0e67617df182cf6ac045cfee2b5070cfadb88e06e1f3a75d58d863e556c5e67c"
+  },
+  "columns": [
+    {
+      "name": "ice_sheet",
+      "receipt_field": "bound_parameters.ice_sheet"
+    },
+    {
+      "name": "window",
+      "receipt_field": "bound_parameters.window"
+    },
+    {
+      "name": "altimetry",
+      "receipt_field": "bound_parameters.altimetry"
+    },
+    {
+      "name": "ice_density_kg_m3",
+      "receipt_field": "bound_parameters.ice_density"
+    },
+    {
+      "name": "bridge",
+      "receipt_field": "bound_parameters.bridge"
+    },
+    {
+      "name": "months_calendar",
+      "receipt_field": "window.n_calendar"
+    },
+    {
+      "name": "gravimetry_epochs",
+      "receipt_field": "terms.gravimetry.n_epochs"
+    },
+    {
+      "name": "altimetry_epochs",
+      "receipt_field": "terms.altimetry.n_epochs"
+    },
+    {
+      "name": "common_differences",
+      "receipt_field": "residual.n_common_differences"
+    },
+    {
+      "name": "gravimetry_gt_per_yr",
+      "receipt_field": "terms.gravimetry.rate_gt_per_yr"
+    },
+    {
+      "name": "gravimetry_ci_low",
+      "receipt_field": "rates.gravimetry.ci_low"
+    },
+    {
+      "name": "gravimetry_ci_high",
+      "receipt_field": "rates.gravimetry.ci_high"
+    },
+    {
+      "name": "altimetry_gt_per_yr",
+      "receipt_field": "terms.altimetry.rate_gt_per_yr"
+    },
+    {
+      "name": "altimetry_ci_low",
+      "receipt_field": "rates.altimetry.ci_low"
+    },
+    {
+      "name": "altimetry_ci_high",
+      "receipt_field": "rates.altimetry.ci_high"
+    },
+    {
+      "name": "residual_gt_per_yr",
+      "receipt_field": "residual.rate_gt_per_yr"
+    },
+    {
+      "name": "residual_ci_low",
+      "receipt_field": "rates.residual.ci_low"
+    },
+    {
+      "name": "residual_ci_high",
+      "receipt_field": "rates.residual.ci_high"
+    },
+    {
+      "name": "selection_systematic_gt_per_yr",
+      "receipt_field": "combined_uncertainty.selection_systematic.value_gt_per_yr"
+    },
+    {
+      "name": "bar_gt_per_yr",
+      "receipt_field": "combined_uncertainty.bar_gt_per_yr"
+    },
+    {
+      "name": "closed_within_uncertainty",
+      "receipt_field": "verdict.closed_within_uncertainty"
+    }
+  ],
+  "sweeps": {
+    "windows": {
+      "about": "the closure's declared window swept by a window rule over the anchor span, every row computed: this is the window dependence the concept's boundaries state in prose, measured",
+      "computation": "ice-sheet-balance",
+      "parameter": "window",
+      "windows": "84:42",
+      "span": "2003-01:2016-12",
+      "fixed": {
+        "ice_sheet": "greenland",
+        "altimetry": "itslive",
+        "ice_density": "917",
+        "bridge": "unbound"
+      },
+      "values_rule": "--windows 84:42 --span 2003-01:2016-12",
+      "expect": {
+        "rows": 3,
+        "computed": 3,
+        "refused": 0
+      },
+      "rows": [
+        {
+          "value": "2003-01:2009-12",
+          "status": "computed",
+          "reason_code": null,
+          "cells": {
+            "ice_sheet": "greenland",
+            "window": "2003-01:2009-12",
+            "altimetry": "itslive",
+            "ice_density_kg_m3": 917.0,
+            "bridge": null,
+            "months_calendar": 84,
+            "gravimetry_epochs": 84,
+            "altimetry_epochs": 84,
+            "common_differences": 72,
+            "gravimetry_gt_per_yr": -243.9615,
+            "gravimetry_ci_low": -254.73116305946732,
+            "gravimetry_ci_high": -233.19190702555923,
+            "altimetry_gt_per_yr": -238.9373,
+            "altimetry_ci_low": -300.25943476870776,
+            "altimetry_ci_high": -177.61510023367478,
+            "residual_gt_per_yr": 5.024267541321973,
+            "residual_ci_low": -53.07068351600651,
+            "residual_ci_high": 63.11921859865046,
+            "selection_systematic_gt_per_yr": 0.0,
+            "bar_gt_per_yr": 58.09495105732849,
+            "closed_within_uncertainty": true
+          }
+        },
+        {
+          "value": "2006-07:2013-06",
+          "status": "computed",
+          "reason_code": null,
+          "cells": {
+            "ice_sheet": "greenland",
+            "window": "2006-07:2013-06",
+            "altimetry": "itslive",
+            "ice_density_kg_m3": 917.0,
+            "bridge": null,
+            "months_calendar": 84,
+            "gravimetry_epochs": 79,
+            "altimetry_epochs": 84,
+            "common_differences": 64,
+            "gravimetry_gt_per_yr": -249.3453,
+            "gravimetry_ci_low": -261.7445932383367,
+            "gravimetry_ci_high": -236.94598325124358,
+            "altimetry_gt_per_yr": -243.4799,
+            "altimetry_ci_low": -302.4217136372593,
+            "altimetry_ci_high": -184.53815347395485,
+            "residual_gt_per_yr": 6.943190921196095,
+            "residual_ci_low": -55.01434454263348,
+            "residual_ci_high": 68.90072638502568,
+            "selection_systematic_gt_per_yr": 0.0,
+            "bar_gt_per_yr": 61.95753546382958,
+            "closed_within_uncertainty": true
+          }
+        },
+        {
+          "value": "2010-01:2016-12",
+          "status": "computed",
+          "reason_code": null,
+          "cells": {
+            "ice_sheet": "greenland",
+            "window": "2010-01:2016-12",
+            "altimetry": "itslive",
+            "ice_density_kg_m3": 917.0,
+            "bridge": null,
+            "months_calendar": 84,
+            "gravimetry_epochs": 68,
+            "altimetry_epochs": 84,
+            "common_differences": 44,
+            "gravimetry_gt_per_yr": -256.8705,
+            "gravimetry_ci_low": -283.97896235192354,
+            "gravimetry_ci_high": -229.76207269556855,
+            "altimetry_gt_per_yr": -247.7698,
+            "altimetry_ci_low": -317.9513512944104,
+            "altimetry_ci_high": -177.58816975336208,
+            "residual_gt_per_yr": 9.99376434179526,
+            "residual_ci_low": -76.07233034671368,
+            "residual_ci_high": 96.0598590303042,
+            "selection_systematic_gt_per_yr": 0.0,
+            "bar_gt_per_yr": 86.06609468850894,
+            "closed_within_uncertainty": true
+          }
+        }
+      ]
+    },
+    "ice_sheet": {
+      "about": "the closure's declared ice_sheet swept over both sheets: Antarctica refuses on the fixture for want of a grounded firn air content term, exactly as it refuses on the committed root, and the refusal is a row carrying its reason code and no number",
+      "computation": "ice-sheet-balance",
+      "parameter": "ice_sheet",
+      "values": "greenland,antarctica",
+      "fixed": {
+        "window": "2003-01:2016-12",
+        "altimetry": "itslive",
+        "ice_density": "917",
+        "bridge": "unbound"
+      },
+      "values_rule": "--values, stated one by one",
+      "expect": {
+        "rows": 2,
+        "computed": 1,
+        "refused": 1
+      },
+      "rows": [
+        {
+          "value": "greenland",
+          "status": "computed",
+          "reason_code": null,
+          "cells": {
+            "ice_sheet": "greenland",
+            "window": "2003-01:2016-12",
+            "altimetry": "itslive",
+            "ice_density_kg_m3": 917.0,
+            "bridge": null,
+            "months_calendar": 168,
+            "gravimetry_epochs": 152,
+            "altimetry_epochs": 168,
+            "common_differences": 128,
+            "gravimetry_gt_per_yr": -250.6487,
+            "gravimetry_ci_low": -261.1844918930015,
+            "gravimetry_ci_high": -240.11289796313494,
+            "altimetry_gt_per_yr": -243.8207,
+            "altimetry_ci_low": -285.0382041578079,
+            "altimetry_ci_high": -202.60323601614726,
+            "residual_gt_per_yr": 7.99879871045491,
+            "residual_ci_low": -36.97234661569399,
+            "residual_ci_high": 52.96994403660382,
+            "selection_systematic_gt_per_yr": 0.0,
+            "bar_gt_per_yr": 44.97114532614891,
+            "closed_within_uncertainty": true
+          }
+        },
+        {
+          "value": "antarctica",
+          "status": "refused",
+          "reason_code": "firn-term-missing",
+          "cells": {
+            "ice_sheet": "antarctica",
+            "window": "2003-01:2016-12",
+            "altimetry": "itslive",
+            "ice_density_kg_m3": 917.0,
+            "bridge": null,
+            "months_calendar": null,
+            "gravimetry_epochs": null,
+            "altimetry_epochs": null,
+            "common_differences": null,
+            "gravimetry_gt_per_yr": null,
+            "gravimetry_ci_low": null,
+            "gravimetry_ci_high": null,
+            "altimetry_gt_per_yr": null,
+            "altimetry_ci_low": null,
+            "altimetry_ci_high": null,
+            "residual_gt_per_yr": null,
+            "residual_ci_low": null,
+            "residual_ci_high": null,
+            "selection_systematic_gt_per_yr": null,
+            "bar_gt_per_yr": null,
+            "closed_within_uncertainty": null
+          }
+        }
+      ]
+    }
+  },
+  "refusals": {
+    "sweep": {
+      "aggregate": "the Greenland mass balance in gigatonnes per year across the windows",
+      "reason_code": "aggregate-across-rows",
+      "exit": 4
+    },
+    "figures": {
+      "mode": "map",
+      "reason_code": "map-mode-unavailable",
+      "exit": 4
+    },
+    "methods": {
+      "add": "the published IMBIE reconciled rate for these years",
+      "reason_code": "fact-not-in-receipt",
+      "exit": 4
+    },
+    "tampered": {
+      "about": "a receipt whose residual was moved by half a gigatonne per year: the sweep makes it a failed row with the attester's own line and no number, and neither the renderer nor the methods writer touches it",
+      "figures_reason_code": "attester-did-not-pass",
+      "methods_reason_code": "attester-did-not-pass",
+      "exit": 4
+    }
+  },
+  "figures": {
+    "about": "both figure modes drawn from the first receipt of the windows sweep, which the attester passed; the caption carries the run identifier, the code digest and the verdict, and every array drawn is verified against what the receipt records",
+    "modes": [
+      "terms",
+      "differences"
+    ],
+    "caption_must_carry": [
+      "closed_within_uncertainty",
+      "arrays ",
+      "fixture seed 7"
+    ]
+  },
+  "methods": {
+    "about": "the methods paragraph and the reference list written from the same receipt: every statement a receipt field, every reference an entry of the concept's own sources",
+    "sections": [
+      "## Methods",
+      "## References",
+      "## Field map",
+      "## Provenance"
+    ],
+    "source_ids_that_must_appear": [
+      "gotcha-firn",
+      "mascons",
+      "gotcha-gia",
+      "gotcha-low-degree",
+      "its-live",
+      "otosaka-2023",
+      "smith-2020",
+      "slb"
+    ],
+    "statements_that_must_appear": [
+      "bookkeeping.mass.gia",
+      "bookkeeping.mass.low_degree",
+      "bookkeeping.mass.reference_frame",
+      "bookkeeping.mass.effective_smoothing",
+      "bookkeeping.mass.uncertainty_basis",
+      "bookkeeping.volume.not_mass",
+      "bookkeeping.firn.gemb_version",
+      "bookkeeping.firn.forcing",
+      "bookkeeping.firn_floor.rule",
+      "bookkeeping.density.basis",
+      "bookkeeping.gap_handling.rule",
+      "residual.rule",
+      "verdict.rule"
+    ],
+    "must_say": "Not a NASA, JPL or NSIDC product."
+  }
+}
