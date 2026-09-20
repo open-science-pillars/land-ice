@@ -14,11 +14,13 @@ surfaces:
     - development
     - runtime
     required: true
-    status: supported
-    evidence: 'Qualified for 0.1.0 by a headless run of the full matrix on Claude Code from a release-candidate
-      catalog, recorded in .osp/qualification/claude-code.json against the release lock: installed with both
-      dependencies, both skills discovered and invoked, the golden green on the installed tree, and the prove
-      receipt attested'
+    status: tested
+    evidence: >-
+      Qualified for 0.1.0 by a headless run of the full matrix on Claude Code from a release-candidate
+      catalog, recorded in .osp/qualification/ at that version. Not qualified for 0.2.0: no run was
+      made, because the release environment produced contradictory results for another capability in
+      the same round and a record made there would say more about the environment than about this
+      package. The goldens pass on the release commit and the release lock is current.
   claude-cowork:
     role: runtime
     required: true
