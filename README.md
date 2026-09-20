@@ -62,13 +62,13 @@ This is a first release and carries no qualification record yet, so no
 surface says supported.
 
 <!-- osp-runtimes:start -->
-Runtime support for land-ice 0.1.0 (release lock `sha256:be15726676f2`), rendered by build-kit's `osp.py advertise` from `.osp/surfaces.yaml` and the qualification records; edit those, not this block.
+Runtime support for land-ice 0.2.0 (release lock `sha256:151971ea901a`), rendered by build-kit's `osp.py advertise` from `.osp/surfaces.yaml` and the qualification records; edit those, not this block.
 
 | Runtime | Role | Declared status | Qualification |
 |---|---|---|---|
-| Claude Code | development and runtime, required | supported | Qualified on 2026-09-19 |
-| Claude Cowork | runtime, required | planned | Not qualified, waived for this release (Claude Cowork is not qualified for this first release. A Cowork record is a run by a person with Cowork in front of them, installing from the catalog, and the maintainer has not made one for 0.1.0; the coordinator cannot make one on their behalf because the runtime cannot be driven headlessly. Nothing about the capability is known to fail there: its projection renders and validates in the gate, and the Claude Code run passed every required test. The surface is simply not advertised until a run exists.; human:PaulMRamirez, 2026-09-19) |
-| OpenAI Codex | runtime, required | planned | Not qualified, waived for this release (OpenAI Codex is not qualified for this first release. No release in this organization has been qualified on Codex yet: the Agent Plugins projection renders and passes plugin-check in the gate, but the Codex leg has never been exercised, so there is no procedure to run and nothing to record. The surface is not advertised, and the projection is published as conformant rather than as tested.; human:PaulMRamirez, 2026-09-19) |
+| Claude Code | development and runtime, required | supported | Supported (development environment) (record is for another release) |
+| Claude Cowork | runtime, required | planned | Not qualified (record is for another release) |
+| OpenAI Codex | runtime, required | planned | Not qualified (record is for another release) |
 | Claude Science | future runtime | limited-release | Outside the required matrix |
 
 A runtime is advertised as supported only on a qualified record for this exact release; a release stays valid when a runtime is not qualified, and that runtime is simply not advertised.
