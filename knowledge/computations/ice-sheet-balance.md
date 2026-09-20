@@ -23,7 +23,8 @@ verified:
   - { by: human:PaulMRamirez, at: 2026-09-16T05:50:55Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/183 }
   - { by: human:PaulMRamirez, at: 2026-09-19T08:36:53Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/201 }
   - { by: human:PaulMRamirez, at: 2026-09-19T20:09:02Z, role: maintainer, source: https://github.com/open-science-pillars/nasa-daac-knowledge/pull/204 }
-status: draft
+  - { by: human:PaulMRamirez, at: 2026-09-20T19:04:15Z, role: maintainer, source: https://github.com/open-science-pillars/land-ice/pull/9 }
+status: stable
 stale_after: 2027-03-15
 sources:
   - id: gotcha-firn
