@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "capability": "land-ice",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "installed_version": null,
-  "release_lock": "sha256:be15726676f25ffcdc040b934f7c6409a0a412aa2a474940a5c7e0ef738ec794",
+  "release_lock": "sha256:151971ea901adc55fd32e690302ab8df2cc9ce0b6dc0e657427f335032a57815",
   "runtime": {
     "name": "claude-cowork",
     "projection": "claude",
     "version": null
   },
   "models": [],
-  "date": "2026-09-19",
+  "date": "2026-09-20",
   "source": "waiver",
   "required": [
     "install",
@@ -39,7 +39,7 @@
   "evidence_dir": null,
   "waived": {
     "by": "human:PaulMRamirez",
-    "reason": "Claude Cowork is not qualified for this first release. A Cowork record is a run by a person with Cowork in front of them, installing from the catalog, and the maintainer has not made one for 0.1.0; the coordinator cannot make one on their behalf because the runtime cannot be driven headlessly. Nothing about the capability is known to fail there: its projection renders and validates in the gate, and the Claude Code run passed every required test. The surface is simply not advertised until a run exists.",
-    "date": "2026-09-19"
+    "reason": "Claude Cowork is not qualified for this release. A Cowork record is a run by a person with Cowork in front of them, installing from the catalog, and no such run has been made for 0.2.0; the runtime cannot be driven headlessly, so the coordinator carrying this release on the maintainer's behalf cannot make one either. This repeats the decision recorded for 0.1.0 on 2026-09-19 for the same reason. Nothing about the capability is known to fail there: its projection renders and validates in the gate. The surface is not advertised until a run exists.",
+    "date": "2026-09-20"
   }
 }
