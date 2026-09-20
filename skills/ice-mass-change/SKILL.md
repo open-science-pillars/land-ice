@@ -1,13 +1,13 @@
 ---
 name: ice-mass-change
-description: "Run the attested ice sheet mass balance closure of the NSIDC bundle, the GRACE and GRACE-FO mascon sum against the altimetric volume change less the firn air content change times a stated ice density, through the provider bundle's sanctioned executor, and attest the receipt before quoting any number from it. Keywords: ice sheet, mass balance, mass change, closure, Greenland, Antarctica, GRACE, GRACE-FO, mascons, gravimetry, altimetry, elevation change, ITS_LIVE, ATL15, firn air content, GEMB, ice density, inter-mission gap, bridge."
+description: "Run the attested ice sheet mass balance closure this capability carries, the GRACE and GRACE-FO mascon sum against the altimetric volume change less the firn air content change times a stated ice density, through the sanctioned executor in this skill's scripts, and attest the receipt before quoting any number from it. Keywords: ice sheet, mass balance, mass change, closure, Greenland, Antarctica, GRACE, GRACE-FO, mascons, gravimetry, altimetry, elevation change, ITS_LIVE, ATL15, firn air content, GEMB, ice density, inter-mission gap, bridge."
 ---
 
 # ice-mass-change
 
 Run instructions for the attested computation
-`knowledge/nsidc/computations/ice-sheet-balance.md` in the provider
-bundle: over one stated window and for one ice sheet, two rates of
+`knowledge/computations/ice-sheet-balance.md` in this package: over
+one stated window and for one ice sheet, two rates of
 mass change in gigatonnes per year with the interval each carries
 (gravimetry from the mascon sum, altimetry from the volume change
 less the firn air content change times a stated density), the
@@ -15,33 +15,39 @@ residual on the epochs both methods share, the bar the receipt forms,
 the verdict `closed_within_uncertainty`, and the GIA, low degree,
 frame, smoothing, firn and density statements as receipt facts.
 
-This capability computes nothing. The contract (the parameters, the
-receipt fields, the refusal codes, the attester criterion) is the
-concept and the executor's own usage text; this skill is the procedure
-an agent follows to run it, and every number it reports is owned by
-that signed concept. Read the concept before the first run, and read
-the bundle's recipe `knowledge/nsidc/recipes/ice-sheet-balance.md` for
-how to read what comes back.
+The contract (the parameters, the receipt fields, the refusal codes,
+the attester criterion) is the concept and the executor's own usage
+text; this skill is the procedure an agent follows to run it, and every
+number it reports is owned by that concept, which this capability's
+maintainer signs. Read the concept before the first run, and read the
+provider bundle's recipe
+`knowledge/nsidc/recipes/ice-sheet-balance.md` for how to read what
+comes back.
 
 The name is the workflow, not the product: this is a mass change of an
 ice sheet, not an ATL15 reader and not a mascon reader.
 
 ## Where the executor is
 
-The provider bundle arrives with the `nasa-daac-knowledge` dependency.
-Its root is the `installPath` of that entry in
-`claude plugin list --json`, which is the installer's own record of
-what is installed; a checkout named by `NASA_DAAC_KNOWLEDGE` is the one
-override, for a workspace that holds the repository beside this one.
-`$NSIDC` below stands for `<that root>/knowledge/nsidc`:
+Everything this skill runs ships with this plugin. `${CLAUDE_PLUGIN_ROOT}`
+is this package's installed root, which the runtime sets; in a checkout
+it is the repository root. The paths are:
 
-- concept: `$NSIDC/computations/ice-sheet-balance.md`
-- executor: `$NSIDC/references/computations/ice_sheet_balance.py`
-- attester: `$NSIDC/references/attesters/ice_sheet_balance_check.py`
-- the committed data root: `$NSIDC/references/retrieval/ice-sheet-balance-root`
-- the loaders that built it: `$NSIDC/references/loaders/isb_data_root.py`,
-  `isb_mass_mascons.py`, `isb_volume_itslive.py`, `isb_volume_atl15.py`,
-  `isb_firn_gemb.py` and `isb_smb_gemb.py`
+- concept: `${CLAUDE_PLUGIN_ROOT}/knowledge/computations/ice-sheet-balance.md`
+- executor: `${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance.py`
+- attester: `${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance_check.py`
+- the committed data root:
+  `${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root`
+- the loaders that built it, beside the executor:
+  `isb_data_root.py`, `isb_mass_mascons.py`, `isb_volume_itslive.py`,
+  `isb_volume_atl15.py`, `isb_firn_gemb.py` and `isb_smb_gemb.py`
+- the golden that proves all of them:
+  `${CLAUDE_PLUGIN_ROOT}/verification/ice_sheet_balance.py`
+
+The dataset and gotcha concepts this computation rests on stay in the
+provider bundle, which arrives with the `nasa-daac-knowledge`
+dependency, and are cited below by bundle path,
+`knowledge/nsidc/<type>/<concept>.md`.
 
 Never edit the executor or the attester. The attester hashes the
 executor on disk, so an edited computation invalidates every earlier
@@ -98,7 +104,7 @@ term it holds responsible: the provider's own mascon series tracks the
 loader's gravimetric sum in every window the concept examined, while
 the altimetry term (the elevation change with its firn correction)
 drifts after 2019, so the altimetry term is the suspect where a window
-fails to close. Read that section and cite it by bundle path before
+fails to close. Read that section and cite it by package path before
 reporting a verdict.
 
 What follows, and belongs in every report:
@@ -109,7 +115,7 @@ What follows, and belongs in every report:
   concept records windows on the committed root that close and windows
   on the same root that do not, including halves of the anchor window
   with residuals of opposite sign; quote them from the concept by
-  bundle path where a reader needs them, and never average them into
+  package path where a reader needs them, and never average them into
   one number.
 - **A closed verdict is a statement about the mean, not about the
   years.** The bar is the residual's own half width, so it grows with
@@ -150,9 +156,10 @@ not own.
    bridge citation is bound; the altimetry product; the ice density;
    and whether the run is a rehearsal on the synthetic fixture or a
    real run on the committed data root. Consult the concept and the
-   gotchas it rests on, and cite all three by bundle path, the concept
-   first, because it is the one that owns every number this run can
-   report: `knowledge/nsidc/computations/ice-sheet-balance.md`, then
+   gotchas it rests on, and cite all three, the concept first, because
+   it is the one that owns every number this run can report:
+   `knowledge/computations/ice-sheet-balance.md` in this package, then
+   the two gotchas by bundle path,
    `knowledge/nsidc/gotchas/atl15-height-change-is-not-mass-change.md`
    (a height change is a mass change only after the firn air content
    change is removed and a density applied) and
@@ -164,7 +171,7 @@ not own.
    records):
 
    ```bash
-   uv run $NSIDC/references/computations/ice_sheet_balance.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance.py \
      --ice-sheet greenland --window 2003-01:2016-12 \
      --altimetry itslive --ice-density 917 \
      --fixture --seed 7 \
@@ -182,10 +189,10 @@ not own.
 3. **The real run on the committed data root:**
 
    ```bash
-   uv run $NSIDC/references/computations/ice_sheet_balance.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance.py \
      --ice-sheet greenland --window 2003-01:2016-12 \
      --altimetry itslive --ice-density 917 \
-     --data-root $NSIDC/references/retrieval/ice-sheet-balance-root \
+     --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root \
      --runtime claude-code --receipt /tmp/ice-mass-change-record.json
    ```
 
@@ -202,10 +209,10 @@ not own.
    in words, and exits 3.
 
    ```bash
-   uv run $NSIDC/references/computations/ice_sheet_balance.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance.py \
      --ice-sheet antarctica --window 2003-01:2016-12 \
      --altimetry itslive --ice-density 917 \
-     --data-root $NSIDC/references/retrieval/ice-sheet-balance-root \
+     --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root \
      --runtime claude-code --receipt /tmp/refusal.json
    echo $?   # 3, and the receipt carries firn-term-missing
    ```
@@ -233,7 +240,7 @@ not own.
    receipt:
 
    ```bash
-   uv run $NSIDC/references/attesters/ice_sheet_balance_check.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-mass-change/scripts/ice_sheet_balance_check.py \
      /tmp/ice-mass-change-receipt.json [--data-root DIR] [--out /tmp/attestation.json]
    ```
 
@@ -306,8 +313,9 @@ not own.
   podaac recipe and the ocean-science skill that own it.
 - Never restate the published assessment's rates or the size of the
   offset from them as numbers of this run; cite the assessment
-  dataset concept and the closure concept by bundle path.
+  dataset concept by bundle path and the closure concept by package
+  path.
 - Never state a number this release owns. Every figure in a report
-  comes from the receipt or from the concept, cited by bundle path.
+  comes from the receipt or from the concept, cited by its path.
 - Never commit a receipt, an attestation or a generated fixture to
   this repository.

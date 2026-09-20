@@ -1,0 +1,227 @@
+{
+  "purpose": "provenance of the inputs of the ice sheet input-output balance's data root: the eleven ITS_LIVE annual velocity mosaics the gate velocity term was sampled from, the gate set derived from one of them, the thickness and surface mass balance granules that could not be read and why, the documents and registry records read to describe them, and the searches that established that no grounded surface mass balance for either ice sheet is distributed by a NASA archive",
+  "credentials": "the its-live-data bucket, nsidc.org, cmr.earthdata.nasa.gov, doi.org and api.crossref.org served every file read without a token; the Earthdata Login bearer token in the environment was sent as a request header only, to data.nsidc.earthdatacloud.nasa.gov for the two BedMachine granules, and both of those requests ended at a redirect this environment refuses; the token is not recorded here",
+  "downloads": [
+    {
+      "term": "velocity (greenland, gate set greenland-outlets-v1)",
+      "product": "ITS_LIVE annual mosaics of image pair velocities, bucket label V02.1; the collection NSIDC distributes is MEaSUREs ITS_LIVE Regional Glacier and Ice Sheet Surface Velocities, Version 2 (NSIDC-0776), which spans 1985 through 2022, so the bucket copy and the archived collection are not the same distribution",
+      "doi": "10.5067/JQ6337239C96",
+      "collection_concept_id": "C3618748415-NSIDC_CPRD",
+      "doi_resolution": "https://doi.org/10.5067/JQ6337239C96 answered 302 to https://nsidc.org/data/nsidc-0776/versions/2 on 2026-09-19; the DOI is registered with DataCite and is not in Crossref",
+      "query": "S3 listing https://its-live-data.s3.amazonaws.com/?list-type=2&prefix=velocity_mosaic/v2.1/annual/ on 2026-09-19, and the project's own catalogue https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/mosaics_catalog_v2.1.json read the same day for the region, the projection and the epoch of every mosaic",
+      "region": "RGI05A, Greenland Periphery, EPSG:3413, 120 m",
+      "files": 11,
+      "variables_read": "landice, floatingice, v, vx, vy, v_error, count, x, y, mapping and the global attributes",
+      "verification": "HTTP 200 for each, sizes matching the bucket listing, opened with netCDF4; each file's own year attribute is the epoch the row is labelled by, and every file reports spatial_epsg 3413",
+      "granules": [
+        {
+          "epoch": "2015-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2015_V02.1.nc",
+          "granule_sha256": "sha256:daa3f9b9c6f9fa809ad2bc528be0775ff21d02e9adb2bbacc6cd8ab01ad3e03f",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2015_V02.1.nc",
+          "read_utc": "2026-09-19T07:08:03Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2016-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2016_V02.1.nc",
+          "granule_sha256": "sha256:ce3337b133ad7b17ee5957528816327f3c5947b90d1a8359e0afab0d8023516f",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2016_V02.1.nc",
+          "read_utc": "2026-09-19T07:09:13Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2017-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2017_V02.1.nc",
+          "granule_sha256": "sha256:c9fca69e37da502def279c49cf66fe6f08a89f2054a180d448e27fdf74b39778",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2017_V02.1.nc",
+          "read_utc": "2026-09-19T07:10:03Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2018-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2018_V02.1.nc",
+          "granule_sha256": "sha256:e41de5b817648f1d76af6f0e7d0a6ad192296e043984c79a1f9c23ba80e467e6",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2018_V02.1.nc",
+          "read_utc": "2026-09-19T07:11:07Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2019-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2019_V02.1.nc",
+          "granule_sha256": "sha256:268b88c46d8e09de2548c1fb50e955531fe3046c4853a56875d844f7dbade44f",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2019_V02.1.nc",
+          "read_utc": "2026-09-19T07:13:11Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2020-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2020_V02.1.nc",
+          "granule_sha256": "sha256:d6d6bfc5e12a2381babe18ff15c6b8e875418693bd97cda2c41969da77d25fab",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2020_V02.1.nc",
+          "read_utc": "2026-09-19T07:14:22Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2021-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2021_V02.1.nc",
+          "granule_sha256": "sha256:7a04f6610541ff4f25bf25d4a9638f3222169df64547d0db371dc72a0e4c38c8",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2021_V02.1.nc",
+          "read_utc": "2026-09-19T07:15:11Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2022-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2022_V02.1.nc",
+          "granule_sha256": "sha256:632db3f5ac8f82da99bf0b7273b601a14c0e9e87ddfb151c8146f2fccd3a058b",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2022_V02.1.nc",
+          "read_utc": "2026-09-19T07:16:12Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2023-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2023_V02.1.nc",
+          "granule_sha256": "sha256:afccba5e6c0e6770c7eabdf91186863088673bf0a1530069cef8e0d9bb03d6f7",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2023_V02.1.nc",
+          "read_utc": "2026-09-19T07:17:16Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2024-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2024_V02.1.nc",
+          "granule_sha256": "sha256:debe6b34d2880b01212bd2d8e79101880e2d54f589d7e63bb72ec0e98aa9bb7b",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2024_V02.1.nc",
+          "read_utc": "2026-09-19T07:19:06Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        },
+        {
+          "epoch": "2014-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2014_V02.1.nc",
+          "granule_sha256": "sha256:b780c80f93c027f267fc95e014a75082feac4b787adcc64ff4269f418f714d0e",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2014_V02.1.nc",
+          "read_utc": "2026-09-19T07:19:09Z",
+          "date_created": "24-Nov-2025 10:50:33"
+        }
+      ],
+      "copied_into_root": false,
+      "what_is_in_the_root": "velocity.csv, the velocity normal to each gate node at each epoch, and velocity-stamp.json; no product file is in the tree, and each mosaic was deleted from the working directory after it was read"
+    }
+  ],
+  "not_reachable": [
+    {
+      "term": "thickness (greenland)",
+      "product": "IceBridge BedMachine Greenland, Version 6 (IDBMG4), granule BedMachineGreenland-v6.nc, 2,948,806,013 bytes",
+      "doi": "10.5067/6B6B225B8V2D",
+      "collection_concept_id": "C3903728370-NSIDC_CPRD",
+      "query": "https://cmr.earthdata.nasa.gov/search/granules.umm_json?short_name=IDBMG4&version=6 on 2026-09-19",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/ICEBRIDGE/IDBMG4/6/1993/01/01/BedMachineGreenland-v6.nc",
+      "attempted_utc": "2026-09-19T06:32:21Z to 2026-09-19T06:33:00Z",
+      "outcome": "HTTP 302 to the Earthdata Login without the token; with the token HTTP 303 to a content distribution host (d3h5e2j7riftk6.cloudfront.net) that this environment's egress policy refused at the connection, the proxy answering 403 to the CONNECT, so no byte of the granule was fetched. The same request for the public metadata sidecar under nsidc-cumulus-prod-public was refused the same way, so the block is on the host and not on the protection of the file",
+      "consequence": "the data root declares the thickness term absent with this reason; the loader iio_thickness_bedmachine.py is verified on its selftest and will sample the committed gate nodes when the host is reachable"
+    },
+    {
+      "term": "thickness (antarctica)",
+      "product": "MEaSUREs BedMachine Antarctica, Version 4 (NSIDC-0756), granule NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc, 1,198,815,840 bytes",
+      "doi": "10.5067/POJQI54A45HX",
+      "collection_concept_id": "C3973022985-NSIDC_CPRD",
+      "query": "https://cmr.earthdata.nasa.gov/search/granules.umm_json?short_name=NSIDC-0756&version=4 on 2026-09-19",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/MEASURES/NSIDC-0756/4/1970/01/01/NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc",
+      "attempted_utc": "2026-09-19T07:04:31Z",
+      "outcome": "HTTP 302 without the token, HTTP 303 with it to the same content distribution host, and the same 403 to the CONNECT",
+      "consequence": "as above"
+    }
+  ],
+  "not_distributed": [
+    {
+      "term": "smb (greenland, grounded ice sheet)",
+      "searched": "https://cmr.earthdata.nasa.gov/search/collections.umm_json with the keywords 'surface mass balance' restricted to the provider NSIDC_CPRD, 'Greenland surface mass balance', 'RACMO', 'MAR Greenland regional climate' and 'GEMB', on 2026-09-19; and the S3 listing of https://its-live-data.s3.amazonaws.com/?list-type=2&delimiter=/&prefix=height_change/Greenland/ the same day",
+      "finding": "the Common Metadata Repository holds one record titled Greenland Surface Mass Balance (Modelling_Arctic_Glaciers_VDBroeke_IPY37_NL, provider SCIOPS), a directory entry for RACMO2 model data with no DOI, no distribution and the media 'Contact the author / data center to request data'; the keyword GEMB returns one collection, NSIDC-0792, whose surface mass balance is masked to the floating Antarctic ice shelves; and the Greenland prefix of the ITS_LIVE bucket holds one file, the elevation change product, which the ice sheet balance root's own search established carries firn air content anomalies and no surface mass balance field",
+      "consequence": "no gridded surface mass balance over the grounded Greenland ice sheet is distributed by a NASA archive reachable from these sources, so the data root declares the surface mass balance term absent and the computation refuses Greenland with smb-term-missing. This gap moves only if the set of sources is widened to the modelling groups' own archives (RACMO2 at IMAU, MAR), which are not NASA products"
+    },
+    {
+      "term": "smb (antarctica, grounded ice sheet)",
+      "searched": "the same searches, and the ice sheet balance root's own surface mass balance stamp",
+      "finding": "the only GEMB surface mass balance in the ITS_LIVE distribution is the ice shelf product's, masked to identifiers 1 to 182 of its ID variable, that is to the floating ice shelves; the closure's root carries those rows as antarctica/ice_shelves and states in its own stamp that no grounded field is distributed",
+      "consequence": "an input-output balance differences a grounded discharge, so a shelf accumulation is not its input term; the computation refuses"
+    }
+  ],
+  "documents_read": [
+    {
+      "url": "https://nsidc.org/sites/default/files/documents/user-guide/nsidc-0776-v002-userguide.pdf",
+      "file": "nsidc-0776-v002-userguide.pdf",
+      "retrieved_utc": "2026-09-19T07:02:08Z",
+      "total_bytes": 383248,
+      "sha256": "sha256:206c62e5d9d1cc2612b15cd4c0879df0bbd03a980f49b8cb9b80b4bd02349587",
+      "what_was_read": "read in full: the annual and climatological variable tables (v, vx, vy, their errors, count, landice, floatingice, mapping, x, y and the fill values), the coverage note that data scarcity and low radiometric quality significantly limit coverage for many regions in the earlier years and that annual coverage is nearly complete for all regions after 2013, the spatial coverage table (RGI05A Greenland Periphery, EPSG 3413, grid limits), the 120 m resolution, the geolocation section, the processing chain, section 2.2.3 on quality (velocities in map units, the distortion of up to a few percent uncorrected in Version 2, and the statement that a flux gate cross section therefore no longer needs to be corrected for projection scale distortion while a comparison with in situ observations does), section 2.2.3.1 on the error computation and its statement that the formal propagation typically produces errors that are unrealistically low and that the errors and the image pair count are to be used as qualitative error metrics, and the version history (Version 2, July 2025)",
+      "copied_into_root": false
+    }
+  ],
+  "registry_records": [
+    {
+      "url": "https://cmr.earthdata.nasa.gov/search/collections.umm_json?short_name=NSIDC-0776",
+      "retrieved_utc": "2026-09-19T07:00Z",
+      "verified": "one collection, C3618748415-NSIDC_CPRD, Version 2, doi 10.5067/JQ6337239C96, MEaSUREs ITS_LIVE Regional Glacier and Ice Sheet Surface Velocities V002; the abstract gives 1985 to 2022 with nearly complete annual coverage after 2013, and the record links the Version 2 user guide read above"
+    },
+    {
+      "url": "https://cmr.earthdata.nasa.gov/search/granules.umm_json?short_name=IDBMG4&version=6",
+      "retrieved_utc": "2026-09-19T06:31Z",
+      "verified": "two granules, BedMachineGreenland-v6.nc (2,948,806,013 bytes) and BedMachineGreenland_bed-v6.tif (843,847,996 bytes), both served only from data.nsidc.earthdatacloud.nasa.gov"
+    },
+    {
+      "url": "https://cmr.earthdata.nasa.gov/search/granules.umm_json?short_name=NSIDC-0756&version=4",
+      "retrieved_utc": "2026-09-19T07:04Z",
+      "verified": "one granule, NSIDC-0756_BedMachineAntarctica_19700101-20191001_V04.1.nc (1,198,815,840 bytes), served only from the same host"
+    },
+    {
+      "doi": "10.5067/6B6B225B8V2D",
+      "url": "https://doi.org/10.5067/6B6B225B8V2D",
+      "retrieved_utc": "2026-09-19T07:03Z",
+      "verified": "302 to nsidc.org/data/IDBMG4/versions/6; registered with DataCite and not in Crossref"
+    },
+    {
+      "doi": "10.5067/POJQI54A45HX",
+      "url": "https://doi.org/10.5067/POJQI54A45HX",
+      "retrieved_utc": "2026-09-19T07:03Z",
+      "verified": "302 to nsidc.org/data/NSIDC-0756/versions/4; registered with DataCite and not in Crossref"
+    },
+    {
+      "doi": "10.5067/SE3XH9RXQWAM",
+      "url": "https://doi.org/10.5067/SE3XH9RXQWAM",
+      "retrieved_utc": "2026-09-19T07:03Z",
+      "verified": "302 to nsidc.org/data/nsidc-0792/versions/1; the ice shelf product whose GEMB surface mass balance is the only one in the distribution"
+    },
+    {
+      "doi": "10.5194/tc-12-521-2018",
+      "url": "https://api.crossref.org/works/10.5194/tc-12-521-2018",
+      "retrieved_utc": "2026-09-19T07:03Z",
+      "verified": "Gardner, Moholdt, Scambos, Fahnstock, Ligtenberg, van den Broeke and Nilsson, Increased West Antarctic and unchanged East Antarctic ice discharge over the last 7 years, The Cryosphere 12, 521 to 547, 2018; the abstract reports Antarctic discharge through an optimized flux gate as 1929 gigatonnes per year in 2015 with an uncertainty of 40, an increase of 36 with an uncertainty of 15 since the radar mapping",
+      "role": "the reference flux-gate discharge computation"
+    },
+    {
+      "doi": "10.1002/2017GL074954",
+      "url": "https://api.crossref.org/works/10.1002/2017GL074954",
+      "retrieved_utc": "2026-09-19T07:03Z",
+      "verified": "Morlighem, Williams, Rignot and others, BedMachine v3, Geophysical Research Letters 44, 2017; the thickness product's method paper, cited on its record"
+    },
+    {
+      "doi": "10.5194/essd-15-1597-2023",
+      "url": "https://api.crossref.org/works/10.5194/essd-15-1597-2023",
+      "retrieved_utc": "2026-09-19T07:03Z",
+      "verified": "Otosaka and others, Mass balance of the Greenland and Antarctic ice sheets from 1992 to 2020, Earth System Science Data 15, 1597 to 1616, 2023; the published assessment, whose numbers this bundle's dataset concept owns and which is cited from that concept rather than restated here"
+    }
+  ],
+  "bucket_listings": [
+    {
+      "url": "https://its-live-data.s3.amazonaws.com/?list-type=2&delimiter=/&prefix=<prefix>",
+      "retrieved_utc": "2026-09-19T06:34Z to 2026-09-19T06:36Z",
+      "prefixes_listed": "the top level and height_change, height_change/Greenland, velocity_mosaic, velocity_mosaic/v2, velocity_mosaic/v2.1, velocity_mosaic/v2.1/annual, velocity_mosaic/v2.1/static, static-topo-corrections, ice_masks and NSIDC",
+      "finding": "the annual mosaics under velocity_mosaic/v2.1/annual, one per region and year from 1982 to 2024, and the record mean mosaics under v2.1/static, one per region; the Greenland height change prefix holds one file, the elevation change product; no thickness product is in the bucket"
+    }
+  ],
+  "notes": [
+    "The gate set greenland-outlets-v1 is derived from one mosaic by the rule the velocity stamp records, and the derivation is reproducible from that mosaic alone: no coordinate in the node table was chosen by hand.",
+    "The Greenland mosaics carry no floating ice cell at all: over the 23,334 by 13,333 grid of the 2015 mosaic, 124,145,873 cells are land ice and none are floating ice. A gate placed on that mask therefore sits on the ice mask's margin, which is not the grounding line, and the stamp records spans_margin false and names the velocity mosaic's own masks as what placed the nodes. Whether a node is grounded is the thickness product's statement, and that product could not be read.",
+    "Each mosaic was streamed to a working directory outside the tree, read at the gate nodes and deleted; only the derived CSV and the stamp are committed.",
+    "The two gaps this root names have different kinds. The thickness gap is an access gap that moves with the environment's egress policy. The surface mass balance gap is a distribution gap that moves only if the sources are widened beyond the NASA archives."
+  ]
+}

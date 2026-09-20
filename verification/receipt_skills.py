@@ -4,28 +4,26 @@
 # dependencies = []
 # ///
 """Golden for this capability's three receipt skills: `sweep`,
-`receipt-figures` and `methods`, each run offline on the nsidc closure
+`receipt-figures` and `methods`, each run offline on the closure
 executor's synthetic fixture and checked against the expectations
 committed beside this file.
 
-A receipt skill computes nothing of its own (ADR D in the marketplace
-repository's docs/decisions, as amended, and the specification's
-section 12.1): every number it emits is a field of a receipt the
-attester passed, or a table, figure or paragraph made of such fields,
-and it combines no two receipts into a value no receipt carries. Its
-script enforces that rather than its prose, so this golden checks the
-enforcement and not only the output.
+These three skills compute nothing of their own: every number each one
+emits is a field of a receipt the attester passed, or a table, figure
+or paragraph made of such fields, and none of them combines two
+receipts into a value no receipt carries. That discipline lives in each
+script rather than in its prose, so this golden checks the enforcement
+and not only the output.
 
 Nothing scientific is reimplemented here and nothing is downloaded: the
-sanctioned executor and attester live in the provider bundle under
-knowledge/nsidc/references/, under the contract
-knowledge/nsidc/computations/ice-sheet-balance.md, and the executor's
+sanctioned executor and attester are the scripts of the `ice-mass-change`
+skill in this package, under the contract
+knowledge/computations/ice-sheet-balance.md, and the executor's
 synthetic fixture is generated at run time from the seed the
 expectations file names, so this golden is headless and offline with no
-NASA host reachable. The bundle root is resolved by each skill's own
-script the way the wrapping skills resolve it: NASA_DAAC_KNOWLEDGE
-names a checkout of the provider repository, else the installer's
-record.
+NASA host reachable. Each skill's own script resolves this package's
+root the way the runtime does: `CLAUDE_PLUGIN_ROOT` where it is set,
+else the package tree the script sits in.
 
 What is checked, in order:
 
@@ -134,7 +132,7 @@ def check_sweep(spec, expect_columns, work: Path, out_dir: Path):
 
     if doc["code_sha256"] != EXPECT["code_sha256"]:
         return doc, common, (
-            f"the executor in the installed bundle is {doc['code_sha256']}, not "
+            f"the executor in this package is {doc['code_sha256']}, not "
             f"the {EXPECT['code_sha256']} these expectations were measured "
             "with; the table is a different method, so re-measure "
             f"{EXPECTATIONS.relative_to(PACKAGE_ROOT)} and record the new "

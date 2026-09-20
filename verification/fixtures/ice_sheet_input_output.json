@@ -1,0 +1,188 @@
+{
+  "about": [
+    "The expected values of the attested ice sheet input-output balance this package runs, one entry per run.",
+    "Every number here is quoted from the Reference run section of the concept named in `concept`, and was",
+    "reproduced at these paths when the computation moved into this package on 2026-09-20.",
+    "The concept owns these numbers; the golden exists so a run that stops reproducing what the concept",
+    "records fails the gate, not so that a number can be asserted here.",
+    "A run identifier is bound to the runtime name, the package block and the package-relative data root,",
+    "so it is deliberately not asserted; the values below are the same under any runtime name.",
+    "The record run on the committed root refuses and is asserted as a refusal rather than as a number:",
+    "the root carries the real gate velocities and no thickness term, so no real-data estimate by this",
+    "method exists yet and the fixture chain is what proves the method."
+  ],
+  "recorded": "2026-09-20",
+  "skill": "ice-sheet-input-output",
+  "concept": "knowledge/computations/ice-sheet-input-output.md",
+  "concept_status": "draft",
+  "executor": "skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py",
+  "attester": "skills/ice-sheet-input-output/scripts/ice_sheet_input_output_check.py",
+  "executor_sha256": "sha256:4e9205dd8febfa2a883b8f32a6558537c2cb1380e185ee99d8e98f99d44ae2d4",
+  "attester_sha256": "sha256:a2aa9fb7363639ff286f7d581db87fcf95a3b0953356ef3d4bb3239156414a37",
+  "data_root": "knowledge/references/retrieval/ice-sheet-input-output-root",
+  "seed": 7,
+  "selftests": [
+    "ice_sheet_input_output_check.py",
+    "iio_velocity_itslive.py",
+    "iio_thickness_bedmachine.py",
+    "iio_smb_gemb.py",
+    "iio_data_root.py"
+  ],
+  "data_root_check": {
+    "script": "iio_data_root.py",
+    "expect": "RECORD.json matches the files"
+  },
+  "runs": [
+    {
+      "name": "ice-sheet-input-output",
+      "mode": "fixture",
+      "quoted_from": "the concept's Reference run section, the first fixture run at seed 7, Greenland over 2005-01 through 2014-12",
+      "bound_parameters": {
+        "ice_sheet": "greenland",
+        "window": "2005-01:2014-12",
+        "gates": "synthetic-outlets",
+        "velocity_epoch": "annual",
+        "ice_density": 917.0
+      },
+      "args": [
+        "--ice-sheet",
+        "greenland",
+        "--window",
+        "2005-01:2014-12",
+        "--gates",
+        "synthetic-outlets",
+        "--ice-density",
+        "917"
+      ],
+      "expect": {
+        "months_in_window": 120,
+        "term_epochs": {
+          "smb": 10,
+          "discharge": 10
+        },
+        "gates": {
+          "gate_set": "synthetic-outlets",
+          "n_gates": 8,
+          "n_nodes": 248,
+          "spans_margin": true
+        },
+        "rates": {
+          "smb": {
+            "rate": 400.086,
+            "ci_low": 343.532,
+            "ci_high": 456.64
+          },
+          "discharge": {
+            "rate": 490.809,
+            "ci_low": 437.847,
+            "ci_high": 543.771
+          },
+          "mass_rate": {
+            "rate": -90.723,
+            "ci_low": -158.242,
+            "ci_high": -23.205
+          }
+        },
+        "residual": -90.723,
+        "bar": 67.518,
+        "verdict_field": "significant_at_confidence",
+        "verdict": true,
+        "sign": "loss",
+        "tolerance": 0.001
+      }
+    },
+    {
+      "name": "ice-sheet-input-output-long",
+      "mode": "fixture",
+      "quoted_from": "the concept's Reference run section, the second fixture run at seed 7, Greenland over 1995-01 through 2018-12",
+      "bound_parameters": {
+        "ice_sheet": "greenland",
+        "window": "1995-01:2018-12",
+        "gates": "synthetic-outlets",
+        "velocity_epoch": "annual",
+        "ice_density": 917.0
+      },
+      "args": [
+        "--ice-sheet",
+        "greenland",
+        "--window",
+        "1995-01:2018-12",
+        "--gates",
+        "synthetic-outlets",
+        "--ice-density",
+        "917"
+      ],
+      "expect": {
+        "months_in_window": 288,
+        "term_epochs": {
+          "smb": 24,
+          "discharge": 24
+        },
+        "gates": {
+          "gate_set": "synthetic-outlets",
+          "n_gates": 8,
+          "n_nodes": 248,
+          "spans_margin": true
+        },
+        "rates": {
+          "smb": {
+            "rate": 384.323,
+            "ci_low": 328.688,
+            "ci_high": 439.957
+          },
+          "discharge": {
+            "rate": 486.912,
+            "ci_low": 437.938,
+            "ci_high": 535.885
+          },
+          "mass_rate": {
+            "rate": -102.589,
+            "ci_low": -166.462,
+            "ci_high": -38.716
+          }
+        },
+        "residual": -102.589,
+        "bar": 63.873,
+        "verdict_field": "significant_at_confidence",
+        "verdict": true,
+        "sign": "loss",
+        "tolerance": 0.001
+      }
+    }
+  ],
+  "refusals": [
+    {
+      "name": "fixture-window-outside-epochs",
+      "mode": "fixture",
+      "args": [
+        "--ice-sheet",
+        "greenland",
+        "--window",
+        "2021-01:2023-12",
+        "--gates",
+        "synthetic-outlets",
+        "--ice-density",
+        "917"
+      ],
+      "reason_code": "window-outside-epochs",
+      "quoted_from": "the concept's Reference run section, the refusal the chain exercises on the fixture"
+    },
+    {
+      "name": "record-term-not-in-root",
+      "mode": "data-root",
+      "args": [
+        "--ice-sheet",
+        "greenland",
+        "--window",
+        "2014-01:2023-12",
+        "--gates",
+        "greenland-outlets-v1",
+        "--ice-density",
+        "917"
+      ],
+      "reason_code": "term-not-in-root",
+      "quoted_from": "the concept's Reference run section, the real-data run, which is a refusal and not a number",
+      "about": "The committed root carries the velocity term and nothing else: BedMachine is distributed only from a host this environment's egress policy refuses, and no NASA archive distributes a grounded Greenland surface mass balance. The refusal is a finding about access and distribution, not an error."
+    }
+  ]
+}

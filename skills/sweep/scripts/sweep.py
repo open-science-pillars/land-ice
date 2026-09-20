@@ -7,7 +7,7 @@
 receipts, computing nothing.
 
 This is the ocean-science sweep's command line and output shape over
-the nsidc bundle's two closures, so that a reader who knows one knows
+this package's two closures, so that a reader who knows one knows
 both: the same flags, the same three files, the same five refusals with
 the same reason codes and the same exit codes.
 
@@ -39,13 +39,14 @@ partial table:
                           sheet, a count of closures read as a rate.
                           Those are numbers no concept owns, and the
                           headline mass rate is the one the
-                          land-ice/ice-mass-change skill already
-                          forbids in its Must NOT list. A capability
-                          that computes a number of its own is domain
-                          expansion under ADR D of the marketplace
-                          decisions and waits on the ablation; a sweep
-                          is a wrap, so it stops here and says which
-                          single receipt a reader may quote instead.
+                          ice-mass-change skill already forbids in its
+                          Must NOT list. A capability that computes a
+                          number of its own is domain expansion under
+                          the domain-expansion gate of the marketplace
+                          pre-registration and waits on the ablation; a
+                          sweep tables receipts, so it stops here and
+                          says which single receipt a reader may quote
+                          instead.
   parameter-not-declared  a parameter the concept does not declare
                           (the declared set is read from the concept's
                           Parameters in its frontmatter, not from a
@@ -62,10 +63,11 @@ partial table:
                           manifest digest, or the fixture's seed and
                           digest), so the table would be two roots.
 
-The executor, the attester and the concept are reached at the installed
-provider bundle's path, the way the wrapping skills in this capability
-reach them: the installer's record (`claude plugin list --json`), or a
-checkout named by NASA_DAAC_KNOWLEDGE. Nothing is copied here.
+The executor, the attester and the concept are reached at this
+package's own path, the way the skills that run these computations
+reach them: `CLAUDE_PLUGIN_ROOT` where the runtime sets it for the
+installed plugin, else the package tree this script sits in. Nothing is
+copied here and nothing is resolved through another repository.
 
 Usage:
   sweep.py --computation ice-sheet-balance --parameter window \
@@ -91,14 +93,10 @@ import datetime as dt
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
-
-PROVIDER_PLUGIN = "nasa-daac-knowledge"
-BUNDLE = "nsidc"
 
 # One entry per computation this sweep can drive. The columns are the
 # receipt fields the concept's Reference run section names, each a
@@ -114,10 +112,10 @@ BUNDLE = "nsidc"
 # cell that no receipt carries.
 CATALOG = {
     "ice-sheet-balance": {
-        "concept": "computations/ice-sheet-balance.md",
-        "executor": "references/computations/ice_sheet_balance.py",
-        "attester": "references/attesters/ice_sheet_balance_check.py",
-        "skill": "land-ice/ice-mass-change",
+        "concept": "knowledge/computations/ice-sheet-balance.md",
+        "executor": "skills/ice-mass-change/scripts/ice_sheet_balance.py",
+        "attester": "skills/ice-mass-change/scripts/ice_sheet_balance_check.py",
+        "skill": "ice-mass-change",
         "columns": [
             ("ice_sheet", "bound_parameters.ice_sheet"),
             ("window", "bound_parameters.window"),
@@ -144,10 +142,10 @@ CATALOG = {
         ],
     },
     "ice-sheet-input-output": {
-        "concept": "computations/ice-sheet-input-output.md",
-        "executor": "references/computations/ice_sheet_input_output.py",
-        "attester": "references/attesters/ice_sheet_input_output_check.py",
-        "skill": "land-ice/ice-sheet-input-output",
+        "concept": "knowledge/computations/ice-sheet-input-output.md",
+        "executor": "skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py",
+        "attester": "skills/ice-sheet-input-output/scripts/ice_sheet_input_output_check.py",
+        "skill": "ice-sheet-input-output",
         "columns": [
             ("ice_sheet", "bound_parameters.ice_sheet"),
             ("window", "bound_parameters.window"),
@@ -192,46 +190,34 @@ def refuse(code: str, message: str) -> int:
     return 4
 
 
-# ---- the installed bundle
+# ---- this package
 
-def provider_root() -> Path:
-    """The installed provider plugin's root, from the installer's record."""
-    override = os.environ.get("NASA_DAAC_KNOWLEDGE")
-    if override:
-        return Path(override).expanduser().resolve()
-    claude = shutil.which("claude")
-    if claude is None:
-        sys.exit("no `claude` on PATH to read the installed-plugin record; "
-                 "set NASA_DAAC_KNOWLEDGE to a checkout of the provider "
-                 "repository instead")
-    rec = subprocess.run([claude, "plugin", "list", "--json"],
-                         capture_output=True, text=True)
-    if rec.returncode != 0:
-        sys.exit(f"`claude plugin list --json` failed: {rec.stderr.strip()}")
-    for entry in json.loads(rec.stdout):
-        if entry.get("id", "").split("@")[0] != PROVIDER_PLUGIN:
-            continue
-        if not entry.get("enabled", True) or entry.get("errors"):
-            sys.exit(f"{entry['id']} is installed but not usable: "
-                     f"{entry.get('errors') or 'disabled'}")
-        return Path(entry["installPath"])
-    sys.exit(f"{PROVIDER_PLUGIN} is not installed; it arrives with this "
-             "plugin's dependencies (`claude plugin install "
-             "land-ice@open-science-pillars`), or set NASA_DAAC_KNOWLEDGE "
-             "to a checkout of the provider repository")
+def package_root() -> Path:
+    """This package's root: `CLAUDE_PLUGIN_ROOT` where the runtime sets it
+    for the installed plugin, else the package tree this script sits in.
+    The computations' scripts are beside this one now, so nothing is
+    resolved through another repository."""
+    override = os.environ.get("CLAUDE_PLUGIN_ROOT")
+    start = Path(override).expanduser().resolve() if override \
+        else Path(__file__).resolve()
+    for p in (start, *start.parents):
+        if (p / ".osp" / "package.yaml").is_file():
+            return p
+    sys.exit(f"no package root above {start} (no .osp/package.yaml); set "
+             "CLAUDE_PLUGIN_ROOT to this plugin's installed root")
 
 
-def bundle_paths(computation: str):
-    """The concept, the executor and the attester at the installed
-    bundle's path; nothing is copied into this repository."""
+def package_paths(computation: str):
+    """The concept, the executor and the attester at this package's own
+    path; nothing is copied and nothing is reached in another repository."""
     spec = CATALOG[computation]
-    base = provider_root() / "knowledge" / BUNDLE
+    base = package_root()
     paths = {k: base / spec[k] for k in ("concept", "executor", "attester")}
     for name, p in paths.items():
         if not p.is_file():
-            sys.exit(f"the provider bundle carries no {name} for {computation} "
-                     f"at {p}; the sweep needs {PROVIDER_PLUGIN} at a release "
-                     "that ships it")
+            sys.exit(f"this package carries no {name} for {computation} "
+                     f"at {p}; the concept, its executor and its attester "
+                     "ship with this plugin")
     return paths
 
 
@@ -484,7 +470,7 @@ def write_manifest(path: Path, rows, columns, head: dict) -> None:
 
 def sweep(args) -> int:
     spec = CATALOG[args.computation]
-    paths = bundle_paths(args.computation)
+    paths = package_paths(args.computation)
     declared = declared_parameters(paths["concept"])
 
     if args.aggregate:
@@ -494,13 +480,14 @@ def sweep(args) -> int:
             f"what was asked for is one: {args.aggregate}. Each row is a "
             f"receipt the attester passed, and an aggregate over the "
             f"rows is a number no concept owns: "
-            f"knowledge/{BUNDLE}/{spec['concept']} owns the rates and the "
-            f"verdict of one stated window, and nothing in the bundle owns a "
+            f"{spec['concept']} owns the rates and the "
+            f"verdict of one stated window, and no concept owns a "
             f"rate across windows or a headline mass rate for an ice sheet, "
             f"which {spec['skill']} forbids in its Must NOT list for the same "
-            f"reason. Computing one here would be a number of this "
-            f"capability's own, which is domain expansion under ADR D of the "
-            f"marketplace decisions and waits on the ablation. Quote one row "
+            f"reason. Computing one here would be a number no concept owns, "
+            f"which is domain expansion under the domain-expansion gate of "
+            f"the marketplace pre-registration and waits on the ablation. "
+            f"Quote one row "
             f"instead: its receipt carries the rates, their intervals, the "
             f"epochs used, the bar and the verdict, and its run id is in the "
             f"manifest. The verdict belongs to the window that produced it.")
@@ -508,7 +495,7 @@ def sweep(args) -> int:
         return refuse(
             "parameter-not-declared",
             f"{args.parameter} is not a parameter "
-            f"knowledge/{BUNDLE}/{spec['concept']} declares; it declares "
+            f"{spec['concept']} declares; it declares "
             f"{', '.join(declared)}. Sweeping execution plumbing (a seed, an "
             "output path) or an invented knob produces a table of runs no "
             "concept licenses.")
@@ -522,7 +509,7 @@ def sweep(args) -> int:
         if name not in declared:
             return refuse("parameter-not-declared",
                           f"{name} is not a parameter "
-                          f"knowledge/{BUNDLE}/{spec['concept']} declares; it "
+                          f"{spec['concept']} declares; it "
                           f"declares {', '.join(declared)}")
         if name == args.parameter:
             return refuse("parameter-not-stated",
@@ -583,9 +570,9 @@ def sweep(args) -> int:
                  "is computed here",
         "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "computation": args.computation,
-        "concept": f"knowledge/{BUNDLE}/{spec['concept']}",
-        "executor": f"knowledge/{BUNDLE}/{spec['executor']}",
-        "attester": f"knowledge/{BUNDLE}/{spec['attester']}",
+        "concept": spec['concept'],
+        "executor": spec['executor'],
+        "attester": spec['attester'],
         "wrapping_skill": spec["skill"],
         "parameter": args.parameter,
         "values": values,
@@ -642,8 +629,8 @@ def sweep(args) -> int:
 
 def selftest() -> int:
     """Every refusal, on the executors' synthetic fixtures."""
-    paths = bundle_paths("ice-sheet-balance")
-    io_paths = bundle_paths("ice-sheet-input-output")
+    paths = package_paths("ice-sheet-balance")
+    io_paths = package_paths("ice-sheet-input-output")
     columns = CATALOG["ice-sheet-balance"]["columns"]
     base = ["--computation", "ice-sheet-balance", "--input", "fixture",
             "--seed", "7", "--runtime", "selftest"]
@@ -699,8 +686,8 @@ def selftest() -> int:
                          "--aggregate", "the Greenland mass rate across the windows"],
                         work / "agg")
         assert out.returncode == 4 and "aggregate-across-rows" in out.stdout, out.stdout
-        assert "ADR D" in out.stdout and "Quote one row instead" in out.stdout
-        assert "land-ice/ice-mass-change" in out.stdout, out.stdout
+        assert "domain-expansion gate" in out.stdout and "Quote one row instead" in out.stdout
+        assert "ice-mass-change" in out.stdout, out.stdout
         assert not (work / "agg" / "sweep.csv").is_file(), \
             "a refusal leaves no partial table"
 
@@ -806,8 +793,8 @@ def selftest() -> int:
 
     print("sweep selftest: ok "
           f"({len(REFUSALS)} refusals exercised: {', '.join(REFUSALS)}; "
-          "a tampered receipt is a failed row, not a number; both nsidc "
-          "computations sweep by the same command line)")
+          "a tampered receipt is a failed row, not a number; both of this "
+          "package's computations sweep by the same command line)")
     return 0
 
 

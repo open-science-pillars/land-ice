@@ -1,0 +1,1813 @@
+{
+  "term": "mass",
+  "quantity": "surface mass anomaly from the JPL mascon solution summed over one ice sheet's land mascons, per solution month",
+  "product": "JPL GRACE and GRACE-FO MASCON RL06.3Mv04 CRI",
+  "doi": "10.5067/TEMSC-3JC634",
+  "product_version": "RL06.3Mv04 CRI",
+  "granule": "GRCTellus.JPL.200204_202607.GLO.RL06.3M.MSCNv04CRI.nc",
+  "granule_sha256": "sha256:32b4ee91215a2e1c1bb6196f661ec55972b81e4da4a934b5a5c9ebe17f285a88",
+  "source_url": "https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.3_V4/GRCTellus.JPL.200204_202607.GLO.RL06.3M.MSCNv04CRI.nc",
+  "read_utc": "2026-09-15T18:03:56Z",
+  "variable": "lwe_thickness (with uncertainty, land_mask, mascon_ID, lat_bounds, lon_bounds, time_bounds)",
+  "grid": "0.5 degree grid representing 3 degree spherical-cap mascons; cell areas from the latitude and longitude bounds on a sphere of radius 6371 km",
+  "mask": "the granule's land_mask (1 is land, the CRI partition); the ice sheet's mascon set by the rule each series states",
+  "aggregation": "sum over the land cells of the selected mascons of lwe_thickness (cm) times the cell area (km2) times 1e-5 Gt; one sigma per mascon times its land area, in quadrature over the selected mascons",
+  "reference": "anomaly against the product's own baseline (the 2004 to 2009 mean)",
+  "sampling": "monthly: one row per solution, labelled by the calendar month of the midpoint of its time_bounds; missing months absent",
+  "units": "value_gt and uncertainty_gt in gigatonnes; land_area_km2 in km2",
+  "sign_convention": "positive is mass gained (more equivalent water thickness), the product's own",
+  "time_coverage": [
+    "2002-04-04",
+    "2026-07-31"
+  ],
+  "months": [
+    "2002-04",
+    "2026-07"
+  ],
+  "n_solutions": 259,
+  "month_assignments": [
+    {
+      "epoch": 144,
+      "midpoint_month": "2015-04",
+      "assigned": "2015-05",
+      "span": [
+        "2015-04-12",
+        "2015-05-11"
+      ],
+      "reason": "midpoint month already taken by the previous solution; the span reaches into the following month, which the product's month list labels it"
+    }
+  ],
+  "uncertainty_basis": "formal: the granule's one sigma per mascon over the mascon's land area, in quadrature, mascons treated as independent; a floor where mascon errors correlate; leakage is not in it",
+  "bookkeeping": {
+    "gia": "ICE-6G_D (Peltier and others 2018) subtracted by the product before the CRI filter and from the released fields (the release note; the podaac bundle's GIA gotcha); nothing re-applied. Over Antarctica the GIA model is the largest systematic of a gravimetric mass balance and is not in the formal error below",
+    "low_degree": "C20 and C30 from TN-14 version 3 across the whole series, degree 1 from JPL's mascon-consistent geocenter; nothing re-applied (the release note; the podaac bundle's low-degree gotcha)",
+    "reference_frame": "centre of figure restored through JPL's mascon-consistent geocenter (degree 1 computed with the mascon field as background, the release note)",
+    "effective_smoothing": "3 degree spherical-cap mascons on a 0.5 degree grid; the sum runs over whole mascons, so signal from the ice-free land and the ocean inside a selected mascon, and ice signal in an excluded neighbour, is leakage the product's CRI filter reduces and does not remove (the podaac bundle's coastal-leakage gotcha)",
+    "gad": "the GAD de-aliasing signal is restored over the ocean part of the mascons only (the release note); the land cells summed here carry none",
+    "elastic_and_hydrology": "no elastic rebound or terrestrial hydrology correction is applied to the mascons: the product's land mascon value is the full surface mass anomaly"
+  },
+  "series": {
+    "greenland": {
+      "domain": "land_mascons",
+      "rule": "the product's land mascons whose land area is covered by Greenland ice (the ITS_LIVE mask, ice sheet and peripheral glaciers) for at least 0.25 of it",
+      "n_mascons": 27,
+      "land_area_km2": 2122549.4,
+      "mascons": {
+        "17": {
+          "cells": 360,
+          "land_cells": 53,
+          "land_area_km2": 20139.3,
+          "centroid_lat": 84.0,
+          "centroid_lon": 315.0,
+          "ice_area_km2": 7957.3,
+          "ice_fraction_of_land": 0.3951
+        },
+        "34": {
+          "cells": 240,
+          "land_cells": 220,
+          "land_area_km2": 107648.9,
+          "centroid_lat": 81.0,
+          "centroid_lon": 310.0,
+          "ice_area_km2": 88400.4,
+          "ice_fraction_of_land": 0.8212
+        },
+        "35": {
+          "cells": 240,
+          "land_cells": 233,
+          "land_area_km2": 113014.4,
+          "centroid_lat": 81.0,
+          "centroid_lon": 330.0,
+          "ice_area_km2": 68436.3,
+          "ice_fraction_of_land": 0.6056
+        },
+        "36": {
+          "cells": 240,
+          "land_cells": 39,
+          "land_area_km2": 19297.1,
+          "centroid_lat": 81.0,
+          "centroid_lon": 350.0,
+          "ice_area_km2": 12225.6,
+          "ice_fraction_of_land": 0.6335
+        },
+        "56": {
+          "cells": 180,
+          "land_cells": 117,
+          "land_area_km2": 75725.9,
+          "centroid_lat": 78.0,
+          "centroid_lon": 292.5,
+          "ice_area_km2": 61849.2,
+          "ice_fraction_of_land": 0.8168
+        },
+        "57": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": 78.0,
+          "centroid_lon": 307.5,
+          "ice_area_km2": 116633.9,
+          "ice_fraction_of_land": 1.0084
+        },
+        "58": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": 78.0,
+          "centroid_lon": 322.5,
+          "ice_area_km2": 116637.7,
+          "ice_fraction_of_land": 1.0084
+        },
+        "59": {
+          "cells": 180,
+          "land_cells": 117,
+          "land_area_km2": 75091.6,
+          "centroid_lat": 78.0,
+          "centroid_lon": 337.5,
+          "ice_area_km2": 62933.3,
+          "ice_fraction_of_land": 0.8381
+        },
+        "86": {
+          "cells": 138,
+          "land_cells": 20,
+          "land_area_km2": 14746.4,
+          "centroid_lat": 75.0,
+          "centroid_lon": 296.25,
+          "ice_area_km2": 12191.4,
+          "ice_fraction_of_land": 0.8267
+        },
+        "87": {
+          "cells": 138,
+          "land_cells": 129,
+          "land_area_km2": 102788.4,
+          "centroid_lat": 75.0,
+          "centroid_lon": 307.75,
+          "ice_area_km2": 101424.7,
+          "ice_fraction_of_land": 0.9867
+        },
+        "88": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": 75.0,
+          "centroid_lon": 319.25,
+          "ice_area_km2": 111249.4,
+          "ice_fraction_of_land": 1.0078
+        },
+        "89": {
+          "cells": 144,
+          "land_cells": 144,
+          "land_area_km2": 115191.1,
+          "centroid_lat": 75.0,
+          "centroid_lon": 331.0,
+          "ice_area_km2": 106956.9,
+          "ice_fraction_of_land": 0.9285
+        },
+        "90": {
+          "cells": 138,
+          "land_cells": 36,
+          "land_area_km2": 28693.7,
+          "centroid_lat": 75.0,
+          "centroid_lon": 342.75,
+          "ice_area_km2": 7263.4,
+          "ice_fraction_of_land": 0.2531
+        },
+        "123": {
+          "cells": 120,
+          "land_cells": 73,
+          "land_area_km2": 69144.7,
+          "centroid_lat": 72.0,
+          "centroid_lon": 306.5,
+          "ice_area_km2": 50663.2,
+          "ice_fraction_of_land": 0.7327
+        },
+        "124": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": 72.0,
+          "centroid_lon": 316.25,
+          "ice_area_km2": 109689.2,
+          "ice_fraction_of_land": 1.0074
+        },
+        "125": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": 72.0,
+          "centroid_lon": 326.0,
+          "ice_area_km2": 114820.9,
+          "ice_fraction_of_land": 1.0018
+        },
+        "126": {
+          "cells": 114,
+          "land_cells": 76,
+          "land_area_km2": 72509.9,
+          "centroid_lat": 72.0,
+          "centroid_lon": 335.75,
+          "ice_area_km2": 25366.5,
+          "ice_fraction_of_land": 0.3498
+        },
+        "165": {
+          "cells": 102,
+          "land_cells": 100,
+          "land_area_km2": 110761.4,
+          "centroid_lat": 69.0,
+          "centroid_lon": 312.75,
+          "ice_area_km2": 97280.2,
+          "ice_fraction_of_land": 0.8783
+        },
+        "166": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": 69.0,
+          "centroid_lon": 321.25,
+          "ice_area_km2": 113783.5,
+          "ice_fraction_of_land": 1.0071
+        },
+        "167": {
+          "cells": 108,
+          "land_cells": 83,
+          "land_area_km2": 90637.1,
+          "centroid_lat": 69.0,
+          "centroid_lon": 330.0,
+          "ice_area_km2": 80110.4,
+          "ice_fraction_of_land": 0.8839
+        },
+        "168": {
+          "cells": 102,
+          "land_cells": 7,
+          "land_area_km2": 7463.7,
+          "centroid_lat": 69.0,
+          "centroid_lon": 338.75,
+          "ice_area_km2": 5797.8,
+          "ice_fraction_of_land": 0.7768
+        },
+        "212": {
+          "cells": 90,
+          "land_cells": 89,
+          "land_area_km2": 111821.4,
+          "centroid_lat": 66.0,
+          "centroid_lon": 311.25,
+          "ice_area_km2": 79952.7,
+          "ice_fraction_of_land": 0.715
+        },
+        "213": {
+          "cells": 90,
+          "land_cells": 79,
+          "land_area_km2": 98758.1,
+          "centroid_lat": 66.0,
+          "centroid_lon": 318.75,
+          "ice_area_km2": 93740.5,
+          "ice_fraction_of_land": 0.9492
+        },
+        "214": {
+          "cells": 90,
+          "land_cells": 20,
+          "land_area_km2": 24353.3,
+          "centroid_lat": 66.0,
+          "centroid_lon": 326.25,
+          "ice_area_km2": 20041.2,
+          "ice_fraction_of_land": 0.8229
+        },
+        "265": {
+          "cells": 84,
+          "land_cells": 51,
+          "land_area_km2": 71140.6,
+          "centroid_lat": 63.0,
+          "centroid_lon": 310.0,
+          "ice_area_km2": 48221.6,
+          "ice_fraction_of_land": 0.6778
+        },
+        "266": {
+          "cells": 78,
+          "land_cells": 59,
+          "land_area_km2": 82389.7,
+          "centroid_lat": 63.0,
+          "centroid_lon": 316.75,
+          "ice_area_km2": 77650.8,
+          "ice_fraction_of_land": 0.9425
+        },
+        "324": {
+          "cells": 78,
+          "land_cells": 22,
+          "land_area_km2": 33038.8,
+          "centroid_lat": 60.0,
+          "centroid_lon": 314.25,
+          "ice_area_km2": 17113.6,
+          "ice_fraction_of_land": 0.518
+        }
+      },
+      "trend_gt_per_yr_full_series": -251.955,
+      "ice_mask": {
+        "file": "Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+        "file_sha256": "sha256:04c8259891a0a94dfa5f9e4996dfaad57ca13763a988dbbee5cda795a9f4a4b2",
+        "epsg": 3413,
+        "ice_cells": 488826,
+        "ice_area_km2": 1822361.86,
+        "title": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+        "doi": "10.5067/ICFVI7DKHZJV",
+        "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Greenland/Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+        "ice_area_in_selected_mascons_km2": 1808391.6
+      },
+      "excluded_land_mascons_with_greenland_ice": {
+        "18": {
+          "cells": 360,
+          "land_cells": 28,
+          "land_area_km2": 10681.5,
+          "centroid_lat": 84.0,
+          "centroid_lon": 345.0,
+          "ice_area_km2": 1155.5,
+          "ice_fraction_of_land": 0.1082
+        },
+        "33": {
+          "cells": 240,
+          "land_cells": 197,
+          "land_area_km2": 94489.6,
+          "centroid_lat": 81.0,
+          "centroid_lon": 290.0,
+          "ice_area_km2": 9448.0,
+          "ice_fraction_of_land": 0.1
+        },
+        "164": {
+          "cells": 102,
+          "land_cells": 19,
+          "land_area_km2": 20804.3,
+          "centroid_lat": 69.0,
+          "centroid_lon": 304.25,
+          "ice_area_km2": 2464.8,
+          "ice_fraction_of_land": 0.1185
+        },
+        "211": {
+          "cells": 90,
+          "land_cells": 8,
+          "land_area_km2": 9785.8,
+          "centroid_lat": 66.0,
+          "centroid_lon": 303.75,
+          "ice_area_km2": 901.8,
+          "ice_fraction_of_land": 0.0922
+        }
+      },
+      "selection_sensitivity": {
+        "0.05": {
+          "n_mascons": 31,
+          "mascons": [
+            17,
+            18,
+            33,
+            34,
+            35,
+            36,
+            56,
+            57,
+            58,
+            59,
+            86,
+            87,
+            88,
+            89,
+            90,
+            123,
+            124,
+            125,
+            126,
+            164,
+            165,
+            166,
+            167,
+            168,
+            211,
+            212,
+            213,
+            214,
+            265,
+            266,
+            324
+          ],
+          "trend_gt_per_yr_full_series": -268.124
+        },
+        "0.5": {
+          "n_mascons": 24,
+          "mascons": [
+            34,
+            35,
+            36,
+            56,
+            57,
+            58,
+            59,
+            86,
+            87,
+            88,
+            89,
+            123,
+            124,
+            125,
+            165,
+            166,
+            167,
+            168,
+            212,
+            213,
+            214,
+            265,
+            266,
+            324
+          ],
+          "trend_gt_per_yr_full_series": -244.256
+        }
+      }
+    },
+    "antarctica": {
+      "domain": "land_mascons",
+      "rule": "every land mascon whose centroid lies south of 60 S; the CRI land mask marks the floating ice shelves as land, so the sum spans the grounded sheet and the shelves together",
+      "n_mascons": 148,
+      "land_area_km2": 12397400.5,
+      "mascons": {
+        "4324": {
+          "cells": 78,
+          "land_cells": 3,
+          "land_area_km2": 4028.7,
+          "centroid_lat": -63.0,
+          "centroid_lon": 296.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4325": {
+          "cells": 78,
+          "land_cells": 10,
+          "land_area_km2": 13574.4,
+          "centroid_lat": -63.0,
+          "centroid_lon": 303.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4340": {
+          "cells": 90,
+          "land_cells": 15,
+          "land_area_km2": 18178.3,
+          "centroid_lat": -66.0,
+          "centroid_lon": 48.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4341": {
+          "cells": 90,
+          "land_cells": 28,
+          "land_area_km2": 34015.4,
+          "centroid_lat": -66.0,
+          "centroid_lon": 56.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4344": {
+          "cells": 90,
+          "land_cells": 3,
+          "land_area_km2": 3710.0,
+          "centroid_lat": -66.0,
+          "centroid_lon": 78.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4345": {
+          "cells": 90,
+          "land_cells": 26,
+          "land_area_km2": 31475.9,
+          "centroid_lat": -66.0,
+          "centroid_lon": 86.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4346": {
+          "cells": 90,
+          "land_cells": 29,
+          "land_area_km2": 35012.8,
+          "centroid_lat": -66.0,
+          "centroid_lon": 93.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4347": {
+          "cells": 90,
+          "land_cells": 41,
+          "land_area_km2": 50025.7,
+          "centroid_lat": -66.0,
+          "centroid_lon": 101.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4348": {
+          "cells": 90,
+          "land_cells": 32,
+          "land_area_km2": 38797.0,
+          "centroid_lat": -66.0,
+          "centroid_lon": 108.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4349": {
+          "cells": 90,
+          "land_cells": 23,
+          "land_area_km2": 27865.1,
+          "centroid_lat": -66.0,
+          "centroid_lon": 116.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4350": {
+          "cells": 90,
+          "land_cells": 33,
+          "land_area_km2": 40116.0,
+          "centroid_lat": -66.0,
+          "centroid_lon": 123.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4351": {
+          "cells": 90,
+          "land_cells": 35,
+          "land_area_km2": 42581.1,
+          "centroid_lat": -66.0,
+          "centroid_lon": 131.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4352": {
+          "cells": 90,
+          "land_cells": 30,
+          "land_area_km2": 36331.8,
+          "centroid_lat": -66.0,
+          "centroid_lon": 138.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4353": {
+          "cells": 90,
+          "land_cells": 4,
+          "land_area_km2": 4781.4,
+          "centroid_lat": -66.0,
+          "centroid_lon": 146.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4372": {
+          "cells": 90,
+          "land_cells": 3,
+          "land_area_km2": 3586.0,
+          "centroid_lat": -66.0,
+          "centroid_lon": 288.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4373": {
+          "cells": 90,
+          "land_cells": 38,
+          "land_area_km2": 48016.8,
+          "centroid_lat": -66.0,
+          "centroid_lon": 296.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4374": {
+          "cells": 90,
+          "land_cells": 3,
+          "land_area_km2": 3931.2,
+          "centroid_lat": -66.0,
+          "centroid_lon": 303.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4382": {
+          "cells": 102,
+          "land_cells": 2,
+          "land_area_km2": 2089.0,
+          "centroid_lat": -69.0,
+          "centroid_lon": 4.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4383": {
+          "cells": 102,
+          "land_cells": 5,
+          "land_area_km2": 5222.6,
+          "centroid_lat": -69.0,
+          "centroid_lon": 12.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4385": {
+          "cells": 108,
+          "land_cells": 16,
+          "land_area_km2": 17091.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 30.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4386": {
+          "cells": 102,
+          "land_cells": 46,
+          "land_area_km2": 49313.1,
+          "centroid_lat": -69.0,
+          "centroid_lon": 38.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4387": {
+          "cells": 102,
+          "land_cells": 97,
+          "land_area_km2": 107124.8,
+          "centroid_lat": -69.0,
+          "centroid_lon": 47.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4388": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 55.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4389": {
+          "cells": 102,
+          "land_cells": 98,
+          "land_area_km2": 108295.2,
+          "centroid_lat": -69.0,
+          "centroid_lon": 64.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4390": {
+          "cells": 102,
+          "land_cells": 23,
+          "land_area_km2": 24731.6,
+          "centroid_lat": -69.0,
+          "centroid_lon": 72.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4391": {
+          "cells": 102,
+          "land_cells": 87,
+          "land_area_km2": 95620.7,
+          "centroid_lat": -69.0,
+          "centroid_lon": 81.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4392": {
+          "cells": 108,
+          "land_cells": 108,
+          "land_area_km2": 119622.6,
+          "centroid_lat": -69.0,
+          "centroid_lon": 90.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4393": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 98.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4394": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 107.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4395": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 115.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4396": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 124.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4397": {
+          "cells": 102,
+          "land_cells": 102,
+          "land_area_km2": 112976.9,
+          "centroid_lat": -69.0,
+          "centroid_lon": 132.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4398": {
+          "cells": 102,
+          "land_cells": 101,
+          "land_area_km2": 111806.5,
+          "centroid_lat": -69.0,
+          "centroid_lon": 141.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4399": {
+          "cells": 108,
+          "land_cells": 78,
+          "land_area_km2": 84910.1,
+          "centroid_lat": -69.0,
+          "centroid_lon": 150.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4400": {
+          "cells": 102,
+          "land_cells": 31,
+          "land_area_km2": 33038.5,
+          "centroid_lat": -69.0,
+          "centroid_lon": 158.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4415": {
+          "cells": 102,
+          "land_cells": 21,
+          "land_area_km2": 22441.6,
+          "centroid_lat": -69.0,
+          "centroid_lon": 287.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4416": {
+          "cells": 102,
+          "land_cells": 56,
+          "land_area_km2": 61246.2,
+          "centroid_lat": -69.0,
+          "centroid_lon": 295.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4417": {
+          "cells": 102,
+          "land_cells": 4,
+          "land_area_km2": 4531.5,
+          "centroid_lat": -69.0,
+          "centroid_lon": 304.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4424": {
+          "cells": 114,
+          "land_cells": 104,
+          "land_area_km2": 98714.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 4.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4425": {
+          "cells": 120,
+          "land_cells": 119,
+          "land_area_km2": 113591.3,
+          "centroid_lat": -72.0,
+          "centroid_lon": 14.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4426": {
+          "cells": 114,
+          "land_cells": 102,
+          "land_area_km2": 96650.7,
+          "centroid_lat": -72.0,
+          "centroid_lon": 24.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4427": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 34.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4428": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 43.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4429": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 53.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4430": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 63.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4431": {
+          "cells": 120,
+          "land_cells": 103,
+          "land_area_km2": 97745.3,
+          "centroid_lat": -72.0,
+          "centroid_lon": 73.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4432": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 82.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4433": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 92.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4434": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 102.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4435": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 112.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4436": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 121.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4437": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 131.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4438": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 141.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4439": {
+          "cells": 114,
+          "land_cells": 114,
+          "land_area_km2": 108879.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 150.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4440": {
+          "cells": 120,
+          "land_cells": 120,
+          "land_area_km2": 114610.4,
+          "centroid_lat": -72.0,
+          "centroid_lon": 160.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4441": {
+          "cells": 114,
+          "land_cells": 42,
+          "land_area_km2": 40038.1,
+          "centroid_lat": -72.0,
+          "centroid_lon": 170.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4448": {
+          "cells": 114,
+          "land_cells": 2,
+          "land_area_km2": 1781.7,
+          "centroid_lat": -72.0,
+          "centroid_lon": 238.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4450": {
+          "cells": 114,
+          "land_cells": 19,
+          "land_area_km2": 17260.8,
+          "centroid_lat": -72.0,
+          "centroid_lon": 257.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4451": {
+          "cells": 120,
+          "land_cells": 24,
+          "land_area_km2": 21663.6,
+          "centroid_lat": -72.0,
+          "centroid_lon": 267.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4452": {
+          "cells": 114,
+          "land_cells": 20,
+          "land_area_km2": 17868.3,
+          "centroid_lat": -72.0,
+          "centroid_lon": 277.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4453": {
+          "cells": 120,
+          "land_cells": 52,
+          "land_area_km2": 50331.7,
+          "centroid_lat": -72.0,
+          "centroid_lon": 287.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4454": {
+          "cells": 114,
+          "land_cells": 78,
+          "land_area_km2": 74239.5,
+          "centroid_lat": -72.0,
+          "centroid_lon": 296.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4459": {
+          "cells": 120,
+          "land_cells": 28,
+          "land_area_km2": 25715.5,
+          "centroid_lat": -72.0,
+          "centroid_lon": 345.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4460": {
+          "cells": 114,
+          "land_cells": 82,
+          "land_area_km2": 76625.9,
+          "centroid_lat": -72.0,
+          "centroid_lon": 355.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4461": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 5.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4462": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 17.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4463": {
+          "cells": 144,
+          "land_cells": 144,
+          "land_area_km2": 115191.1,
+          "centroid_lat": -75.0,
+          "centroid_lon": 29.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4464": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 40.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4465": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 52.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4466": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 63.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4467": {
+          "cells": 144,
+          "land_cells": 144,
+          "land_area_km2": 115191.1,
+          "centroid_lat": -75.0,
+          "centroid_lon": 75.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4468": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 87.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4469": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 98.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4470": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 110.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4471": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 121.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4472": {
+          "cells": 144,
+          "land_cells": 144,
+          "land_area_km2": 115191.1,
+          "centroid_lat": -75.0,
+          "centroid_lon": 133.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4473": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 145.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4474": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 156.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4475": {
+          "cells": 138,
+          "land_cells": 13,
+          "land_area_km2": 11063.0,
+          "centroid_lat": -75.0,
+          "centroid_lon": 168.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4479": {
+          "cells": 138,
+          "land_cells": 24,
+          "land_area_km2": 17946.9,
+          "centroid_lat": -75.0,
+          "centroid_lon": 214.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4480": {
+          "cells": 138,
+          "land_cells": 77,
+          "land_area_km2": 59081.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 226.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4481": {
+          "cells": 144,
+          "land_cells": 113,
+          "land_area_km2": 88947.7,
+          "centroid_lat": -75.0,
+          "centroid_lon": 238.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4482": {
+          "cells": 138,
+          "land_cells": 93,
+          "land_area_km2": 72584.2,
+          "centroid_lat": -75.0,
+          "centroid_lon": 249.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4483": {
+          "cells": 138,
+          "land_cells": 114,
+          "land_area_km2": 90567.0,
+          "centroid_lat": -75.0,
+          "centroid_lon": 261.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4484": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 272.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4485": {
+          "cells": 144,
+          "land_cells": 143,
+          "land_area_km2": 114326.2,
+          "centroid_lat": -75.0,
+          "centroid_lon": 284.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4486": {
+          "cells": 138,
+          "land_cells": 71,
+          "land_area_km2": 58112.1,
+          "centroid_lat": -75.0,
+          "centroid_lon": 296.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4489": {
+          "cells": 144,
+          "land_cells": 11,
+          "land_area_km2": 8107.9,
+          "centroid_lat": -75.0,
+          "centroid_lon": 331.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4490": {
+          "cells": 138,
+          "land_cells": 91,
+          "land_area_km2": 71347.9,
+          "centroid_lat": -75.0,
+          "centroid_lon": 342.75,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4491": {
+          "cells": 138,
+          "land_cells": 138,
+          "land_area_km2": 110391.5,
+          "centroid_lat": -75.0,
+          "centroid_lon": 354.25,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4492": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 7.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4493": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 22.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4494": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 37.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4495": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 52.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4496": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 67.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4497": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 82.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4498": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 97.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4499": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 112.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4500": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 127.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4501": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 142.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4502": {
+          "cells": 180,
+          "land_cells": 158,
+          "land_area_km2": 101795.2,
+          "centroid_lat": -78.0,
+          "centroid_lon": 157.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4505": {
+          "cells": 180,
+          "land_cells": 57,
+          "land_area_km2": 35982.8,
+          "centroid_lat": -78.0,
+          "centroid_lon": 202.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4506": {
+          "cells": 180,
+          "land_cells": 164,
+          "land_area_km2": 104568.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 217.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4507": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 232.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4508": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 247.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4509": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 262.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4510": {
+          "cells": 180,
+          "land_cells": 144,
+          "land_area_km2": 93431.8,
+          "centroid_lat": -78.0,
+          "centroid_lon": 277.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4511": {
+          "cells": 180,
+          "land_cells": 13,
+          "land_area_km2": 8050.3,
+          "centroid_lat": -78.0,
+          "centroid_lon": 292.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4512": {
+          "cells": 180,
+          "land_cells": 33,
+          "land_area_km2": 19952.5,
+          "centroid_lat": -78.0,
+          "centroid_lon": 307.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4513": {
+          "cells": 180,
+          "land_cells": 59,
+          "land_area_km2": 36925.0,
+          "centroid_lat": -78.0,
+          "centroid_lon": 322.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4514": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 337.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4515": {
+          "cells": 180,
+          "land_cells": 180,
+          "land_area_km2": 115667.6,
+          "centroid_lat": -78.0,
+          "centroid_lon": 352.5,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4516": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 10.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4517": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 30.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4518": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 50.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4519": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 70.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4520": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 90.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4521": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 110.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4522": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 130.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4523": {
+          "cells": 240,
+          "land_cells": 239,
+          "land_area_km2": 115515.5,
+          "centroid_lat": -81.0,
+          "centroid_lon": 150.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4524": {
+          "cells": 240,
+          "land_cells": 17,
+          "land_area_km2": 7619.8,
+          "centroid_lat": -81.0,
+          "centroid_lon": 170.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4525": {
+          "cells": 240,
+          "land_cells": 4,
+          "land_area_km2": 2200.1,
+          "centroid_lat": -81.0,
+          "centroid_lon": 190.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4526": {
+          "cells": 240,
+          "land_cells": 150,
+          "land_area_km2": 71778.6,
+          "centroid_lat": -81.0,
+          "centroid_lon": 210.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4527": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 230.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4528": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 250.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4529": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 270.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4530": {
+          "cells": 240,
+          "land_cells": 118,
+          "land_area_km2": 54894.8,
+          "centroid_lat": -81.0,
+          "centroid_lon": 290.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4531": {
+          "cells": 240,
+          "land_cells": 76,
+          "land_area_km2": 36904.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 310.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4532": {
+          "cells": 240,
+          "land_cells": 190,
+          "land_area_km2": 89547.1,
+          "centroid_lat": -81.0,
+          "centroid_lon": 330.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4533": {
+          "cells": 240,
+          "land_cells": 240,
+          "land_area_km2": 116039.0,
+          "centroid_lat": -81.0,
+          "centroid_lon": 350.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4534": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 15.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4535": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 45.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4536": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 75.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4537": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 105.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4538": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 135.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4539": {
+          "cells": 360,
+          "land_cells": 295,
+          "land_area_km2": 92395.2,
+          "centroid_lat": -84.0,
+          "centroid_lon": 165.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4540": {
+          "cells": 360,
+          "land_cells": 170,
+          "land_area_km2": 52775.9,
+          "centroid_lat": -84.0,
+          "centroid_lon": 195.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4541": {
+          "cells": 360,
+          "land_cells": 359,
+          "land_area_km2": 116048.8,
+          "centroid_lat": -84.0,
+          "centroid_lon": 225.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4542": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 255.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4543": {
+          "cells": 360,
+          "land_cells": 358,
+          "land_area_km2": 115524.6,
+          "centroid_lat": -84.0,
+          "centroid_lon": 285.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4544": {
+          "cells": 360,
+          "land_cells": 354,
+          "land_area_km2": 113964.2,
+          "centroid_lat": -84.0,
+          "centroid_lon": 315.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4545": {
+          "cells": 360,
+          "land_cells": 360,
+          "land_area_km2": 116304.7,
+          "centroid_lat": -84.0,
+          "centroid_lon": 345.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4546": {
+          "cells": 864,
+          "land_cells": 864,
+          "land_area_km2": 139757.2,
+          "centroid_lat": -87.0,
+          "centroid_lon": 36.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4547": {
+          "cells": 864,
+          "land_cells": 864,
+          "land_area_km2": 139757.2,
+          "centroid_lat": -87.0,
+          "centroid_lon": 108.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4548": {
+          "cells": 864,
+          "land_cells": 864,
+          "land_area_km2": 139757.2,
+          "centroid_lat": -87.0,
+          "centroid_lon": 180.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4549": {
+          "cells": 864,
+          "land_cells": 864,
+          "land_area_km2": 139757.2,
+          "centroid_lat": -87.0,
+          "centroid_lon": 252.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4550": {
+          "cells": 864,
+          "land_cells": 864,
+          "land_area_km2": 139757.2,
+          "centroid_lat": -87.0,
+          "centroid_lon": 324.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        },
+        "4551": {
+          "cells": 2160,
+          "land_cells": 2160,
+          "land_area_km2": 87393.2,
+          "centroid_lat": -89.25,
+          "centroid_lon": 180.0,
+          "ice_area_km2": 0.0,
+          "ice_fraction_of_land": 0.0
+        }
+      },
+      "trend_gt_per_yr_full_series": -128.208
+    }
+  },
+  "provider_cross_check": {
+    "greenland": {
+      "file": "greenland_mass_200204_202607.txt",
+      "file_sha256": "sha256:73744993ffb271770bc9178085d96a612c6626bdd40dc237e09a440323027ea4",
+      "provider_header_trend": "Greenland Mass Trend (04/2002 - 07/2026): -259.82 +/-21.00 Gt/yr",
+      "common_months": 257,
+      "first": "2002-04",
+      "last": "2026-07",
+      "trend_gt_per_yr": {
+        "this_loader": -251.96,
+        "provider": -255.766
+      },
+      "difference_after_mean_offset_gt": {
+        "std": 29.003,
+        "max_abs": 53.697
+      },
+      "provider_one_sigma_gt": {
+        "median": 22.98
+      },
+      "rule": "the provider's series is read for this comparison only; the sum above is never adjusted to it. Its monthly uncertainty includes leakage (its header), the formal error here does not"
+    },
+    "antarctica": {
+      "file": "antarctica_mass_200204_202607.txt",
+      "file_sha256": "sha256:b624697cf54cc3c3a66c2303adb9f7bfa2eb12e49b16b6d076e9057ab4691279",
+      "provider_header_trend": "Antarctic Mass Trend (04/2002 - 07/2026): -129.60 +/-39.00 Gt/yr",
+      "common_months": 257,
+      "first": "2002-04",
+      "last": "2026-07",
+      "trend_gt_per_yr": {
+        "this_loader": -128.169,
+        "provider": -127.674
+      },
+      "difference_after_mean_offset_gt": {
+        "std": 11.426,
+        "max_abs": 119.884
+      },
+      "provider_one_sigma_gt": {
+        "median": 35.41
+      },
+      "rule": "the provider's series is read for this comparison only; the sum above is never adjusted to it. Its monthly uncertainty includes leakage (its header), the formal error here does not"
+    }
+  },
+  "global_attributes": {
+    "title": "JPL GRACE and GRACE-FO MASCON RL06.3Mv04 CRI",
+    "id": "10.5067/TEMSC-3JC634",
+    "time_coverage_start": "2002-04-16T00:00:00Z",
+    "time_coverage_end": "2026-07-16T23:59:59Z",
+    "date_created": "2026-09-08T08:09:18Z",
+    "processing_level": "2 and 3",
+    "source": "GRACE and GRACE-FO JPL RL06.3Mv04-CRI"
+  }
+}

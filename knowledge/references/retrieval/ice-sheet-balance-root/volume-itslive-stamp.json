@@ -1,0 +1,133 @@
+{
+  "term": "volume-itslive",
+  "quantity": "surface elevation change from the ITS_LIVE elevation change products summed to a volume anomaly per ice sheet domain and time step",
+  "units": "value_km3, uncertainty_km3 and uncertainty_correlated_km3 in km3 of surface height change (not ice); area_km2 in km2",
+  "sign_convention": "positive is a higher surface (more volume), the product's own",
+  "months": [
+    "1992-01",
+    "2023-12"
+  ],
+  "n_rows": 984,
+  "domains": [
+    [
+      "antarctica",
+      "grounded"
+    ],
+    [
+      "greenland",
+      "ice_sheet"
+    ],
+    [
+      "greenland",
+      "peripheral_glaciers"
+    ]
+  ],
+  "not_mass": "a volume of surface height change: the firn air content change is removed and a density applied by the computation, never here (the bundle's gotcha atl15-height-change-is-not-mass-change states the trap for ATL15; it holds for every altimetric height change)",
+  "series": {
+    "greenland": {
+      "product": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+      "doi": "10.5067/ICFVI7DKHZJV",
+      "product_version": "1.1",
+      "granule": "Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+      "granule_sha256": "sha256:04c8259891a0a94dfa5f9e4996dfaad57ca13763a988dbbee5cda795a9f4a4b2",
+      "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Greenland/Greenland_G1920V01_IceSheetGlacierIceHeight.nc",
+      "read_utc": "2026-09-15T18:17:13Z",
+      "variable": "dh (with rms)",
+      "variable_comment": "Surface elevation change (dh) relative to DEM, w.r.t. 2014-01-01",
+      "error_comment": "RMS error is the root-square-sum of the systematic and random error",
+      "grid": "1920 m polar stereographic, EPSG:3413, 1421 by 783 cells; cell areas from the projection's areal scale",
+      "mask": "the file's mask variable: 1 ice sheet, 2 peripheral glacier, 0 non-ice; the ice sheet domain is the grounded ice sheet, the product being a grounded ice elevation change product",
+      "aggregation": "sum of dh times cell area over the fixed set of cells inside the mask that are finite in dh at every time step; 1e-3 km3 per m km2; the rms error times area in quadrature and linearly over the cells of that set where rms is finite at the step",
+      "reference": "anomaly against 2014-01-01, the product's own reference",
+      "sampling": "monthly",
+      "time_coverage": [
+        "1992-01-15",
+        "2023-12-14"
+      ],
+      "months": [
+        "1992-01",
+        "2023-12"
+      ],
+      "n_steps": 384,
+      "empty_steps_skipped": [],
+      "cells": {
+        "ice_sheet": 464999,
+        "peripheral_glaciers": 23827
+      },
+      "area_km2": {
+        "ice_sheet": 1732985.13,
+        "peripheral_glaciers": 89376.73
+      },
+      "cells_without_error_max": {
+        "ice_sheet": 269,
+        "peripheral_glaciers": 674
+      },
+      "uncertainty_basis": "the product's rms (the root-square-sum of the systematic and random error, its comment) times cell area, in quadrature over the cells (a floor where errors correlate across cells) and summed linearly (the bound where they correlate fully), both carried",
+      "global_attributes": {
+        "date_created": "2026-02-10",
+        "title": "ITS_LIVE Greenland Grounded Ice Sheet and Peripheral Glacier Ice Elevation Change",
+        "author": "Johan Nilsson and Alex Gardner",
+        "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+        "institution": "Uppsala University and NASA Jet Propulsion Laboratory",
+        "doi": "doi.org/10.5067/ICFVI7DKHZJV",
+        "version": "1.1",
+        "epsg_number": "3413",
+        "Conventions": "CF-1.10"
+      }
+    },
+    "antarctica": {
+      "product": "ITS_LIVE Antarctic Ice Sheet grounded ice elevation change",
+      "doi": "10.5067/L3LSVDZS15ZV",
+      "product_version": "1.0",
+      "granule": "ANT_G1920V01_GroundedIceHeight.nc",
+      "granule_sha256": "sha256:cfa23b4204a05e3137373ee4f2ee997c160be62c32e0deeba13c052bd0c14302",
+      "source_url": "https://its-live-data.s3.amazonaws.com/height_change/Antarctica/Grounded/ANT_G1920V01_GroundedIceHeight.nc",
+      "read_utc": "2026-09-15T18:22:31Z",
+      "variable": "dh (with rmse and quality_flag)",
+      "variable_comment": "height anomaly w.r.t. 2013-12-16",
+      "error_comment": "rmse is equivalent to sigma_m in Nilsson et al. (2022)",
+      "grid": "1920 m polar stereographic, EPSG:3031, 2916 by 2916 cells; cell areas from the projection's areal scale",
+      "mask": "every cell finite in dh and with a quality flag other than no-data at every time step: the grounded ice sheet, the product being a grounded ice elevation change product; the pole hole cells (flag 3) are in the set and counted",
+      "aggregation": "sum of dh times cell area over the fixed set of cells finite in dh and flagged at every time step; 1e-3 km3 per m km2; the rmse times area in quadrature and linearly over the cells of that set where rmse is finite at the step",
+      "reference": "anomaly against 2013-12-16, the product's own reference (the dh standard name)",
+      "sampling": "monthly",
+      "time_coverage": [
+        "2003-01-16",
+        "2020-12-16"
+      ],
+      "months": [
+        "2003-01",
+        "2020-12"
+      ],
+      "n_steps": 216,
+      "empty_steps_skipped": [],
+      "start_month": "2003-01",
+      "steps_before_start_month": 213,
+      "cell_set_rule": "cells finite in dh and flagged at every step from 2003-01 on; the earlier steps are not read",
+      "cells": {
+        "grounded": 3270748
+      },
+      "area_km2": {
+        "grounded": 12334777.08
+      },
+      "pole_hole_cells": 0,
+      "basins_present": 199,
+      "cells_without_error_max": {
+        "grounded": 0
+      },
+      "uncertainty_basis": "the product's rmse (sigma_m of Nilsson and others 2022, its description) times cell area, in quadrature over the cells (a floor where errors correlate across cells) and summed linearly (the bound where they correlate fully), both carried",
+      "global_attributes": {
+        "GDAL_AREA_OR_POINT": "Area",
+        "Conventions": "CF-1.6",
+        "date_created": "25-Aug-2022 15:57:08",
+        "title": "ITS_LIVE Antarctic Ice Sheet grounded ice elevation change",
+        "author": "Johan Nilsson, Alex Gardner, Fernando Paolo - JPL/NASA",
+        "doi": "doi.org/10.5067/L3LSVDZS15ZV",
+        "citation": "Nilsson, J., Gardner, A., & Paolo, F. (2021). Elevation Change of the Antarctic Ice Sheet: 1985 to 2020. Earth System Science Data Discussions, 2021, 1\u201339. https://doi.org/10.5194/essd-2021-287",
+        "project": "ITS_LIVE, a NASA MEaSUREs project (its-live.jpl.nasa.gov)",
+        "institution": "NASA Jet Propulsion Laboratory (JPL), California Institute of Technology",
+        "version": "1.0"
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ ice sheet balance receipt records, or a rate, an interval or a bar the
 receipt states, quoted in a legend or a caption. Nothing is fitted,
 smoothed, resampled, averaged or converted, and no two receipts are
 ever drawn on one pair of axes. The computation that owns those numbers
-is the concept `knowledge/nsidc/computations/ice-sheet-balance.md`, and
+is the concept `knowledge/computations/ice-sheet-balance.md`, and
 the procedure that runs it is the `ice-mass-change` skill; read both
 before drawing.
 
@@ -36,17 +36,18 @@ about a picture. The `differences` mode is the picture, and the `terms`
 mode is the volume and the firn air series the reading rests on.
 
 The renderer ships beside this skill (`scripts/receipt_figure.py`, PEP
-723, matplotlib). It finds the attester in the installed provider
-bundle through the installer's record (`claude plugin list --json`), or
-in a checkout named by `NASA_DAAC_KNOWLEDGE`, exactly as the wrapping
-skill and the `sweep` script do, and copies nothing into this
-repository.
+723, matplotlib). It finds the attester in the scripts of the
+`ice-mass-change` skill under this package's root, which it resolves
+the way the runtime does, `${CLAUDE_PLUGIN_ROOT}` where the runtime sets it and the
+package tree the script sits in otherwise, exactly as the
+`ice-mass-change` skill and the `sweep` script do, and reaches nothing
+in another repository.
 
 ## Behavior, in order
 
 1. **Get the receipt from a run of the wrapping skill.** A figure is
    drawn from a receipt the `ice-mass-change` skill produced, on the
-   fixture as a rehearsal or on the bundle's committed data root. The
+   fixture as a rehearsal or on the committed data root. The
    renderer does not run the executor; it draws what a run already
    wrote.
 2. **The attester runs first, and the renderer stops on anything but
@@ -61,12 +62,12 @@ repository.
    ```bash
    uv run skills/receipt-figures/scripts/receipt_figure.py terms RECEIPT.json \
      --attester ice_sheet_balance_check \
-     --data-root $NSIDC/references/retrieval/ice-sheet-balance-root \
+     --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root \
      --out /tmp/terms.png
 
    uv run skills/receipt-figures/scripts/receipt_figure.py differences RECEIPT.json \
      --attester ice_sheet_balance_check \
-     --data-root $NSIDC/references/retrieval/ice-sheet-balance-root \
+     --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-balance-root \
      --out /tmp/differences.png
    ```
 

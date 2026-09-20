@@ -1,0 +1,316 @@
+{
+  "term": "velocity",
+  "quantity": "surface velocity component normal to a flux gate, per node and epoch",
+  "units": "v_normal_m_per_yr, v_normal_error_m_per_yr and speed_m_per_yr in metres per year in the mosaic's map units; x_m, y_m and width_m in projection metres; areal_scale dimensionless",
+  "sign_convention": "positive is flow along the gate's stated normal, which points down the seed's flow direction, so a positive value is ice leaving through the gate",
+  "months": [
+    "2014-01",
+    "2024-01"
+  ],
+  "n_rows": 3146,
+  "domains": [
+    [
+      "greenland",
+      "greenland-outlets-v1"
+    ]
+  ],
+  "gate_set": {
+    "name": "greenland-outlets-v1",
+    "ice_sheet": "greenland",
+    "n_gates": 12,
+    "n_nodes": 286,
+    "gates": [
+      "gate-01",
+      "gate-02",
+      "gate-03",
+      "gate-04",
+      "gate-05",
+      "gate-06",
+      "gate-07",
+      "gate-08",
+      "gate-09",
+      "gate-10",
+      "gate-11",
+      "gate-12"
+    ],
+    "node_width_m": 120.0,
+    "rule": "the grounded margin of the RGI05A mosaic of 2015 (landice 1 and floatingice 0, touching a cell that is not, in the four-neighbourhood); seeds the fastest margin cells at or above 500.0 m per year, each at least 25000.0 m from every seed already taken, up to 12; each gate the straight segment through its seed perpendicular to the seed's flow direction, 3000.0 m on each side, sampled at the grid posting and clipped to land ice",
+    "reference_year": 2015,
+    "nodes_dropped_outside_land_ice": 326,
+    "seeds": [
+      {
+        "gate": "gate-01",
+        "x_m": -170827.5,
+        "y_m": -3143212.5,
+        "speed_m_per_yr": 17337.244
+      },
+      {
+        "gate": "gate-02",
+        "x_m": -196387.5,
+        "y_m": -2272852.5,
+        "speed_m_per_yr": 15365.908
+      },
+      {
+        "gate": "gate-03",
+        "x_m": -324067.5,
+        "y_m": -1775932.5,
+        "speed_m_per_yr": 11841.768
+      },
+      {
+        "gate": "gate-04",
+        "x_m": 185812.5,
+        "y_m": -2726332.5,
+        "speed_m_per_yr": 11491.151
+      },
+      {
+        "gate": "gate-05",
+        "x_m": 495412.5,
+        "y_m": -2293612.5,
+        "speed_m_per_yr": 10898.04
+      },
+      {
+        "gate": "gate-06",
+        "x_m": -327547.5,
+        "y_m": -1720732.5,
+        "speed_m_per_yr": 10590.083
+      },
+      {
+        "gate": "gate-07",
+        "x_m": 314812.5,
+        "y_m": -2575612.5,
+        "speed_m_per_yr": 10493.616
+      },
+      {
+        "gate": "gate-08",
+        "x_m": -61747.5,
+        "y_m": -3178612.5,
+        "speed_m_per_yr": 10360.063
+      },
+      {
+        "gate": "gate-09",
+        "x_m": 190012.5,
+        "y_m": -2756932.5,
+        "speed_m_per_yr": 10351.261
+      },
+      {
+        "gate": "gate-10",
+        "x_m": -245587.5,
+        "y_m": -2778052.5,
+        "speed_m_per_yr": 10242.098
+      },
+      {
+        "gate": "gate-11",
+        "x_m": 665932.5,
+        "y_m": -2267812.5,
+        "speed_m_per_yr": 10219.666
+      },
+      {
+        "gate": "gate-12",
+        "x_m": -258907.5,
+        "y_m": -1981732.5,
+        "speed_m_per_yr": 9972.086
+      }
+    ],
+    "areal_scale_range": [
+      0.978390724289794,
+      1.0684087147773238
+    ],
+    "nodes_per_gate": {
+      "gate-01": 34,
+      "gate-02": 26,
+      "gate-03": 26,
+      "gate-04": 31,
+      "gate-05": 27,
+      "gate-06": 22,
+      "gate-07": 4,
+      "gate-08": 18,
+      "gate-09": 13,
+      "gate-10": 38,
+      "gate-11": 22,
+      "gate-12": 25
+    },
+    "spans_margin": false,
+    "spans_margin_note": "the gate set is a set of segments across the fastest outlets, not a curve around the whole grounded margin, so the discharge it carries is the discharge of those outlets and not the ice sheet's total",
+    "grounded_by": "the velocity mosaic's own landice and floatingice masks, not the thickness product's grounded mask; the ice mask margin is not the grounding line, and a node's grounding is settled by the thickness term's mask",
+    "mask_cells": {
+      "RGI05A": {
+        "landice_cells": 124145873,
+        "floatingice_cells": 0
+      }
+    }
+  },
+  "not_in_the_distribution": [],
+  "alternates_not_read": [
+    "NSIDC-0725 (MEaSUREs Greenland annual ice sheet velocity mosaics from SAR and Landsat): not read",
+    "NSIDC-0478 and NSIDC-0670 (the InSAR Greenland velocity maps): not read",
+    "NSIDC-0484 (the InSAR Antarctic velocity map): not read",
+    "the ITS_LIVE monthly mosaics and the image pair granules: not read; the annual mosaic is the epoch this loader samples"
+  ],
+  "series": {
+    "greenland": {
+      "product": "ITS_LIVE annual mosaics of image pair velocities",
+      "product_version": "bucket V02.1",
+      "archive_collection": "NSIDC-0776",
+      "archive_version": "2",
+      "doi": "10.5067/JQ6337239C96",
+      "version_note": "the bucket copy read here is labelled V02.1 and runs to 2024; the collection NSIDC distributes as NSIDC-0776 Version 2 runs 1985 through 2022, so the two labels are not the same distribution",
+      "region": "RGI05A",
+      "granules": [
+        {
+          "year": 2015,
+          "epoch": "2015-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2015_V02.1.nc",
+          "granule_sha256": "sha256:daa3f9b9c6f9fa809ad2bc528be0775ff21d02e9adb2bbacc6cd8ab01ad3e03f",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2015_V02.1.nc",
+          "read_utc": "2026-09-19T07:08:03Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2015"
+        },
+        {
+          "year": 2016,
+          "epoch": "2016-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2016_V02.1.nc",
+          "granule_sha256": "sha256:ce3337b133ad7b17ee5957528816327f3c5947b90d1a8359e0afab0d8023516f",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2016_V02.1.nc",
+          "read_utc": "2026-09-19T07:09:13Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2016"
+        },
+        {
+          "year": 2017,
+          "epoch": "2017-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2017_V02.1.nc",
+          "granule_sha256": "sha256:c9fca69e37da502def279c49cf66fe6f08a89f2054a180d448e27fdf74b39778",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2017_V02.1.nc",
+          "read_utc": "2026-09-19T07:10:03Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2017"
+        },
+        {
+          "year": 2018,
+          "epoch": "2018-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2018_V02.1.nc",
+          "granule_sha256": "sha256:e41de5b817648f1d76af6f0e7d0a6ad192296e043984c79a1f9c23ba80e467e6",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2018_V02.1.nc",
+          "read_utc": "2026-09-19T07:11:07Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2018"
+        },
+        {
+          "year": 2019,
+          "epoch": "2019-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2019_V02.1.nc",
+          "granule_sha256": "sha256:268b88c46d8e09de2548c1fb50e955531fe3046c4853a56875d844f7dbade44f",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2019_V02.1.nc",
+          "read_utc": "2026-09-19T07:13:11Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2019"
+        },
+        {
+          "year": 2020,
+          "epoch": "2020-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2020_V02.1.nc",
+          "granule_sha256": "sha256:d6d6bfc5e12a2381babe18ff15c6b8e875418693bd97cda2c41969da77d25fab",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2020_V02.1.nc",
+          "read_utc": "2026-09-19T07:14:22Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2020"
+        },
+        {
+          "year": 2021,
+          "epoch": "2021-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2021_V02.1.nc",
+          "granule_sha256": "sha256:7a04f6610541ff4f25bf25d4a9638f3222169df64547d0db371dc72a0e4c38c8",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2021_V02.1.nc",
+          "read_utc": "2026-09-19T07:15:11Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2021"
+        },
+        {
+          "year": 2022,
+          "epoch": "2022-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2022_V02.1.nc",
+          "granule_sha256": "sha256:632db3f5ac8f82da99bf0b7273b601a14c0e9e87ddfb151c8146f2fccd3a058b",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2022_V02.1.nc",
+          "read_utc": "2026-09-19T07:16:12Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2022"
+        },
+        {
+          "year": 2023,
+          "epoch": "2023-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2023_V02.1.nc",
+          "granule_sha256": "sha256:afccba5e6c0e6770c7eabdf91186863088673bf0a1530069cef8e0d9bb03d6f7",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2023_V02.1.nc",
+          "read_utc": "2026-09-19T07:17:16Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2023"
+        },
+        {
+          "year": 2024,
+          "epoch": "2024-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2024_V02.1.nc",
+          "granule_sha256": "sha256:debe6b34d2880b01212bd2d8e79101880e2d54f589d7e63bb72ec0e98aa9bb7b",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2024_V02.1.nc",
+          "read_utc": "2026-09-19T07:19:06Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2024"
+        },
+        {
+          "year": 2014,
+          "epoch": "2014-01",
+          "granule": "ITS_LIVE_velocity_120m_RGI05A_2014_V02.1.nc",
+          "granule_sha256": "sha256:b780c80f93c027f267fc95e014a75082feac4b787adcc64ff4269f418f714d0e",
+          "source_url": "https://its-live-data.s3.amazonaws.com/velocity_mosaic/v2.1/annual/ITS_LIVE_velocity_120m_RGI05A_2014_V02.1.nc",
+          "read_utc": "2026-09-19T07:19:09Z",
+          "grid": "120 m, EPSG:3413, 23334 by 13333 cells",
+          "date_created": "24-Nov-2025 10:50:33",
+          "mosaics_software_version": "1.0",
+          "year_attribute": "01-Jan-2014"
+        }
+      ],
+      "grid": "120 m polar stereographic, EPSG:3413",
+      "mask": "the mosaic's landice and floatingice masks; the nodes lie on land ice, and whether a node is grounded is the thickness term's statement",
+      "aggregation": "no aggregation: one row per node and epoch, the velocity read at the node's nearest cell, nothing interpolated and no hole filled",
+      "sampling": "annual: one row per annual mosaic, labelled by the January of the mosaic's year attribute; an annual mosaic is an error-weighted fit of the image pairs overlapping the year, a composite with its own effective date and not a calendar mean. The user guide states that data scarcity and low radiometric quality significantly limit coverage for many regions in the earlier years and that annual coverage is nearly complete for all regions after 2013",
+      "epochs": [
+        "2014-01",
+        "2015-01",
+        "2016-01",
+        "2017-01",
+        "2018-01",
+        "2019-01",
+        "2020-01",
+        "2021-01",
+        "2022-01",
+        "2023-01",
+        "2024-01"
+      ],
+      "n_epochs": 11,
+      "nodes_without_velocity": 70,
+      "uncertainty_basis": "the product's v_error at the node, the error weighted error for v; the user guide states that this formal propagation typically produces errors that are unrealistically low and that v_error and count are qualitative error metrics, so a discharge interval formed from it is a lower bound",
+      "map_units": "the Version 2 user guide states that the velocities are calculated in map units, that the distortion of up to a few percent was not corrected as it was in Version 1, and that a flux gate cross section therefore no longer needs to be corrected for projection scale distortion. A map velocity times a map width is the ground flux times the projection's areal scale, so the two readings differ by that factor; the areal_scale column carries it at every node and a computation states which reading it took",
+      "read_utc": "2026-09-19T07:19:09Z"
+    }
+  }
+}

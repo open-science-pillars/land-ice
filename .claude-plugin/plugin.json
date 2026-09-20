@@ -1,7 +1,7 @@
 {
   "name": "land-ice",
   "version": "0.1.0",
-  "description": "Land ice: run instructions for the attested ice sheet mass balance computations signed in the NSIDC bundle, the gravimetry against altimetry closure and the input-output balance through a flux gate set.",
+  "description": "Land ice: the two attested ice sheet mass balance computations, the gravimetry against altimetry closure and the input-output balance through a flux gate set, with the skills that run them, the stamped data roots they read and the goldens that prove them.",
   "dependencies": [
     "core",
     {

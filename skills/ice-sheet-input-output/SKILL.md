@@ -1,56 +1,65 @@
 ---
 name: ice-sheet-input-output
-description: "Run the attested input-output mass balance of the NSIDC bundle, the surface mass balance over the grounded ice less the discharge through a named flux gate set formed node by node from velocity and thickness, through the provider bundle's sanctioned executor, and attest the receipt before quoting any number from it; the record run on the committed root refuses and the skill reports that refusal. Keywords: ice sheet, mass balance, input-output, discharge, flux gate, surface mass balance, SMB, grounding line, Greenland, Antarctica, ITS_LIVE, velocity mosaic, BedMachine, thickness, mass conservation."
+description: "Run the attested input-output mass balance this capability carries, the surface mass balance over the grounded ice less the discharge through a named flux gate set formed node by node from velocity and thickness, through the sanctioned executor in this skill's scripts, and attest the receipt before quoting any number from it; the record run on the committed root refuses and the skill reports that refusal. Keywords: ice sheet, mass balance, input-output, discharge, flux gate, surface mass balance, SMB, grounding line, Greenland, Antarctica, ITS_LIVE, velocity mosaic, BedMachine, thickness, mass conservation."
 ---
 
 # ice-sheet-input-output
 
 Run instructions for the attested computation
-`knowledge/nsidc/computations/ice-sheet-input-output.md` in the
-provider bundle: over one stated window, for one ice sheet and one
+`knowledge/computations/ice-sheet-input-output.md` in this package:
+over one stated window, for one ice sheet and one
 named gate set, the surface mass balance over the grounded domain and
 the discharge through the gate set, each as the mean of its annual
 epochs with an interval, the mass rate as their difference epoch by
 epoch, the bar the receipt forms, and a verdict on whether the mass
 rate is distinguishable from zero.
 
-This capability computes nothing. The contract (the parameters, the
-receipt fields, the refusal codes, the attester criterion) is the
-concept and the executor's own usage text; this skill is the procedure
-an agent follows to run it, and every number it reports is owned by
-that concept. Read the concept before the first run, and read the
-bundle's recipe `knowledge/nsidc/recipes/ice-sheet-input-output.md`
-for how to read what comes back.
+The contract (the parameters, the receipt fields, the refusal codes,
+the attester criterion) is the concept and the executor's own usage
+text; this skill is the procedure an agent follows to run it, and every
+number it reports is owned by that concept, which this capability's
+maintainer signs. Read the concept before the first run, and read the
+provider bundle's recipe
+`knowledge/nsidc/recipes/ice-sheet-input-output.md` for how to read
+what comes back.
 
 The name is the workflow, not the product: this is the input-output
 method, the third of the three satellite methods, not a velocity
 reader and not a thickness reader.
 
-**The concept is stable and signed**, as is its recipe, at the provider
-release this capability declares a floor on. It was promoted on the
-same day this capability was, after the coordinator reproduced the
-whole chain, so a run of this skill carries the same standing as a run
-of its sibling. What the concept is signed for is the method and its
-refusals, not a measurement: the record run refuses, for the two
-reasons the next section separates, so no real-data estimate exists to
-quote.
+**The concept is draft while the move is re-signed.** It was signed
+stable in the provider bundle, and it moved into this package on
+2026-09-20 under ADR E with every reference run reproduced at the new
+paths; a signature covers the digests a concept names, so the move owes
+a re-sign and the concept says draft until the maintainer gives it. Its
+recipe stays in the provider bundle and is unaffected. What the concept
+is signed for is the method and its refusals, not a measurement: the
+record run refuses, for the two reasons the next section separates, so
+no real-data estimate exists to quote.
 
 ## Where the executor is
 
-The provider bundle arrives with the `nasa-daac-knowledge` dependency.
-Its root is the `installPath` of that entry in
-`claude plugin list --json`, which is the installer's own record of
-what is installed; a checkout named by `NASA_DAAC_KNOWLEDGE` is the one
-override, for a workspace that holds the repository beside this one.
-`$NSIDC` below stands for `<that root>/knowledge/nsidc`:
+Everything this skill runs ships with this plugin. `${CLAUDE_PLUGIN_ROOT}`
+is this package's installed root, which the runtime sets; in a checkout
+it is the repository root. The paths are:
 
-- concept: `$NSIDC/computations/ice-sheet-input-output.md`
-- executor: `$NSIDC/references/computations/ice_sheet_input_output.py`
-- attester: `$NSIDC/references/attesters/ice_sheet_input_output_check.py`
-- the committed data root: `$NSIDC/references/retrieval/ice-sheet-input-output-root`
-- the loaders that built it: `$NSIDC/references/loaders/iio_data_root.py`,
+- concept: `${CLAUDE_PLUGIN_ROOT}/knowledge/computations/ice-sheet-input-output.md`
+- executor:
+  `${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py`
+- attester:
+  `${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output_check.py`
+- the committed data root:
+  `${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-input-output-root`
+- the loaders that built it, beside the executor: `iio_data_root.py`,
   `iio_velocity_itslive.py`, `iio_thickness_bedmachine.py` and
   `iio_smb_gemb.py`
+- the golden that proves all of them:
+  `${CLAUDE_PLUGIN_ROOT}/verification/ice_sheet_input_output.py`
+
+The dataset and gotcha concepts this computation rests on stay in the
+provider bundle, which arrives with the `nasa-daac-knowledge`
+dependency, and are cited below by bundle path,
+`knowledge/nsidc/<type>/<concept>.md`.
 
 Never edit the executor or the attester. The attester hashes the
 executor on disk, so an edited computation invalidates every earlier
@@ -152,9 +161,10 @@ the ocean-science capability's `sea-level-budget` skill.
    and the ice density; and whether the run is a rehearsal on the
    synthetic fixture or a run on the committed data root, which
    refuses. Consult the concept and the gotchas it rests on, and cite
-   each by bundle path, the concept first, because it is the one that
-   owns every number this run can report:
-   `knowledge/nsidc/computations/ice-sheet-input-output.md`, then
+   each, the concept first, because it is the one that owns every
+   number this run can report:
+   `knowledge/computations/ice-sheet-input-output.md` in this package,
+   then the gotchas by bundle path,
    `knowledge/nsidc/gotchas/bedmachine-thickness-is-interpolated.md`
    (the thickness between flight lines is mass conservation or an
    interpolation, and the product's own fields say which, which is why
@@ -171,7 +181,7 @@ the ocean-science capability's `sea-level-budget` skill.
    records):
 
    ```bash
-   uv run $NSIDC/references/computations/ice_sheet_input_output.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py \
      --ice-sheet greenland --window 2005-01:2014-12 \
      --gates synthetic-outlets --velocity-epoch annual --ice-density 917 \
      --fixture --seed 7 \
@@ -191,10 +201,10 @@ the ocean-science capability's `sea-level-budget` skill.
 3. **The run on the committed data root, which refuses:**
 
    ```bash
-   uv run $NSIDC/references/computations/ice_sheet_input_output.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output.py \
      --ice-sheet greenland --window 2014-01:2023-12 \
      --gates greenland-outlets-v1 --velocity-epoch annual --ice-density 917 \
-     --data-root $NSIDC/references/retrieval/ice-sheet-input-output-root \
+     --data-root ${CLAUDE_PLUGIN_ROOT}/knowledge/references/retrieval/ice-sheet-input-output-root \
      --runtime claude-code --receipt /tmp/input-output-record.json
    echo $?   # 3, and the receipt carries term-not-in-root
    ```
@@ -229,7 +239,7 @@ the ocean-science capability's `sea-level-budget` skill.
    receipt:
 
    ```bash
-   uv run $NSIDC/references/attesters/ice_sheet_input_output_check.py \
+   uv run ${CLAUDE_PLUGIN_ROOT}/skills/ice-sheet-input-output/scripts/ice_sheet_input_output_check.py \
      /tmp/input-output-receipt.json [--data-root DIR] [--out /tmp/attestation.json]
    ```
 
@@ -308,6 +318,6 @@ the ocean-science capability's `sea-level-budget` skill.
 - Never convert a mass rate to a sea level equivalent here; cite the
   podaac recipe and the ocean-science skill that own it.
 - Never state a number this release owns. Every figure in a report
-  comes from the receipt or from the concept, cited by bundle path.
+  comes from the receipt or from the concept, cited by its path.
 - Never commit a receipt, an attestation or a generated fixture to
   this repository.

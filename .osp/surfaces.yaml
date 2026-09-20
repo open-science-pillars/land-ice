@@ -4,7 +4,9 @@
 # A runtime is advertised as supported only on a qualified record for the
 # exact version and release lock. Claude Code has one for 0.1.0; the two
 # other required surfaces are waived for this release, in writing, in
-# .osp/qualification/, and are not advertised.
+# .osp/qualification/, and are not advertised. The 0.1.0 record names the
+# golden this package carried before the computations moved in under ADR
+# E; the next release qualifies against the goldens named below.
 schema_version: 1
 surfaces:
   claude-code:
@@ -51,30 +53,28 @@ probes:
     prompt: Close the Greenland ice sheet's mass balance over 2003 through 2016 from the GRACE and GRACE-FO
       mascon sum against the altimetric volume change with its firn correction, and show me the plan before
       anything is run.
-    # The sibling capabilities expect their own package name here, because a
-    # skill that computes something says whose computation it is. A wrapping
-    # skill does the opposite on purpose: every number it can report is owned
-    # by a concept in the provider bundle, and the skill names that concept by
-    # bundle path and never claims it. So the expectation is the concept path
-    # and the window, which the skill must state before any run, because the
-    # verdict belongs to the window and a plan that left it out would be the
-    # failure worth catching.
+    # The expectation is the concept path and the window, which the skill
+    # must state before any run: every number it can report is owned by the
+    # computation concept this package carries, which the skill names by
+    # package path, and the verdict belongs to the window, so a plan that
+    # left the window out would be the failure worth catching.
     expect:
-    - knowledge/nsidc/computations/ice-sheet-balance[.]md
+    - knowledge/computations/ice-sheet-balance[.]md
     - '2003'
   prove:
-    prompt: 'Run this capability''s wrapping golden on the provider bundle''s synthetic fixture and report
-      the verdict and the residual it prints. The command is: uv run ${PLUGIN_ROOT}/verification/wrapped_computations.py
+    prompt: 'Run this capability''s closure golden on its synthetic fixture and report the verdict and
+      the residual it prints. The command is: uv run ${PLUGIN_ROOT}/verification/ice_sheet_balance.py
       --runtime ${RUNTIME} --out ${WORK}/receipt.json'
     receipt: ${WORK}/receipt.json
     command:
     - uv
     - run
-    - ${PLUGIN_ROOT}/verification/wrapped_computations.py
+    - ${PLUGIN_ROOT}/verification/ice_sheet_balance.py
     - --attest
     - ${WORK}/receipt.json
     - --out
     - ${WORK}/attestation.json
     attestation: ${WORK}/attestation.json
   golden-computation:
-  - verification/wrapped_computations.py
+  - verification/ice_sheet_balance.py
+  - verification/ice_sheet_input_output.py
