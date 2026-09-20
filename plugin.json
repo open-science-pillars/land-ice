@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "land-ice",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Land ice: the two attested ice sheet mass balance computations, the gravimetry against altimetry closure and the input-output balance through a flux gate set, with the skills that run them, the stamped data roots they read and the goldens that prove them.",
   "author": {
     "name": "Open Science Pillars Community"
